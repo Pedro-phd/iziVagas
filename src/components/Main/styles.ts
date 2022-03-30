@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.main`
-  background-color: ${(props) => props.theme.body};
   color: #fff;
   width: 100%;
   height: 100%;

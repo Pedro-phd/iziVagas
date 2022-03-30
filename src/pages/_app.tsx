@@ -6,7 +6,7 @@ import GlobalStyles from 'styles/global'
 
 function App({ Component, pageProps }: AppProps) {
   const a = 'b'
-  const theme = a == 'a' ? lightTheme : darkTheme
+  const theme = a == 'a' ? lightTheme.theme : darkTheme.theme
 
   return (
     <>
@@ -21,8 +21,8 @@ function App({ Component, pageProps }: AppProps) {
           content="A simple project starter to work with TypeScript, React, NextJS and Styled Components"
         />
       </Head>
-      <GlobalStyles />
       <ThemeProvider theme={theme}>
+        <GlobalStyles />
         <Component {...pageProps} />
       </ThemeProvider>
     </>
