@@ -1,9 +1,13 @@
+import { darkTheme, lightTheme } from '@/styles/themes'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
-
+import { ThemeProvider } from 'styled-components'
 import GlobalStyles from 'styles/global'
 
 function App({ Component, pageProps }: AppProps) {
+  const a = 'b'
+  const theme = a == 'a' ? lightTheme : darkTheme
+
   return (
     <>
       <Head>
@@ -18,7 +22,9 @@ function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <GlobalStyles />
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   )
 }
