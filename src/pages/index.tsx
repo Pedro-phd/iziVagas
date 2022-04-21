@@ -1,5 +1,5 @@
+import ToggleTheme from '@/components/ToggleTheme'
 import Theme from '@/context/Theme'
-import Main from 'components/Main'
 import { useContext, useEffect } from 'react'
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
       <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
         aaaaa
       </button>
-      <Main />
+      <ToggleTheme />
     </>
   )
 }
