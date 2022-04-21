@@ -1,9 +1,13 @@
+import Theme from '@/context/Theme'
+import { darkTheme, lightTheme } from '@/styles/themes'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
-
+import { useState } from 'react'
+import { ThemeProvider } from 'styled-components'
 import GlobalStyles from 'styles/global'
 
 function App({ Component, pageProps }: AppProps) {
+  const [theme, setTheme] = useState<string>('light')
   return (
     <>
       <Head>
@@ -17,8 +21,15 @@ function App({ Component, pageProps }: AppProps) {
           content="A simple project starter to work with TypeScript, React, NextJS and Styled Components"
         />
       </Head>
-      <GlobalStyles />
-      <Component {...pageProps} />
+      <Theme.Provider value={{ theme, setTheme }}>
+        <ThemeProvider
+          theme={theme === 'dark' ? darkTheme.theme : lightTheme.theme}
+        >
+          {/* <ThemeProvider theme={darkTheme}> */}
+          <GlobalStyles />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </Theme.Provider>
     </>
   )
 }
