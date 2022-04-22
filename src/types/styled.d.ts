@@ -11,5 +11,8 @@ export interface IThemesProps {
     red: string
     bold: number
     shadow: string
+    switchBg: string
+    switchDot: string
+    switchPosition: string
   }
 }

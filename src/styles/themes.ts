@@ -12,7 +12,10 @@ export const darkTheme: IThemesProps = {
     yellowSelected: '#FFCC3E',
     red: '#EB6565',
     bold: 700,
-    shadow: 'box-shadow: 0px 12px 41px 0px rgba(255, 255, 255, 0.2)'
+    shadow: 'box-shadow: 0px 12px 41px 0px rgba(255, 255, 255, 0.2)',
+    switchBg: '#F2F2F2',
+    switchDot: '#7A00B5',
+    switchPosition: 'b'
   }
 }
 export const lightTheme: IThemesProps = {
@@ -27,6 +30,9 @@ export const lightTheme: IThemesProps = {
     yellowSelected: '#FFCC3E',
     red: '#EB6565',
     bold: 700,
-    shadow: 'box-shadow: 0px 12px 41px 0px rgba(0, 0, 0, 0.1)'
+    shadow: 'box-shadow: 0px 12px 41px 0px rgba(0, 0, 0, 0.1)',
+    switchBg: '#7A00B5',
+    switchDot: '#F2F2F2',
+    switchPosition: 'a'
   }
 }
