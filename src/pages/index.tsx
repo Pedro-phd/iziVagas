@@ -1,8 +1,12 @@
+import ToggleLanguage from '@/components/ToggleLanguage'
 import ToggleTheme from '@/components/ToggleTheme'
 import Theme from '@/context/Theme'
 import { useContext, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function Home() {
+  const { t } = useTranslation()
+
   const { theme, setTheme } = useContext(Theme)
   useEffect(() => {
     console.log(theme)
@@ -10,9 +14,10 @@ export default function Home() {
   return (
     <>
       <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-        aaaaa
+        {t('button')}
       </button>
       <ToggleTheme />
+      <ToggleLanguage />
     </>
   )
 }
