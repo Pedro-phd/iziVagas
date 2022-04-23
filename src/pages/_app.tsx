@@ -1,5 +1,6 @@
 import Theme from '@/context/Theme'
 import { darkTheme, lightTheme } from '@/styles/themes'
+import '@/translate/index'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useState } from 'react'
@@ -25,7 +26,6 @@ function App({ Component, pageProps }: AppProps) {
         <ThemeProvider
           theme={theme === 'dark' ? darkTheme.theme : lightTheme.theme}
         >
-          {/* <ThemeProvider theme={darkTheme}> */}
           <GlobalStyles />
           <Component {...pageProps} />
         </ThemeProvider>
