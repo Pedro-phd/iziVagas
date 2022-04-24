@@ -1,5 +1,11 @@
 {
   "translation": {
-    "button": "ptbr"
+    "button": "ptbr",
+    "block": "Bloco",
+    "indicator": {
+      "many": "Muitas",
+      "regular": "Regular",
+      "few": "Poucas"
+    }
   }
 }

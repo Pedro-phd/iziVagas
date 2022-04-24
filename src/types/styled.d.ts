@@ -14,5 +14,10 @@ export interface IThemesProps {
     switchBg: string
     switchDot: string
     switchPosition: string
+    cardBox: string
   }
+}
+
+export interface IColorIndicator extends IThemesProps {
+  color: 'green' | 'yellow' | 'red'
 }

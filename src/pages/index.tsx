@@ -1,3 +1,6 @@
+import CardBlock from '@/components/CardBlock'
+import Header from '@/components/Header'
+import Indicator from '@/components/Indicator'
 import ToggleLanguage from '@/components/ToggleLanguage'
 import ToggleTheme from '@/components/ToggleTheme'
 import Theme from '@/context/Theme'
@@ -18,6 +21,9 @@ export default function Home() {
       </button>
       <ToggleTheme />
       <ToggleLanguage />
+      <Header title="Blocos" />
+      <Indicator />
+      <CardBlock letter="E" color="green" number={24} />
     </>
   )
 }
