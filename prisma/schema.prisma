@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Blocks {
+  id String @id @default(uuid())
+  name String
+  slots Int
+}
+
+model ParkingSpot {
+  id String @id @default(uuid())
+  block String
+  blockID String
+  occupied Boolean
+}
+
+model Ticket {
+  id String @id @default(uuid())
+  parkingSpotId String
+  paid Boolean
+  entryDate DateTime @default(now())
+  exitDate DateTime
+}
