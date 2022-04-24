@@ -1,5 +1,11 @@
 {
   "translation": {
-    "button": "ingles"
+    "button": "ingles",
+    "block": "Block",
+    "indicator": {
+      "many": "Many",
+      "regular": "Regular",
+      "few": "Few"
+    }
   }
 }

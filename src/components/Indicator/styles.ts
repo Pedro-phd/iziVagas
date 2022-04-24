@@ -1,9 +1,5 @@
-import { IThemesProps } from '@/types/styled'
+import { IColorIndicator, IThemesProps } from '@/types/styled'
 import styled from 'styled-components'
-
-interface IIndicator extends IThemesProps {
-  color: 'green' | 'yellow' | 'red'
-}
 
 export const Wrapper = styled.main`
   display: flex;
@@ -11,11 +7,12 @@ export const Wrapper = styled.main`
   p {
     font-size: 30px;
     margin: 0 5px;
+    color: ${(props: IThemesProps) => props.theme.text};
   }
 `
 
 export const IndicatorColor = styled.div`
-  background: ${(props: IIndicator) => props.theme[props.color]};
+  background: ${(props: IColorIndicator) => props.theme[props.color]};
   width: 25px;
   height: 25px;
   margin: 0 5px;
