@@ -1,9 +1,9 @@
-import { Story, Meta } from '@storybook/react'
-import CardBlock from '.'
+// import { Story, Meta } from '@storybook/react'
+// import CardBlock from '.'
 
-export default {
-  title: 'CardBlock',
-  component: CardBlock
-} as Meta
+// export default {
+//   title: 'CardBlock',
+//   component: CardBlock
+// } as Meta
 
-export const Default: Story = () => <CardBlock />
+// export const Default: Story = () => <CardBlock />
