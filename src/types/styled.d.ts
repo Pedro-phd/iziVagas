@@ -15,9 +15,17 @@ export interface IThemesProps {
     switchDot: string
     switchPosition: string
     cardBox: string
+    circleColor: string
+    initialTitle: string
   }
 }
 
 export interface IColorIndicator extends IThemesProps {
   color: 'green' | 'yellow' | 'red'
+}
+
+export interface ICircleProps extends IThemesProps {
+  opacity: number
+  size: string
+  duration: string
 }
