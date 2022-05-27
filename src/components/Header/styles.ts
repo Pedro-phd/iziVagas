@@ -9,6 +9,15 @@ export const Wrapper = styled.main`
   }
 `
 
+export const row = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+export const toggles = styled.div`
+  display: flex;
+`
+
 export const Title = styled.h1`
   color: ${(props: IThemesProps) => props.theme.text};
   font-weight: ${(props: IThemesProps) => props.theme.bold};

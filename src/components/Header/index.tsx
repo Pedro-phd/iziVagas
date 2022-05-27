@@ -1,4 +1,6 @@
 import { Logo } from '../Icons/Logo'
+import ToggleLanguage from '../ToggleLanguage'
+import ToggleTheme from '../ToggleTheme'
 import * as S from './styles'
 
 interface IHeader {
@@ -7,7 +9,13 @@ interface IHeader {
 
 const Header = ({ title }: IHeader) => (
   <S.Wrapper>
-    <Logo option="header" />
+    <S.row>
+      <Logo option="header" />
+      <S.toggles>
+        <ToggleLanguage />
+        <ToggleTheme />
+      </S.toggles>
+    </S.row>
     <S.Title>{title}</S.Title>
   </S.Wrapper>
 )
