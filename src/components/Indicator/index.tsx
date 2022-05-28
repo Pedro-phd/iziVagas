@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import * as S from './styles'
+import { IClassName } from '@/types/types'
 
-const Indicator = () => {
+const Indicator = ({ ClassName }: IClassName) => {
   const { t } = useTranslation()
   return (
-    <S.Wrapper>
+    <S.Wrapper className={ClassName}>
       <S.IndicatorColor color={'green'} />
       <p>{t('indicator.many')}</p>
       <S.IndicatorColor color={'yellow'} />
