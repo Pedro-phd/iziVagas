@@ -5,6 +5,7 @@ import Loader from '@/components/Loader'
 import clientApi from '@/utils/axios'
 import { useRouter } from 'next/router'
 import { ParkingSpot } from '.prisma/client'
+import ParkingSpotCard from '@/components/ParkingSpotCard'
 
 type StateBlocks = {
   ParkingSpot: ParkingSpot[]
@@ -45,6 +46,17 @@ export default function BlocksPage() {
       <Header title="Vagas" />
       {state.loading && <Loader />}
       {state.error && <p>{state.errorMessage}</p>}
+      <S.SlotsContainer>
+        {state.ParkingSpot.map((slot) => {
+          return (
+            <ParkingSpotCard
+              key={slot.id}
+              disabled={slot.occupied}
+              label={slot.name}
+            />
+          )
+        })}
+      </S.SlotsContainer>
     </S.Container>
   )
 }

@@ -10,3 +10,11 @@ export const Container = styled.div`
     margin-bottom: 15px;
   }
 `
+
+export const SlotsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 150px 150px 150px 150px 150px 150px;
+  grid-gap: 75px;
+  max-width: 1170px;
+  margin: 0 auto;
+`
