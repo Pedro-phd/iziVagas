@@ -16,7 +16,9 @@ export const darkTheme: IThemesProps = {
     switchBg: '#F2F2F2',
     switchDot: '#7A00B5',
     switchPosition: 'b',
-    cardBox: '#550080'
+    cardBox: '#550080',
+    circleColor: '#51007A',
+    initialTitle: '#FFFFFF'
   }
 }
 export const lightTheme: IThemesProps = {
@@ -35,6 +37,8 @@ export const lightTheme: IThemesProps = {
     switchBg: '#7A00B5',
     switchDot: '#F2F2F2',
     switchPosition: 'a',
-    cardBox: '#F2F2F2'
+    cardBox: '#F2F2F2',
+    circleColor: '#D4D4D4',
+    initialTitle: '#8A8A8A'
   }
 }
