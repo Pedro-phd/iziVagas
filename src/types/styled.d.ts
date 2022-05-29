@@ -21,3 +21,8 @@ export interface IThemesProps {
 export interface IColorIndicator extends IThemesProps {
   color: 'green' | 'yellow' | 'red'
 }
+
+export interface IParkingSpotCard extends IThemesProps {
+  selected: boolean
+  disabled: boolean
+}

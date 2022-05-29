@@ -41,7 +41,7 @@ export const Dot = styled.div<IDot>`
 `
 const LeftToRight = keyframes`
   0% {
-    transform: translateX(32px)
+    transform: translateX(36px)
   }
   100% {
     transform: translateX(0%)
@@ -51,9 +51,9 @@ const RightToLeft = keyframes`
   0% {
     transform: translateX(0%)
   }
-  50%{
+  60%{
   }
   100% {
-    transform: translateX(32px)
+    transform: translateX(35px)
   }
 `
