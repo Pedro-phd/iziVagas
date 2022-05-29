@@ -6,9 +6,13 @@ import Indicator from '@/components/Indicator'
 import Loader from '@/components/Loader'
 import clientApi from '@/utils/axios'
 import { Blocks } from '.prisma/client'
+import getColor from '@/utils/getColor'
+interface IBlocksOccupied extends Blocks {
+  occupied: number
+}
 
 type StateBlocks = {
-  blocks: Blocks[]
+  blocks: IBlocksOccupied[]
   error: boolean
   loading: boolean
   errorMessage: string
@@ -50,8 +54,8 @@ export default function BlocksPage() {
             <a key={block.id} href={`/parkingspot/${block.id}`}>
               <CardBlock
                 letter={block.name}
-                color="green"
-                number={block.slots}
+                color={getColor(block.occupied, block.slots)}
+                number={block.slots - block.occupied}
               />
             </a>
           )
