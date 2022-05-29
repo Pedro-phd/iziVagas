@@ -29,3 +29,8 @@ export interface ICircleProps extends IThemesProps {
   size: string
   duration: string
 }
+
+export interface IParkingSpotCard extends IThemesProps {
+  selected: boolean
+  disabled: boolean
+}
