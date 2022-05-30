@@ -8,7 +8,7 @@ const cache = setupCache({
 })
 
 const clientApi = axios.create({
-  baseURL: baseURL,
+  baseURL: `${baseURL}api`,
   adapter: cache.adapter
 })
 
