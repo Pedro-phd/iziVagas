@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { setupCache } from 'axios-cache-adapter'
 
-const baseURL = 'http://localhost:3000/api'
+const baseURL = process.env.API_URL
 
 const cache = setupCache({
   maxAge: 60 * 1000
