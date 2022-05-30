@@ -28,7 +28,7 @@ export default function BlocksPage() {
     setState((old) => ({ ...old, loading: true }))
     id &&
       clientApi
-        .get(`/parkingspot/blockid/${id}`)
+        .get(`api/parkingspot/blockid/${id}`)
         .then((res) =>
           setState((old) => ({ ...old, ParkingSpot: res.data, loading: false }))
         )

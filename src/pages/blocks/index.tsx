@@ -29,7 +29,7 @@ export default function BlocksPage() {
   useEffect(() => {
     setState((old) => ({ ...old, loading: true }))
     clientApi
-      .get('/blocks/all')
+      .get('api/blocks/all')
       .then((res) =>
         setState((old) => ({ ...old, blocks: res.data, loading: false }))
       )
