@@ -36,7 +36,8 @@ export const Dot = styled.div<IDot>`
   }
   .sun {
     opacity: ${(props) => (props.option == 'dark' ? '100%' : '0%')};
-    bottom: 3px;
+    top: 2px;
+    left: 2px;
   }
 `
 const LeftToRight = keyframes`
