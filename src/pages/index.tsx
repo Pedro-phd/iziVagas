@@ -14,7 +14,7 @@ export default function Home() {
           <S.Circle size="103px" opacity={1} duration="1.3s" />
           <HandEmoji />
         </S.CircleContainer>
-        <S.Title>Toque para iniciar</S.Title>
+        <S.Title>Toque para iniciar!</S.Title>
       </S.Column>
     </S.Container>
   )
