@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import * as S from './styles'
 import Header from '@/components/Header'
-import Loader from '@/components/Loader'
 import clientApi from '@/utils/axios'
 import { useRouter } from 'next/router'
 import { ParkingSpot } from '.prisma/client'
 import ParkingSpotCard from '@/components/ParkingSpotCard'
+import { BoxSkeleton } from '@/styles/skeleton'
 
 type StateBlocks = {
   ParkingSpot: ParkingSpot[]
@@ -44,9 +44,12 @@ export default function BlocksPage() {
   return (
     <S.Container>
       <Header title="Vagas" />
-      {state.loading && <Loader />}
       {state.error && <p>{state.errorMessage}</p>}
       <S.SlotsContainer>
+        {state.loading &&
+          Array.from(Array(18)).map((_, i) => {
+            return <BoxSkeleton width={'150px'} height={'150px'} key={i} />
+          })}
         {state.ParkingSpot.map((slot) => {
           return (
             <ParkingSpotCard

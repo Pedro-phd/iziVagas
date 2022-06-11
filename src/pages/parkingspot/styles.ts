@@ -14,7 +14,7 @@ export const Container = styled.div`
 export const SlotsContainer = styled.div`
   display: grid;
   grid-template-columns: 150px 150px 150px 150px 150px 150px;
-  grid-gap: 75px;
+  grid-gap: 55px;
   max-width: 1170px;
   margin: 0 auto;
 `

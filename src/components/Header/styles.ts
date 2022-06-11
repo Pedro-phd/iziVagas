@@ -16,6 +16,8 @@ export const row = styled.div`
 
 export const toggles = styled.div`
   display: flex;
+  flex-direction: column;
+  gap: 10px;
 `
 
 export const Title = styled.h1`

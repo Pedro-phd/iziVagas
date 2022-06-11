@@ -17,6 +17,8 @@ export interface IThemesProps {
     cardBox: string
     circleColor: string
     initialTitle: string
+    skeletonGradient: string
+    skeletonBg: string
   }
 }
 
@@ -33,4 +35,9 @@ export interface ICircleProps extends IThemesProps {
 export interface IParkingSpotCard extends IThemesProps {
   selected: boolean
   disabled: boolean
+}
+
+export interface ISkeleton extends IThemesProps {
+  width: string
+  height: string
 }

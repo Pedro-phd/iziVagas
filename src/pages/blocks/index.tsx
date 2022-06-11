@@ -3,10 +3,10 @@ import * as S from './styles'
 import CardBlock from '@/components/CardBlock'
 import Header from '@/components/Header'
 import Indicator from '@/components/Indicator'
-import Loader from '@/components/Loader'
 import clientApi from '@/utils/axios'
 import { Blocks } from '.prisma/client'
 import getColor from '@/utils/getColor'
+import { BoxSkeleton } from '@/styles/skeleton'
 interface IBlocksOccupied extends Blocks {
   occupied: number
 }
@@ -46,9 +46,13 @@ export default function BlocksPage() {
     <S.Container>
       <Header title="Blocos" />
       <Indicator ClassName="indicator" />
-      {state.loading && <Loader />}
       {state.error && <p>{state.errorMessage}</p>}
       <S.BlocksContainer>
+        {/* <BoxSkeleton width={250} height={250} /> */}
+        {state.loading &&
+          Array.from(Array(18)).map((_, i) => {
+            return <BoxSkeleton width={'25=70px'} height={'250px'} key={i} />
+          })}
         {state.blocks.map((block) => {
           return (
             <a key={block.id} href={`/parkingspot/${block.id}`}>
