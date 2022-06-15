@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react'
-import * as S from './styles'
-import Header from '@/components/Header'
-import clientApi from '@/utils/axios'
-import { useRouter } from 'next/router'
 import { ParkingSpot } from '.prisma/client'
+import ConfirmButton from '@/components/ConfirmButton'
+import Header from '@/components/Header'
 import ParkingSpotCard from '@/components/ParkingSpotCard'
 import { BoxSkeleton } from '@/styles/skeleton'
+import clientApi from '@/utils/axios'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import * as S from './styles'
 
 type StateBlocks = {
   ParkingSpot: ParkingSpot[]
   error: boolean
   loading: boolean
   errorMessage: string
+  idSelected: string
 }
 
 export default function BlocksPage() {
@@ -19,7 +21,8 @@ export default function BlocksPage() {
     ParkingSpot: [],
     error: false,
     loading: false,
-    errorMessage: ''
+    errorMessage: '',
+    idSelected: ''
   })
 
   const router = useRouter()
@@ -41,6 +44,14 @@ export default function BlocksPage() {
           }))
         )
   }, [id])
+  const handleClick = (id: string) => {
+    state.idSelected == id
+      ? setState((old) => ({ ...old, idSelected: '' }))
+      : setState((old) => ({ ...old, idSelected: id }))
+  }
+  const handleSelected = (id: string, occupied: boolean) => {
+    return state.idSelected == id && !occupied ? true : false
+  }
   return (
     <S.Container>
       <Header title="Vagas" />
@@ -53,6 +64,8 @@ export default function BlocksPage() {
         {state.ParkingSpot.map((slot) => {
           return (
             <ParkingSpotCard
+              onClick={() => handleClick(slot.id)}
+              selected={handleSelected(slot.id, slot.occupied)}
               key={slot.id}
               disabled={slot.occupied}
               label={slot.name}
@@ -60,6 +73,7 @@ export default function BlocksPage() {
           )
         })}
       </S.SlotsContainer>
+      {state.idSelected && <ConfirmButton id={state.idSelected} />}
     </S.Container>
   )
 }

@@ -20,7 +20,9 @@ export const darkTheme: IThemesProps = {
     circleColor: '#51007A',
     initialTitle: '#FFFFFF',
     skeletonGradient: 'linear-gradient(90deg, #7a00b5, #9a00e5, #7a00b5)',
-    skeletonBg: '#7a00b5'
+    skeletonBg: '#7a00b5',
+    buttonColor: '#FFCC3E',
+    buttonTextColor: '#7A00B5'
   }
 }
 export const lightTheme: IThemesProps = {
@@ -43,6 +45,8 @@ export const lightTheme: IThemesProps = {
     circleColor: '#D4D4D4',
     initialTitle: '#8A8A8A',
     skeletonGradient: 'linear-gradient(90deg, #dedede, #f5f5f5, #dedede)',
-    skeletonBg: '#dedede'
+    skeletonBg: '#dedede',
+    buttonColor: '#7A00B5',
+    buttonTextColor: '#FFCC3E'
   }
 }
