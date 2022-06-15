@@ -19,6 +19,8 @@ export interface IThemesProps {
     initialTitle: string
     skeletonGradient: string
     skeletonBg: string
+    buttonColor: string
+    buttonTextColor: string
   }
 }
 
