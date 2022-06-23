@@ -37,6 +37,13 @@ const GlobalStyles = createGlobalStyle`
     font-family: "Poppins", sans-serif;
     background: ${(props: IThemesProps) => props.theme.body};
   }
+  
+  .pdf-wrapper {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+  }
 `
 
 export default GlobalStyles
