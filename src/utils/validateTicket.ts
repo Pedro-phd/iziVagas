@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios'
 
 type Props = {
   id: string //id do ticket
-  parkingSpotiD?: string
+  parkingSpotId?: string
   paid?: boolean
   entryDate?: string
   exitDate?: string
