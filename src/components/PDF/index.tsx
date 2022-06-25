@@ -1,5 +1,6 @@
 import { format } from 'date-fns'
 import Barcode from 'react-barcode'
+import QRCode from 'react-qr-code'
 import { Logo } from '../Icons'
 import * as S from './styles'
 
@@ -20,7 +21,7 @@ function PDF({ id }: IPDFProps) {
         <h1>Ticket de Estacionamento</h1>
         <h2>{date}</h2>
         <S.Line />
-        {/* <QRCode value={id} /> */}
+        <QRCode value={id} />
         <p>{id}</p>
         <S.Line />
         <Barcode value={id} />
