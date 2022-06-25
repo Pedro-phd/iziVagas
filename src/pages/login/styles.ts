@@ -1,9 +1,10 @@
+import { IThemesProps } from '@/types/styled'
 import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
   flex: 1;
-  background-color: red;
+  background-color: ${(props: IThemesProps) => props.theme.body};
   justify-content: center;
   height: 100vh;
   align-items: center;
@@ -20,4 +21,13 @@ export const Card = styled.div`
   align-items: center;
   justify-content: center;
   gap: 16px;
+  box-shadow: ${(props: IThemesProps) => props.theme.shadow};
+  button {
+    background-color: ${(props: IThemesProps) => props.theme.primary};
+    font-weight: bold;
+  }
+  span {
+    color: red;
+    font-weight: bold;
+  }
 `

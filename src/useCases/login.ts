@@ -7,13 +7,13 @@ import {
 const login = async (
   email: string,
   password: string
-): Promise<UserCredential | Error> => {
+): Promise<UserCredential | string> => {
   const auth = getAuth()
   try {
     const res = await signInWithEmailAndPassword(auth, email, password)
     return Promise.resolve(res)
-  } catch (error) {
-    return Promise.reject(error)
+  } catch (error: any) {
+    return Promise.reject(error.message)
   }
 }
 
