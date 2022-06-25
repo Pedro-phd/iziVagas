@@ -9,6 +9,7 @@ export const Close = styled.button`
   width: 50px;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 `
 
 export const Header = styled.div`
