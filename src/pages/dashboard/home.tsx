@@ -1,4 +1,5 @@
 import { getAuth } from 'firebase/auth'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
@@ -9,22 +10,22 @@ export default function Home() {
 
   useEffect(() => {
     auth.currentUser ? null : router.push('/login')
-  }, [])
+  }, [router])
 
   return (
     <>
       <li>
         <ul>
-          <a href="/dashboard/register/parkingspot">Cadastrar vaga</a>
+          <Link href="/dashboard/register/parkingspot">Cadastrar vaga</Link>
         </ul>
         <ul>
-          <a>Cadastrar bloco</a>
+          <Link href="#">Cadastrar bloco</Link>
         </ul>
         <ul>
-          <a>Cadastrar usuario</a>
+          <Link href="#">Cadastrar usuario</Link>
         </ul>
         <ul>
-          <a>pagamento</a>
+          <Link href="#">pagamento</Link>
         </ul>
       </li>
     </>

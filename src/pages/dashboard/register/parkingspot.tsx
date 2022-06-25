@@ -25,11 +25,13 @@ export default function ParkingSpot() {
 
   const handleCreate = () => {
     clientApi.post('api/parkingspot/new', {
-      data: {}
+      name: state.name,
+      block: state.block,
+      blockID: state.blockId
     })
   }
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState((old) => ({
       ...old,
       block: e.target.value.split('{split}')[1],
@@ -56,7 +58,10 @@ export default function ParkingSpot() {
   return (
     <>
       <h1>New parking spot</h1>
-      <input placeholder="Nome" />
+      <input
+        placeholder="Nome"
+        onChange={(e) => setState((old) => ({ ...old, name: e.target.value }))}
+      />
       <h3>Selecione o bloco da vaga</h3>
       <select onChange={(e) => handleChange(e)}>
         {state.blocks.map((block) => {
@@ -67,7 +72,7 @@ export default function ParkingSpot() {
           )
         })}
       </select>
-      <button> Cadastrar vaga </button>
+      <button onClick={handleCreate}> Cadastrar vaga </button>
       <button onClick={() => console.log(state)}> logar </button>
       <p> resultado </p>
       <p>Nome: {state.name}</p>
