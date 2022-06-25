@@ -11,5 +11,22 @@ export default function Home() {
     auth.currentUser ? null : router.push('/login')
   }, [])
 
-  return <h1>aa</h1>
+  return (
+    <>
+      <li>
+        <ul>
+          <a href="/dashboard/register/parkingspot">Cadastrar vaga</a>
+        </ul>
+        <ul>
+          <a>Cadastrar bloco</a>
+        </ul>
+        <ul>
+          <a>Cadastrar usuario</a>
+        </ul>
+        <ul>
+          <a>pagamento</a>
+        </ul>
+      </li>
+    </>
+  )
 }
