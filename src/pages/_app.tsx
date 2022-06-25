@@ -6,13 +6,14 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import GlobalStyles from 'styles/global'
+import '@/lib/firebase'
 
 function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState<string>('light')
   return (
     <>
       <Head>
-        <title>React Avançado - Boilerplate</title>
+        <title>IziVagas</title>
         <link rel="shortcut icon" href="/img/icon-512.png" />
         <link rel="apple-touch-icon" href="/img/icon-512.png" />
         <link rel="manifest" href="/manifest.json" />
