@@ -17,6 +17,12 @@ const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-decoration: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
   }
 
   html {
@@ -40,6 +46,13 @@ const GlobalStyles = createGlobalStyle`
     bottom: 0;
     background-color: rgb(0,0,0,0.5);
     backdrop-filter: blur(25px);
+  }
+
+  .pdf-wrapper {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    z-index: -1;
   }
 `
 

@@ -2,16 +2,16 @@ import prisma from '@/../prisma/client'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 interface reqId {
-  blockID?: string
+  id?: string
 }
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
-  const { blockID }: reqId = req.query
+  const { id }: reqId = req.query
 
   prisma.parkingSpot
     .findMany({
       where: {
-        blockID: blockID
+        blockID: id
       }
     })
     .then((parkingspots) => {
