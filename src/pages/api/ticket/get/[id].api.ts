@@ -7,7 +7,6 @@ interface reqId {
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { id }: reqId = await req.query
-  console.log('aa', id)
   prisma.ticket
     .findFirst({
       where: {
