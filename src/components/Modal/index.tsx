@@ -1,6 +1,6 @@
-import { useState, PropsWithChildren } from 'react'
-import Modal from 'react-modal'
 import { CloseButton } from '@/components/Icons'
+import { PropsWithChildren, useState } from 'react'
+import Modal from 'react-modal'
 import * as S from './styles'
 
 type WrapperModalProps = PropsWithChildren<{
