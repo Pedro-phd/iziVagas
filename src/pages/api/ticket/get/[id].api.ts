@@ -2,16 +2,16 @@ import prisma from '@/../prisma/client'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 interface reqId {
-  ticketID?: string
+  id?: string
 }
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
-  const { ticketID }: reqId = req.query
-  console.log(ticketID)
+  const { id }: reqId = req.query
+  console.log(id)
   prisma.ticket
     .findFirst({
       where: {
-        id: ticketID
+        id: id
       }
     })
     .then((ticket) => {
