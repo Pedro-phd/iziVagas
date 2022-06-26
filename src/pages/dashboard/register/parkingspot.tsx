@@ -31,7 +31,7 @@ export default function ParkingSpot() {
     })
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setState((old) => ({
       ...old,
       block: e.target.value.split('{split}')[1],
