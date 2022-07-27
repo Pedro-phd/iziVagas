@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { HandEmoji, Logo } from '@/components/Icons'
+import Loader from '@/components/Loader'
 import PDF from '@/components/PDF'
 import * as S from '@/styles/home'
 import clientApi from '@/utils/axios'
 import { format } from 'date-fns'
 import { useRouter } from 'next/router'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import Pdf from 'react-to-pdf'
 
 export default function Home() {
@@ -13,11 +14,7 @@ export default function Home() {
   const date = format(new Date(), "dd/MM/yyyy '-' HH'h'mm ")
   const ref = useRef<HTMLDivElement>(null)
   const [id, setId] = useState<string>('')
-  useEffect(() => {
-    clientApi.post('api/ticket/new').then((res) => {
-      setId(res.data.id)
-    })
-  }, [])
+  const [loading, setLoading] = useState<boolean>(false)
 
   return (
     <div>
@@ -30,19 +27,40 @@ export default function Home() {
         onComplete={() => router.push('/blocks')}
       >
         {({ toPdf }: any) => (
-          <S.Container onClick={toPdf}>
-            <S.Column>
-              <Logo option="startScreen" />
-            </S.Column>
-            <S.Column>
-              <S.CircleContainer>
-                <S.Circle size="275px" opacity={0.2} duration="1s" />
-                <S.Circle size="165px" opacity={0.5} duration="1.6s" />
-                <S.Circle size="103px" opacity={1} duration="1.3s" />
-                <HandEmoji />
-              </S.CircleContainer>
-              <S.Title>Toque para iniciar!</S.Title>
-            </S.Column>
+          <S.Container
+            onClick={() => {
+              setLoading(true)
+              clientApi
+                .post('api/ticket/new')
+                .then((res) => {
+                  setId(res.data.id)
+                  toPdf()
+                  setLoading(false)
+                })
+                .catch((err) => {
+                  setLoading(false)
+                  console.log(err)
+                })
+            }}
+          >
+            {!loading ? (
+              <>
+                <S.Column>
+                  <Logo option="startScreen" />
+                </S.Column>
+                <S.Column>
+                  <S.CircleContainer>
+                    <S.Circle size="275px" opacity={0.2} duration="1s" />
+                    <S.Circle size="165px" opacity={0.5} duration="1.6s" />
+                    <S.Circle size="103px" opacity={1} duration="1.3s" />
+                    <HandEmoji />
+                  </S.CircleContainer>
+                  <S.Title>Toque para iniciar!</S.Title>
+                </S.Column>
+              </>
+            ) : (
+              <Loader />
+            )}
           </S.Container>
         )}
       </Pdf>
