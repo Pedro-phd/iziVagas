@@ -1,10 +1,10 @@
+import { Logo } from '@/components/Icons'
 import login from '@/useCases/login'
 import logoff from '@/useCases/signout'
-import { useState } from 'react'
-import { TextField, Button } from '@mui/material'
-import * as S from './styles'
-import { Logo } from '@/components/Icons'
+import { Button, TextField } from '@mui/material'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
+import * as S from './styles'
 
 export default function Home() {
   const [state, setState] = useState({
@@ -20,7 +20,7 @@ export default function Home() {
     login(email, pass)
       .then(() => {
         setState((old) => ({ ...old, error: false, errorMessage: '' }))
-        router.push('/dashboard/home')
+        router.push('/dashboard')
       })
       .catch((err) => {
         setState((old) => ({
