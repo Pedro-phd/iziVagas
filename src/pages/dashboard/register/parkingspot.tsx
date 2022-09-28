@@ -1,6 +1,8 @@
 import { Blocks } from '.prisma/client'
 import clientApi from '@/utils/axios'
+import { Button, MenuItem, Select, TextField } from '@mui/material'
 import { useEffect, useState } from 'react'
+import * as S from './styleParkingspot'
 
 type StateBlocks = {
   blocks: Blocks[]
@@ -56,28 +58,48 @@ export default function ParkingSpot() {
   }, [])
 
   return (
-    <>
-      <h1>New parking spot</h1>
-      <input
-        placeholder="Nome"
-        onChange={(e) => setState((old) => ({ ...old, name: e.target.value }))}
-      />
-      <h3>Selecione o bloco da vaga</h3>
-      <select onChange={(e) => handleChange(e)}>
-        {state.blocks.map((block) => {
-          return (
-            <option key={block.id} value={`${block.id}{split}${block.name}`}>
-              {block.name}
-            </option>
-          )
-        })}
-      </select>
-      <button onClick={handleCreate}> Cadastrar vaga </button>
-      <button onClick={() => console.log(state)}> logar </button>
-      <p> resultado </p>
-      <p>Nome: {state.name}</p>
-      <p>Bloco: {state.block}</p>
-      <p>Id do bloco: {state.blockId}</p>
-    </>
+    <S.ParkingspotContainer>
+      <S.ParkingspotCard>
+        <S.Title>New parking spot</S.Title>
+        <TextField
+            id="outlined-basic"
+            label="Nome"
+            variant="outlined"
+            placeholder="Nome"
+            onChange={(e) => setState((old) => ({ ...old, name: e.target.value }))}
+          />
+
+        <S.SubTitle>Selecione o bloco da vaga</S.SubTitle>
+
+        <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Bloco"
+            placeholder="Selecione um Bloco"
+            value="Selecione um Bloco"
+            onChange={(e:any) => handleChange(e)}
+            >
+              {state.blocks.map((block) => {
+                return (
+                  <MenuItem key={block.id} value={`${block.id}{split}${block.name}`}>{block.name}
+                  </MenuItem>
+                )
+              })}
+        </Select>
+
+        <Button variant="contained" onClick={handleCreate}>
+          Cadastrar vaga
+        </Button>    
+
+        <Button variant="contained" onClick={() => console.log(state)}>
+          Logar
+        </Button>   
+
+        <S.SubTitle> Resultado </S.SubTitle>
+        <S.Text>Nome: {state.name}</S.Text>
+        <S.Text>Bloco: {state.block}</S.Text>
+        <S.Text>Id do bloco: {state.blockId}</S.Text>
+      </S.ParkingspotCard>
+    </S.ParkingspotContainer>
   )
 }
