@@ -13,7 +13,7 @@ export const Title = styled.h1`
   color: ${(props: IThemesProps) => props.theme.text};
 `
 
-export const ParkingspotContainer = styled.div`
+export const Container = styled.div`
   display: flex;
   flex: 1;
   background-color: ${(props: IThemesProps) => props.theme.body};
@@ -22,7 +22,7 @@ export const ParkingspotContainer = styled.div`
   align-items: center;
 `
 
-export const ParkingspotCard = styled.div`
+export const Card = styled.div`
   width: 50%;
   max-width: 450px;
   height: 450px;
