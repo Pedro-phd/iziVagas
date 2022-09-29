@@ -2,7 +2,7 @@ import { Blocks } from '.prisma/client'
 import clientApi from '@/utils/axios'
 import { Button, MenuItem, Select, TextField } from '@mui/material'
 import { useEffect, useState } from 'react'
-import * as S from './styleParkingspot'
+import * as S from './style'
 
 type StateBlocks = {
   blocks: Blocks[]
@@ -58,8 +58,8 @@ export default function ParkingSpot() {
   }, [])
 
   return (
-    <S.ParkingspotContainer>
-      <S.ParkingspotCard>
+    <S.Container>
+      <S.Card>
         <S.Title>New parking spot</S.Title>
         <TextField
             id="outlined-basic"
@@ -99,7 +99,7 @@ export default function ParkingSpot() {
         <S.Text>Nome: {state.name}</S.Text>
         <S.Text>Bloco: {state.block}</S.Text>
         <S.Text>Id do bloco: {state.blockId}</S.Text>
-      </S.ParkingspotCard>
-    </S.ParkingspotContainer>
+      </S.Card>
+    </S.Container>
   )
 }

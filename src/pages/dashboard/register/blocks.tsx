@@ -1,5 +1,8 @@
+import { Blocks } from '.prisma/client'
 import clientApi from '@/utils/axios'
-import { useState } from 'react'
+import { Button, MenuItem, Select, TextField } from '@mui/material'
+import { useEffect, useState } from 'react'
+import * as S from './style'
 
 type StateBlocks = {
   name: string
@@ -20,24 +23,35 @@ export default function NewBlocks() {
   }
 
   return (
-    <>
-      <h1>New block</h1>
-      <input
-        placeholder="Nome"
-        onChange={(e) => setState((old) => ({ ...old, name: e.target.value }))}
-      />
-      <input
-        placeholder="Quantidade de vagas"
-        type="number"
-        onChange={(e) =>
-          setState((old) => ({ ...old, slots: parseInt(e.target.value) }))
-        }
-      />
-      <button onClick={handleCreate}> Cadastrar bloco </button>
-      <button onClick={() => console.log(state)}> logar </button>
-      <p> resultado </p>
-      <p>Nome: {state.name}</p>
-      <p>Slots: {state.slots}</p>
-    </>
+    <S.Container>
+      <S.Card>
+
+          <S.Title>Novo Bloco</S.Title>
+
+          <TextField
+            id="outlined-basic"
+            label="Nome"
+            variant="outlined"
+            placeholder="Nome"
+            onChange={(e) => setState((old) => ({ ...old, name: e.target.value }))}
+          />
+          <TextField
+            id="outlined-basic"
+            label="Quantidade de Vagas"
+            variant="outlined"
+            placeholder="Quantidade de Vagas"
+            type="number"
+            onChange={(e) => setState((old) => ({ ...old, slots: parseInt(e.target.value) }))}
+          />
+
+          <Button variant="contained" onClick={handleCreate}>Cadastrar Bloco</Button>
+          <Button variant="contained" onClick={() => console.log(state)}>Logar</Button>
+          
+          <S.SubTitle>Resultado</S.SubTitle>
+          <S.Text>Nome: {state.name}</S.Text>
+          <S.Text>Slots: {state.slots}</S.Text>
+
+      </S.Card>
+    </S.Container>
   )
 }
