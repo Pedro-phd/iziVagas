@@ -54,5 +54,4 @@ function WrapperModal(props: WrapperModalProps) {
     </>
   )
 }
-
 export default WrapperModal
