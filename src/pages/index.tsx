@@ -8,6 +8,7 @@ import { format } from 'date-fns'
 import { useRouter } from 'next/router'
 import { useRef, useState } from 'react'
 import Pdf from 'react-to-pdf'
+import { toast, ToastContainer } from 'react-toastify'
 
 export default function Home() {
   const router = useRouter()
@@ -24,7 +25,12 @@ export default function Home() {
         x={10}
         y={10}
         scale={0.7}
-        onComplete={() => router.push('/blocks')}
+        onComplete={() =>
+          router.push(
+            { pathname: '/blocks', query: { previousPage: 'index' } },
+            '/blocks'
+          )
+        }
       >
         {({ toPdf }: any) => (
           <S.Container
@@ -38,6 +44,15 @@ export default function Home() {
                   setLoading(false)
                 })
                 .catch((err) => {
+                  toast.error('Erro ao gerar o ticket!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined
+                  })
                   setLoading(false)
                   console.log(err)
                 })
@@ -64,6 +79,17 @@ export default function Home() {
           </S.Container>
         )}
       </Pdf>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="pdf-wrapper">
         <div ref={ref}>
           <PDF id={id} />
