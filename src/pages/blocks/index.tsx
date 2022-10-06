@@ -1,16 +1,12 @@
-import { Blocks } from '.prisma/client'
+import { useEffect, useState } from 'react'
+import * as S from './styles'
 import CardBlock from '@/components/CardBlock'
 import Header from '@/components/Header'
 import Indicator from '@/components/Indicator'
-import { BoxSkeleton } from '@/styles/skeleton'
 import clientApi from '@/utils/axios'
+import { Blocks } from '.prisma/client'
 import getColor from '@/utils/getColor'
-import { useRouter, withRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import * as S from './styles'
-
+import { BoxSkeleton } from '@/styles/skeleton'
 interface IBlocksOccupied extends Blocks {
   occupied: number
 }
@@ -22,8 +18,7 @@ type StateBlocks = {
   errorMessage: string
 }
 
-function BlocksPage() {
-  const router = useRouter()
+export default function BlocksPage() {
   const [state, setState] = useState<StateBlocks>({
     blocks: [],
     error: false,
@@ -47,34 +42,8 @@ function BlocksPage() {
         }))
       )
   }, [])
-
-  useEffect(() => {
-    if (router.query.previousPage === 'index') {
-      toast.success('Ticket gerado com sucesso!', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
-      })
-    }
-  }, [])
-
   return (
     <S.Container>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <Header title="Blocos" />
       <Indicator ClassName="indicator" />
       {state.error && <p>{state.errorMessage}</p>}
@@ -99,5 +68,3 @@ function BlocksPage() {
     </S.Container>
   )
 }
-
-export default withRouter(BlocksPage)

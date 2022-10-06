@@ -8,8 +8,6 @@ import clientApi from '@/utils/axios'
 import selectParkingSpot from '@/utils/selectParkingSpot'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import * as S from './styles'
 
 type StateBlocks = {
@@ -33,7 +31,6 @@ export default function BlocksPage() {
 
   const router = useRouter()
   const { id } = router.query
-  const formattedUrl = router.asPath.split('/')
   useEffect(() => {
     setState((old) => ({ ...old, loading: true }))
     id &&
@@ -42,37 +39,15 @@ export default function BlocksPage() {
         .then((res) =>
           setState((old) => ({ ...old, ParkingSpot: res.data, loading: false }))
         )
-        .catch((error: Error) => {
+        .catch((error: Error) =>
           setState((old) => ({
             ...old,
             error: true,
             loading: false,
             errorMessage: error.message
           }))
-          toast.error('Não foi possível completar sua solicitação', {
-            position: 'top-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined
-          })
-        })
+        )
   }, [id])
-  useEffect(() => {
-    if (router.query?.validated) {
-      toast.success('Ticket validado com sucesso', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
-      })
-    }
-  }, [router])
   const handleClick = (id: string) => {
     state.idSelected == id
       ? setState((old) => ({ ...old, idSelected: '' }))
@@ -85,77 +60,33 @@ export default function BlocksPage() {
     selectParkingSpot({
       id: state.ticketId,
       parkingSpotId: state.idSelected
+    }).then(() => {
+      console.log('deu certo')
+      window.location.reload()
     })
-      .then(() => {
-        console.log('deu certo')
-        toast.success('Ticket validado com sucesso!', {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          onClose: () => {
-            router.push(
-              {
-                pathname: `/parkingspot/${formattedUrl[1]}`,
-                query: { validated: true }
-              },
-              `/parkingspot/${formattedUrl[2]}`
-            )
-          }
-        })
-      })
-      .catch((err) => {
-        toast.error(err, {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined
-        })
-      })
   }
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <S.Container>
         <Header title="Vagas" />
         {state.error && <p>{state.errorMessage}</p>}
-        {!state.loading && state.ParkingSpot.length ? (
-          <S.SlotsContainer>
-            {state.loading &&
-              Array.from(Array(18)).map((_, i) => {
-                return <BoxSkeleton width={'150px'} height={'150px'} key={i} />
-              })}
-            {state.ParkingSpot.map((slot) => {
-              return (
-                <ParkingSpotCard
-                  onClick={() => handleClick(slot.id)}
-                  selected={handleSelected(slot.id, slot.occupied)}
-                  key={slot.id}
-                  disabled={slot.occupied}
-                  label={slot.name}
-                />
-              )
+        <S.SlotsContainer>
+          {state.loading &&
+            Array.from(Array(18)).map((_, i) => {
+              return <BoxSkeleton width={'150px'} height={'150px'} key={i} />
             })}
-          </S.SlotsContainer>
-        ) : (
-          <h1>Não temos vagas cadastradas para esse bloco</h1>
-        )}
+          {state.ParkingSpot.map((slot) => {
+            return (
+              <ParkingSpotCard
+                onClick={() => handleClick(slot.id)}
+                selected={handleSelected(slot.id, slot.occupied)}
+                key={slot.id}
+                disabled={slot.occupied}
+                label={slot.name}
+              />
+            )
+          })}
+        </S.SlotsContainer>
         {state.idSelected && (
           <WrapperModal
             modalContent={
