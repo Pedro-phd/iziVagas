@@ -1,6 +1,7 @@
 import { ParkingSpot } from '.prisma/client'
 import ConfirmButton from '@/components/ConfirmButton'
 import Header from '@/components/Header'
+import Loader from '@/components/Loader'
 import WrapperModal from '@/components/Modal'
 import ParkingSpotCard from '@/components/ParkingSpotCard'
 import { BoxSkeleton } from '@/styles/skeleton'
@@ -135,7 +136,7 @@ export default function BlocksPage() {
       <S.Container>
         <Header title="Vagas" />
         {state.error && <p>{state.errorMessage}</p>}
-        {!state.loading && state.ParkingSpot.length ? (
+        {!state.loading && state.ParkingSpot.length && (
           <S.SlotsContainer>
             {state.loading &&
               Array.from(Array(18)).map((_, i) => {
@@ -153,9 +154,11 @@ export default function BlocksPage() {
               )
             })}
           </S.SlotsContainer>
-        ) : (
+        )}
+        {!state.loading && !state.ParkingSpot.length && (
           <h1>Não temos vagas cadastradas para esse bloco</h1>
         )}
+        {state.loading && <Loader />}
         {state.idSelected && (
           <WrapperModal
             modalContent={
