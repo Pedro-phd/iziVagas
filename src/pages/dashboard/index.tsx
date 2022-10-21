@@ -22,10 +22,6 @@ export default function Home() {
       url: '/dashboard/register/blocks'
     },
     {
-      label: 'Cadastrar usuário',
-      url: '#'
-    },
-    {
       label: 'Pagamento',
       url: '/dashboard/payment'
     }

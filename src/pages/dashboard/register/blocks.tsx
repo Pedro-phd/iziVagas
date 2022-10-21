@@ -1,7 +1,9 @@
+import { ArrowLeft } from '@/components/Icons/ArrowLeft'
+import { ArrowRight } from '@/components/Icons/ArrowRight'
 import clientApi from '@/utils/axios'
 import { Button, TextField } from '@mui/material'
 import { useState } from 'react'
-import * as S from './style'
+import * as S from './styles'
 
 type StateBlocks = {
   name: string
@@ -24,6 +26,16 @@ export default function NewBlocks() {
   return (
     <S.Container>
       <S.Card>
+        <S.BreadcrumbsContainer>
+          <S.Breadcrumbs href="/dashboard">
+            <ArrowLeft />
+            Voltar
+          </S.Breadcrumbs>
+          <S.Breadcrumbs href="/dashboard/edit/blocks">
+            Editar
+            <ArrowRight />
+          </S.Breadcrumbs>
+        </S.BreadcrumbsContainer>
         <S.Title>Novo Bloco</S.Title>
 
         <TextField

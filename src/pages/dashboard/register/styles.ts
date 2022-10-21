@@ -25,7 +25,6 @@ export const Container = styled.div`
 export const Card = styled.div`
   width: 50%;
   max-width: 450px;
-  height: 450px;
   background-color: white;
   border-radius: 16px;
   display: flex;
@@ -38,4 +37,20 @@ export const Card = styled.div`
     background-color: ${(props: IThemesProps) => props.theme.primary};
     font-weight: bold;
   }
+  padding: 20px;
+`
+
+export const Breadcrumbs = styled.a`
+  display: flex;
+  width: 50px;
+  align-items: center;
+  font-weight: ${(props: IThemesProps) => props.theme.bold}
+  color: ${(props: IThemesProps) => props.theme.text}
+`
+
+export const BreadcrumbsContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
