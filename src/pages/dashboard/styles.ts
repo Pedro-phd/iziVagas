@@ -71,7 +71,6 @@ export const LoginContainer = styled.div`
 export const LoginCard = styled.div`
   width: 50%;
   max-width: 350px;
-  height: 350px;
   background-color: white;
   border-radius: 16px;
   display: flex;
@@ -84,4 +83,20 @@ export const LoginCard = styled.div`
     background-color: ${(props: IThemesProps) => props.theme.primary};
     font-weight: bold;
   }
+  padding: 20px;
+`
+
+export const Breadcrumbs = styled.a`
+  display: flex;
+  width: 50px;
+  align-items: center;
+  font-weight: ${(props: IThemesProps) => props.theme.bold}
+  color: ${(props: IThemesProps) => props.theme.text}
+`
+
+export const BreadcrumbsContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `

@@ -1,6 +1,6 @@
 import { Blocks } from '.prisma/client'
 import clientApi from '@/utils/axios'
-import { Button, MenuItem, Select, TextField } from '@mui/material'
+import { Button } from '@mui/material'
 import { useEffect, useState } from 'react'
 
 type StateBlocks = {

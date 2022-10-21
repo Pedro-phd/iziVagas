@@ -1,8 +1,10 @@
 import { Blocks } from '.prisma/client'
+import { ArrowLeft } from '@/components/Icons/ArrowLeft'
+import { ArrowRight } from '@/components/Icons/ArrowRight'
 import clientApi from '@/utils/axios'
 import { Button, MenuItem, Select, TextField } from '@mui/material'
 import { useEffect, useState } from 'react'
-import * as S from './style'
+import * as S from './styles'
 
 type StateBlocks = {
   blocks: Blocks[]
@@ -60,40 +62,56 @@ export default function ParkingSpot() {
   return (
     <S.Container>
       <S.Card>
-        <S.Title>New parking spot</S.Title>
+        <S.BreadcrumbsContainer>
+          <S.Breadcrumbs href="/dashboard">
+            <ArrowLeft />
+            Voltar
+          </S.Breadcrumbs>
+          <S.Breadcrumbs href="/dashboard/edit/blocks">
+            Editar
+            <ArrowRight />
+          </S.Breadcrumbs>
+        </S.BreadcrumbsContainer>
+        <S.Title>Nova vaga</S.Title>
         <TextField
-            id="outlined-basic"
-            label="Nome"
-            variant="outlined"
-            placeholder="Nome"
-            onChange={(e) => setState((old) => ({ ...old, name: e.target.value }))}
-          />
+          id="outlined-basic"
+          label="Nome"
+          variant="outlined"
+          placeholder="Nome"
+          onChange={(e) =>
+            setState((old) => ({ ...old, name: e.target.value }))
+          }
+        />
 
         <S.SubTitle>Selecione o bloco da vaga</S.SubTitle>
 
         <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            label="Bloco"
-            placeholder="Selecione um Bloco"
-            value="Selecione um Bloco"
-            onChange={(e:any) => handleChange(e)}
-            >
-              {state.blocks.map((block) => {
-                return (
-                  <MenuItem key={block.id} value={`${block.id}{split}${block.name}`}>{block.name}
-                  </MenuItem>
-                )
-              })}
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          label="Bloco"
+          placeholder="Selecione um Bloco"
+          value="Selecione um Bloco"
+          onChange={(e: any) => handleChange(e)}
+        >
+          {state.blocks.map((block) => {
+            return (
+              <MenuItem
+                key={block.id}
+                value={`${block.id}{split}${block.name}`}
+              >
+                {block.name}
+              </MenuItem>
+            )
+          })}
         </Select>
 
         <Button variant="contained" onClick={handleCreate}>
           Cadastrar vaga
-        </Button>    
+        </Button>
 
         <Button variant="contained" onClick={() => console.log(state)}>
           Logar
-        </Button>   
+        </Button>
 
         <S.SubTitle> Resultado </S.SubTitle>
         <S.Text>Nome: {state.name}</S.Text>

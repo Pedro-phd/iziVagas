@@ -1,3 +1,4 @@
+import { ArrowLeft } from '@/components/Icons/ArrowLeft'
 import validateTicket from '@/utils/validateTicket'
 import { Button, TextField } from '@mui/material'
 import { getAuth } from 'firebase/auth'
@@ -34,6 +35,12 @@ export default function Payment() {
   return (
     <S.LoginContainer>
       <S.LoginCard>
+        <S.BreadcrumbsContainer>
+          <S.Breadcrumbs href="/dashboard">
+            <ArrowLeft />
+            Voltar
+          </S.Breadcrumbs>
+        </S.BreadcrumbsContainer>
         <S.LoginLabel>Pagamento</S.LoginLabel>
         <TextField
           id="outlined-basic"
