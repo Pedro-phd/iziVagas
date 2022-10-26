@@ -26,6 +26,7 @@ model ParkingSpot {
   block String
   blockID String
   occupied Boolean
+  special Boolean
 }
 
 model Ticket {

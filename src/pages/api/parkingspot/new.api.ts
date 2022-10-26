@@ -11,7 +11,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         block: data.block,
         blockID: data.blockID,
         name: data.name,
-        occupied: false
+        occupied: false,
+        special: data.special
       }
     })
     .then((result) => {
