@@ -149,6 +149,7 @@ export default function BlocksPage() {
                   key={slot.id}
                   disabled={slot.occupied}
                   label={slot.name}
+                  special={slot.special}
                 />
               )
             })}
