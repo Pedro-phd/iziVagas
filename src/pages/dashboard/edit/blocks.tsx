@@ -75,9 +75,6 @@ export default function NewBlocks() {
         <Button variant="contained" onClick={handleDelete}>
           Deletar Bloco
         </Button>
-        <Button variant="contained" onClick={() => console.log(state)}>
-          Logar
-        </Button>
       </div>
     </div>
   )

@@ -24,6 +24,14 @@ export default function Home() {
     {
       label: 'Pagamento',
       url: '/dashboard/payment'
+    },
+    {
+      label: 'Editar vaga',
+      url: '/dashboard/edit/parkingspot'
+    },
+    {
+      label: 'Editar bloco',
+      url: '/dashboard/edit/blocks'
     }
   ]
 

@@ -42,14 +42,12 @@ export default function Newparkingspot() {
         console.log(res.data)
       })
       .catch((err) => console.log(err))
-    console.log(state)
   }, [])
 
   return (
     <S.Container>
       <S.Card>
         <S.Title>Gerenciar Vagas</S.Title>
-
         <TextField
           id="outlined-basic"
           label="Id da Vaga"
@@ -96,22 +94,11 @@ export default function Newparkingspot() {
             setState((old) => ({ ...old, occupied: !!e.target.value }))
           }
         />
-
-        <S.SubTitle>Resultado</S.SubTitle>
-        <S.Text>ID: {state.id}</S.Text>
-        <S.Text>NAME: {state.name}</S.Text>
-        <S.Text>BLOCOID: {state.blockID}</S.Text>
-        <S.Text>BLOCO: {state.block}</S.Text>
-        <S.Text>DISPONIBILIDADE: {state.occupied}</S.Text>
-
         <Button variant="contained" onClick={handleUpdate}>
           Atualizar Vaga
         </Button>
         <Button variant="contained" onClick={handleDelete}>
           Deletar Vaga
-        </Button>
-        <Button variant="contained" onClick={() => console.log(state)}>
-          Logar
         </Button>
       </S.Card>
     </S.Container>
