@@ -13,9 +13,9 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 0 3px;
+  cursor: pointer;
 `
 export const Dot = styled.div<IDot>`
-  cursor: pointer;
   position: absolute;
   width: 28px;
   height: 28px;

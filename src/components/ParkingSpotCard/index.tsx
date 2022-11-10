@@ -1,4 +1,5 @@
 import { Disable } from '../Icons/Disable'
+import { Special } from '../Icons/Special'
 import * as S from './styles'
 
 interface IParkingSpotCardProps {
@@ -23,7 +24,11 @@ const ParkingSpotCard = ({
       selected={selected}
       onClick={!disabled ? onClick : undefined}
     >
-      {special && <S.SpecialConent>VAGA ESPECIAL</S.SpecialConent>}
+      {special && (
+        <S.SpecialContent>
+          <Special />
+        </S.SpecialContent>
+      )}
       {disabled ? <Disable /> : <S.Number>{label}</S.Number>}
     </S.Content>
   )

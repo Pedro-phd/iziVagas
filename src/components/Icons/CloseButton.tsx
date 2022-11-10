@@ -1,19 +1,23 @@
-import React from 'react'
+import Theme from '@/context/Theme'
+import { useContext } from 'react'
 
 export const CloseButton = () => {
+  const { theme } = useContext(Theme)
+  const fillColor = theme === 'dark' ? '#fff' : '#1c1c1c'
   return (
     <svg
-      width="44"
-      height="44"
-      viewBox="0 0 44 44"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke={fillColor}
+      width="36px"
+      height="36px"
     >
       <path
-        d="M25.7243 22.7071L42.5858 39.5686L39.5686 42.5858L22.7071 25.7243L22 25.0172L21.2929 25.7243L4.43143 42.5858L1.41421 39.5686L18.2757 22.7071L18.9828 22L18.2757 21.2929L1.41421 4.43143L4.43143 1.41421L21.2929 18.2757L22 18.9828L22.7071 18.2757L39.5686 1.41421L42.5858 4.43143L25.7243 21.2929L25.0172 22L25.7243 22.7071Z"
-        fill="#262626"
-        stroke="#F2F2F2"
-        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6 18L18 6M6 6l12 12"
       />
     </svg>
   )

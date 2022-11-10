@@ -163,17 +163,21 @@ export default function BlocksPage() {
               <>
                 <S.Title>Valide sua vaga!</S.Title>
                 <S.TextContainer>
-                  <input
+                  <S.Text>
+                    1 - Realize a leitura do código ou insira-o abaixo
+                  </S.Text>
+                  <S.Text>2 - Aguarde a confirmação da vaga</S.Text>
+                </S.TextContainer>
+                <S.InputContainer>
+                  <S.Input
                     onChange={(e) =>
                       setState((old) => ({ ...old, ticketId: e.target.value }))
                     }
-                    placeholder="ticketId"
+                    placeholder="Insira o número do ticket..."
                     type="text"
                   />
-                  <S.Text>1 - Realize a leitura do código</S.Text>
-                  <S.Text>2 - Aguarde a confirmação da vaga</S.Text>
-                </S.TextContainer>
-                <button onClick={handleValidate}>Validar</button>
+                  <S.Button onClick={handleValidate}>Validar</S.Button>
+                </S.InputContainer>
               </>
             }
           >
