@@ -35,9 +35,21 @@ function BlocksPage() {
     setState((old) => ({ ...old, loading: true }))
     clientApi
       .get('api/blocks/all')
-      .then((res) =>
+      .then((res) => {
         setState((old) => ({ ...old, blocks: res.data, loading: false }))
-      )
+        toast.warn('A tela voltara ao inicio em 7 segundos!', {
+          position: 'top-right',
+          autoClose: 7000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          onClose: () => {
+            router.push('/')
+          }
+        })
+      })
       .catch((error: Error) =>
         setState((old) => ({
           ...old,
@@ -54,9 +66,9 @@ function BlocksPage() {
         position: 'top-right',
         autoClose: 5000,
         hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
         progress: undefined
       })
     }
@@ -86,13 +98,12 @@ function BlocksPage() {
           })}
         {state.blocks.map((block) => {
           return (
-            <a key={block.id} href={`/parkingspot/${block.id}`}>
-              <CardBlock
-                letter={block.name}
-                color={getColor(block.occupied, block.slots)}
-                number={block.slots - block.occupied}
-              />
-            </a>
+            <CardBlock
+              key={block.id}
+              letter={block.name}
+              color={getColor(block.occupied, block.slots)}
+              number={block.slots - block.occupied}
+            />
           )
         })}
       </S.BlocksContainer>

@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import { IThemesProps } from '@/types/styled'
+import styled, { keyframes } from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -17,4 +18,13 @@ export const BlocksContainer = styled.div`
   grid-gap: 30px;
   max-width: 1170px;
   margin: 0 auto;
+`
+const scale = keyframes`
+  from {
+    width: 0px;
+  }
+
+  to {
+    width: 300px;
+  }
 `
