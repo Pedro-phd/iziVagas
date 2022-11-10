@@ -35,6 +35,10 @@ export const SpecialContent = styled.div`
   border-radius: 50%;
   font-size: 0;
   position: absolute;
-  top: -40px;
-  right: -10px;
+  top: -20px;
+  right: -20px;
+  background: #0f4cff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `

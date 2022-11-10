@@ -1,5 +1,6 @@
 import { Disable } from '../Icons/Disable'
-import { Special } from '../Icons/Special'
+import { Old } from '../Icons/Old'
+import { WheelChair } from '../Icons/WheelChair'
 import * as S from './styles'
 
 interface IParkingSpotCardProps {
@@ -19,18 +20,20 @@ const ParkingSpotCard = ({
   special,
   old
 }: IParkingSpotCardProps) => {
-  console.log(special)
+  const specialParkingSpot = special || old
   return (
     <S.Content
       disabled={disabled}
       selected={selected}
       onClick={!disabled ? onClick : undefined}
     >
-      {special && (
+      {specialParkingSpot && (
         <S.SpecialContent>
-          <Special />
+          {old && <Old />}
+          {special && <WheelChair />}
         </S.SpecialContent>
       )}
+
       {disabled ? <Disable /> : <S.Number>{label}</S.Number>}
     </S.Content>
   )
