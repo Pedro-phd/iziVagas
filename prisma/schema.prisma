@@ -27,6 +27,7 @@ model ParkingSpot {
   blockID String
   occupied Boolean
   special Boolean @default(false)
+  old Boolean @default(false)
 }
 
 model Ticket {
