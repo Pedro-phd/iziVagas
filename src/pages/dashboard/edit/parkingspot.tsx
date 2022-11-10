@@ -10,6 +10,7 @@ type StateParkingspot = {
   block: string
   blockID: string
   occupied: boolean
+  special: boolean
 }
 
 export default function Newparkingspot() {
@@ -18,7 +19,8 @@ export default function Newparkingspot() {
     name: '',
     block: '',
     blockID: '',
-    occupied: false
+    occupied: false,
+    special: false
   })
 
   const [parking, setParking] = useState<ParkingSpot[]>([])
@@ -92,6 +94,14 @@ export default function Newparkingspot() {
           type="checkbox"
           onChange={(e) =>
             setState((old) => ({ ...old, occupied: !!e.target.value }))
+          }
+        />
+        <S.Text>Vaga especial</S.Text>
+        <input
+          checked={state.special}
+          type="checkbox"
+          onChange={(e) =>
+            setState((old) => ({ ...old, special: !!e.target.value }))
           }
         />
         <Button variant="contained" onClick={handleUpdate}>
