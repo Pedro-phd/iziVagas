@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import { useRef, useState } from 'react'
 import Pdf from 'react-to-pdf'
 import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Home() {
   const router = useRouter()

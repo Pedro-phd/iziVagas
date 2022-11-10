@@ -1,5 +1,6 @@
 import { CloseButton } from '@/components/Icons'
-import { PropsWithChildren, useState } from 'react'
+import Theme from '@/context/Theme'
+import { PropsWithChildren, useContext, useState } from 'react'
 import Modal from 'react-modal'
 import * as S from './styles'
 
@@ -12,6 +13,8 @@ function WrapperModal(props: WrapperModalProps) {
 
   const [modalIsOpen, setIsOpen] = useState(false)
 
+  const { theme } = useContext(Theme)
+
   const customStyles = {
     content: {
       top: '50%',
@@ -22,8 +25,9 @@ function WrapperModal(props: WrapperModalProps) {
       transform: 'translate(-50%, -50%)',
       border: 'none',
       borderRadius: '10px',
-      width: '970px',
-      height: '530px'
+      width: '900px',
+      height: '450px',
+      background: theme === 'dark' ? '#240036' : '#F2F2F2'
     }
   }
 

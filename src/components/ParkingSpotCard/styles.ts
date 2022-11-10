@@ -28,16 +28,13 @@ export const Number = styled.p`
   font-size: 75px;
 `
 
-export const SpecialConent = styled.div`
+export const SpecialContent = styled.div`
   width: 50px;
   height: 50px;
   display: block;
-  backgroud: red;
   border-radius: 50%;
-  background: url(https://i.imgur.com/8YbOVuI.png);
-  background-size: contain;
   font-size: 0;
   position: absolute;
-  top: -15px;
-  right: -15px;
+  top: -40px;
+  right: -10px;
 `
