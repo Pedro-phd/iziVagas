@@ -10,15 +10,14 @@ type StateParkingspot = {
   block: string
   blockID: string
   occupied: boolean
-
 }
 
 export default function Newparkingspot() {
   const [state, setState] = useState<StateParkingspot>({
     id: '',
-    name: '', 
+    name: '',
     block: '',
-    blockID: '', 
+    blockID: '',
     occupied: false
   })
 
@@ -49,18 +48,17 @@ export default function Newparkingspot() {
   return (
     <S.Container>
       <S.Card>
-      <S.Title>Gerenciar Vagas</S.Title>
+        <S.Title>Gerenciar Vagas</S.Title>
 
-      <TextField
+        <TextField
           id="outlined-basic"
           label="Id da Vaga"
           variant="outlined"
           placeholder="Id da Vaga"
-          onChange={(e) => 
-            setState((old) => ({ ...old, id: e.target.value }))}
-      /> 
+          onChange={(e) => setState((old) => ({ ...old, id: e.target.value }))}
+        />
 
-      <TextField
+        <TextField
           id="outlined-basic"
           label="Nome da Vaga"
           variant="outlined"
@@ -68,34 +66,36 @@ export default function Newparkingspot() {
           onChange={(e) =>
             setState((old) => ({ ...old, name: e.target.value }))
           }
-      /> 
+        />
 
-      <TextField
+        <TextField
           id="outlined-basic"
           label="Nome do Bloco"
           variant="outlined"
           placeholder="Nome do Bloco"
           onChange={(e) =>
-            setState((old) => ({ ...old, blockID: e.target.value }))
+            setState((old) => ({ ...old, block: e.target.value }))
           }
-      />      
+        />
 
-      <TextField
+        <TextField
           id="outlined-basic"
           label="Id do Bloco"
           variant="outlined"
           placeholder="Id do Bloco"
           onChange={(e) =>
-            setState((old) => ({ ...old, block: e.target.value }))
+            setState((old) => ({ ...old, blockID: e.target.value }))
           }
-      />       
- 
-      <S.Text>Disponibilidade</S.Text>
-      <input 
-        checked={state.occupied}
-        type="checkbox"
-        onChange={(e) => setState((old) => ({ ...old, occupied: !!e.target.value }))}
-      />
+        />
+
+        <S.Text>Disponibilidade</S.Text>
+        <input
+          checked={state.occupied}
+          type="checkbox"
+          onChange={(e) =>
+            setState((old) => ({ ...old, occupied: !!e.target.value }))
+          }
+        />
 
         <S.SubTitle>Resultado</S.SubTitle>
         <S.Text>ID: {state.id}</S.Text>
@@ -113,8 +113,7 @@ export default function Newparkingspot() {
         <Button variant="contained" onClick={() => console.log(state)}>
           Logar
         </Button>
-
-        </S.Card>
+      </S.Card>
     </S.Container>
-    
-  )}
+  )
+}
