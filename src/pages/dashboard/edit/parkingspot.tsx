@@ -2,6 +2,7 @@ import { ParkingSpot } from '.prisma/client'
 import clientApi from '@/utils/axios'
 import { Button, Checkbox, MenuItem, Select, TextField } from '@mui/material'
 import { useEffect, useState } from 'react'
+import * as S from './style'
 
 type StateParkingspot = {
   id: string
@@ -46,51 +47,63 @@ export default function Newparkingspot() {
   }, [])
 
   return (
-    <div>
-      <div>
-        <h1>Gerenciar Vagas</h1>
-        <input
+    <S.Container>
+      <S.Card>
+      <S.Title>Gerenciar Vagas</S.Title>
+
+      <TextField
+          id="outlined-basic"
+          label="Id da Vaga"
+          variant="outlined"
           placeholder="Id da Vaga"
           onChange={(e) => 
             setState((old) => ({ ...old, id: e.target.value }))}
-        />
-        <input
+      /> 
+
+      <TextField
+          id="outlined-basic"
+          label="Nome da Vaga"
+          variant="outlined"
           placeholder="Nome da Vaga"
           onChange={(e) =>
             setState((old) => ({ ...old, name: e.target.value }))
           }
-        />
-        <input
-          placeholder="Id do Bloco"
-          onChange={(e) =>
-            setState((old) => ({ ...old, block: e.target.value }))
-          }
-        />
+      /> 
 
-        <input
+      <TextField
+          id="outlined-basic"
+          label="Nome do Bloco"
+          variant="outlined"
           placeholder="Nome do Bloco"
           onChange={(e) =>
             setState((old) => ({ ...old, blockID: e.target.value }))
           }
-        />
+      />      
 
-      <h3>Disponibilidade</h3>
-      <Checkbox
+      <TextField
+          id="outlined-basic"
+          label="Id do Bloco"
+          variant="outlined"
+          placeholder="Id do Bloco"
+          onChange={(e) =>
+            setState((old) => ({ ...old, block: e.target.value }))
+          }
+      />       
+ 
+      <S.Text>Disponibilidade</S.Text>
+      <input 
         checked={state.occupied}
-        onChange={(e) =>
-          setState((old) => ({ ...old, occupied: !!e.target.value }))
-        }
+        type="checkbox"
+        onChange={(e) => setState((old) => ({ ...old, occupied: !!e.target.value }))}
       />
 
-        <ul>
-          {parking?.map((parking) => {
-            return (
-              <li key={parking.id}>
-                ID: {parking.id} - NAME: {parking.name} - BLOCO: {parking.block} - BLOCOID: {parking.blockID} - BLOCOS: {parking.occupied}
-              </li>
-            )
-          })}
-        </ul>
+        <S.SubTitle>Resultado</S.SubTitle>
+        <S.Text>ID: {state.id}</S.Text>
+        <S.Text>NAME: {state.name}</S.Text>
+        <S.Text>BLOCOID: {state.blockID}</S.Text>
+        <S.Text>BLOCO: {state.block}</S.Text>
+        <S.Text>DISPONIBILIDADE: {state.occupied}</S.Text>
+
         <Button variant="contained" onClick={handleUpdate}>
           Atualizar Vaga
         </Button>
@@ -100,7 +113,8 @@ export default function Newparkingspot() {
         <Button variant="contained" onClick={() => console.log(state)}>
           Logar
         </Button>
-      </div>
-    </div>
+
+        </S.Card>
+    </S.Container>
     
   )}
