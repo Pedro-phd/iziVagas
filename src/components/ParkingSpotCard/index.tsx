@@ -8,6 +8,7 @@ interface IParkingSpotCardProps {
   onClick: () => void
   selected: boolean
   special: boolean
+  old: boolean
 }
 
 const ParkingSpotCard = ({
@@ -15,7 +16,8 @@ const ParkingSpotCard = ({
   label,
   onClick,
   selected,
-  special
+  special,
+  old
 }: IParkingSpotCardProps) => {
   console.log(special)
   return (
