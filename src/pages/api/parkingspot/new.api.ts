@@ -13,7 +13,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         name: data.name,
         occupied: false,
         special: data.special,
-        old: data.old
+        old: data.old as boolean
       }
     })
     .then((result) => {
