@@ -6,7 +6,7 @@ const getColor = (slotsFree: number, space: number) => {
   const math = parseFloat(percentage(slotsFree, space).toFixed(2))
   if (math < 33.33) {
     return 'green'
-  } else if (math >= 33.33 || math < 66.66) {
+  } else if (math >= 33.33 && math < 66.66) {
     return 'yellow'
   } else {
     return 'red'

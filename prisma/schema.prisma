@@ -3,34 +3,45 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity", "interactiveTransactions"]
 }
 
-datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
-}
+// datasource db {
+//   provider = "sqlite"
+//   url      = "file:./dev.db"
+// }
 // datasource db {
 //   provider = "postgresql"
 //   url      = env("DATABASE_URL")
 // }
 
+
+datasource db {
+  provider             = "mongodb"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
 model Blocks {
-  id String @id @default(uuid())
+  // id String @id @default(uuid())
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   name String
   slots Int
 }
 
 model ParkingSpot {
-  id String @id @default(uuid())
+  // id String @id @default(uuid())
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   name String
   block String
   blockID String
   occupied Boolean
   special Boolean @default(false)
+  old Boolean @default(false)
 }
 
 model Ticket {
-  id String @id @default(uuid())
+  // id String @id @default(uuid())
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   parkingSpotId String
   paid Boolean
   entryDate DateTime @default(now())

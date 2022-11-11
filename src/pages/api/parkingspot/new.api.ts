@@ -1,5 +1,5 @@
-import { ParkingSpot } from '.prisma/client'
 import prisma from '@/../prisma/client'
+import { ParkingSpot } from '@prisma/client'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
@@ -8,11 +8,13 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
   prisma.parkingSpot
     .create({
       data: {
-        block: data.block,
-        blockID: data.blockID,
-        name: data.name,
-        occupied: false,
-        special: data.special
+        ...data,
+        // block: data.block,
+        // blockID: data.blockID,
+        // name: data.name,
+        // special: data.special,
+        // old: data.old,
+        occupied: false
       }
     })
     .then((result) => {

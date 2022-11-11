@@ -1,5 +1,6 @@
 import i18next from 'i18next'
 import { useEffect, useState } from 'react'
+import { Flags } from '../Icons/Flags'
 import * as S from './styles'
 
 const ToggleLanguage = () => {
@@ -7,7 +8,7 @@ const ToggleLanguage = () => {
 
   useEffect(() => {
     const localLng = window.localStorage.getItem('i18nextLng')
-    const initialLng = localLng ? localLng : 'pr-BR'
+    const initialLng = localLng ? localLng : 'pt-BR'
     setLanguage(initialLng)
   }, [])
 
@@ -25,10 +26,9 @@ const ToggleLanguage = () => {
   }
 
   return (
-    <S.Wrapper>
-      <S.Dot option={language} onClick={toggle}>
-        <span className="en">EN</span>
-        <span className="pt">BR</span>
+    <S.Wrapper onClick={toggle}>
+      <S.Dot option={language}>
+        <Flags />
       </S.Dot>
     </S.Wrapper>
   )

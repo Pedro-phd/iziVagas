@@ -10,6 +10,8 @@ type StateParkingspot = {
   block: string
   blockID: string
   occupied: boolean
+  special: boolean
+  old: boolean
 }
 
 export default function Newparkingspot() {
@@ -18,7 +20,9 @@ export default function Newparkingspot() {
     name: '',
     block: '',
     blockID: '',
-    occupied: false
+    occupied: false,
+    special: false,
+    old: false
   })
 
   const [parking, setParking] = useState<ParkingSpot[]>([])
@@ -42,14 +46,12 @@ export default function Newparkingspot() {
         console.log(res.data)
       })
       .catch((err) => console.log(err))
-    console.log(state)
   }, [])
 
   return (
     <S.Container>
       <S.Card>
         <S.Title>Gerenciar Vagas</S.Title>
-
         <TextField
           id="outlined-basic"
           label="Id da Vaga"
@@ -88,7 +90,7 @@ export default function Newparkingspot() {
           }
         />
 
-        <S.Text>Disponibilidade</S.Text>
+        <S.Text>Ocupada</S.Text>
         <input
           checked={state.occupied}
           type="checkbox"
@@ -96,22 +98,27 @@ export default function Newparkingspot() {
             setState((old) => ({ ...old, occupied: !!e.target.value }))
           }
         />
-
-        <S.SubTitle>Resultado</S.SubTitle>
-        <S.Text>ID: {state.id}</S.Text>
-        <S.Text>NAME: {state.name}</S.Text>
-        <S.Text>BLOCOID: {state.blockID}</S.Text>
-        <S.Text>BLOCO: {state.block}</S.Text>
-        <S.Text>DISPONIBILIDADE: {state.occupied}</S.Text>
-
+        <S.Text>Vaga especial</S.Text>
+        <input
+          checked={state.special}
+          type="checkbox"
+          onChange={(e) =>
+            setState((old) => ({ ...old, special: !!e.target.value }))
+          }
+        />
+        <S.Text>Vaga para idosos</S.Text>
+        <input
+          checked={state.old}
+          type="checkbox"
+          onChange={(e) =>
+            setState((old) => ({ ...old, old: !!e.target.value }))
+          }
+        />
         <Button variant="contained" onClick={handleUpdate}>
           Atualizar Vaga
         </Button>
         <Button variant="contained" onClick={handleDelete}>
           Deletar Vaga
-        </Button>
-        <Button variant="contained" onClick={() => console.log(state)}>
-          Logar
         </Button>
       </S.Card>
     </S.Container>
