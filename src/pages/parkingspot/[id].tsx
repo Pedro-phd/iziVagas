@@ -1,4 +1,4 @@
-import { ParkingSpot } from '.prisma/client'
+import { ParkingSpot } from '@/types/types'
 import ConfirmButton from '@/components/ConfirmButton'
 import Header from '@/components/Header'
 import WrapperModal from '@/components/Modal'
