@@ -2,10 +2,10 @@ import { IThemesProps } from '@/types/styled'
 
 export const darkTheme: IThemesProps = {
   theme: {
-    primary: '#7A00B5',
-    primaryLight: '#9A00E5',
-    primaryDark: '#550080',
-    body: '#240036',
+    primary: '#005C53',
+    primaryLight: '#9FC131',
+    primaryDark: '#237559',
+    body: '#042940',
     text: '#fff',
     green: '#5BDD5B',
     yellow: '#F4F44D',
@@ -14,22 +14,22 @@ export const darkTheme: IThemesProps = {
     bold: 700,
     shadow: '0px 12px 41px 0px rgba(255, 255, 255, 0.2)',
     switchBg: '#F2F2F2',
-    switchDot: '#7A00B5',
+    switchDot: '#005C53',
     switchPosition: 'b',
-    cardBox: '#550080',
-    circleColor: '#51007A',
+    cardBox: '#237559',
+    circleColor: '#237559',
     initialTitle: '#FFFFFF',
-    skeletonGradient: 'linear-gradient(90deg, #7a00b5, #9a00e5, #7a00b5)',
-    skeletonBg: '#7a00b5',
+    skeletonGradient: 'linear-gradient(90deg, #005C53, #9FC131, #005C53)',
+    skeletonBg: '#005C53',
     buttonColor: '#FFCC3E',
-    buttonTextColor: '#7A00B5'
+    buttonTextColor: '#005C53'
   }
 }
 export const lightTheme: IThemesProps = {
   theme: {
-    primary: '#7A00B5',
-    primaryLight: '#9A00E5',
-    primaryDark: '#550080',
+    primary: '#005C53',
+    primaryLight: '#9FC131',
+    primaryDark: '#237559',
     body: '#F2F2F2',
     text: '#262626',
     green: '#5BDD5B',
@@ -38,7 +38,7 @@ export const lightTheme: IThemesProps = {
     red: '#EB6565',
     bold: 700,
     shadow: '0px 12px 41px 0px rgba(0, 0, 0, 0.1)',
-    switchBg: '#7A00B5',
+    switchBg: '#005C53',
     switchDot: '#F2F2F2',
     switchPosition: 'a',
     cardBox: '#F2F2F2',
@@ -46,7 +46,7 @@ export const lightTheme: IThemesProps = {
     initialTitle: '#8A8A8A',
     skeletonGradient: 'linear-gradient(90deg, #dedede, #f5f5f5, #dedede)',
     skeletonBg: '#dedede',
-    buttonColor: '#7A00B5',
+    buttonColor: '#005C53',
     buttonTextColor: '#FFCC3E'
   }
 }
