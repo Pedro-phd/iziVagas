@@ -42,7 +42,7 @@ function BlocksPage() {
           autoClose: 7000,
           hideProgressBar: false,
           closeOnClick: false,
-          pauseOnHover: false,
+          pauseOnHover: true,
           draggable: false,
           progress: undefined,
           onClose: () => {

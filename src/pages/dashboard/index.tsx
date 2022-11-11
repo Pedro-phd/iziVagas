@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { getAuth } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -9,7 +10,10 @@ export default function Home() {
   const router = useRouter()
 
   useEffect(() => {
-    auth.currentUser ? null : router.push('/login')
+    ;(async () => {
+      const login = await window.sessionStorage.getItem('login')
+      if (!login) router.push('/login')
+    })()
   }, [router])
 
   const navArray = [
