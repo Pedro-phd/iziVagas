@@ -22,10 +22,6 @@ export const Card = styled.div`
   justify-content: center;
   gap: 16px;
   box-shadow: ${(props: IThemesProps) => props.theme.shadow};
-  button {
-    background-color: ${(props: IThemesProps) => props.theme.primary};
-    font-weight: bold;
-  }
   span {
     color: red;
     font-weight: bold;
