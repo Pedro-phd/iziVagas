@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <>
       <S.Container>
-        <S.Card>
+        <S.LoginCard>
           <Logo option="header" />
           <InputText
             inputArray={inputArray}
@@ -65,7 +65,7 @@ export default function Home() {
             ]}
           />
           {state.error && <span>{state.errorMessage}</span>}
-        </S.Card>
+        </S.LoginCard>
       </S.Container>
     </>
   )

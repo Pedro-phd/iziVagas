@@ -19,22 +19,4 @@ export const Wrapper = styled.div`
       : props.theme.body};
 `
 
-export const Card = styled.div`
-  width: 50%;
-  max-width: 450px;
-  height: 450px;
-  background-color: white;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  box-shadow: ${(props: IThemesProps) => props.theme.shadow};
-  button {
-    background-color: ${(props: IThemesProps) => props.theme.primary};
-    font-weight: bold;
-  }
-`
-
 export const FeedbackMessage = styled.h1``
