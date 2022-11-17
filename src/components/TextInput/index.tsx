@@ -1,3 +1,4 @@
+import { Text } from '@/pages/dashboard/styles'
 import { Event } from '@/types/types'
 import * as S from './styles'
 
@@ -7,6 +8,7 @@ export interface IInputItemProps {
   type?: string
   width?: string
   options?: Array<IInputSelectOptionsProps>
+  checked?: boolean
 }
 
 export interface IInputSelectOptionsProps {
@@ -30,7 +32,7 @@ function Input({ inputArray, hasButton, buttonContent }: IInputProps) {
   return (
     <S.Form>
       {inputArray.map((inputItem: IInputItemProps, index: number) => {
-        return inputItem.type !== 'select' ? (
+        return inputItem.type !== 'select' && inputItem.type !== 'checkbox' ? (
           <S.CustomInput
             className="custom-input"
             key={index}
@@ -39,7 +41,7 @@ function Input({ inputArray, hasButton, buttonContent }: IInputProps) {
             type={inputItem.type ? inputItem.type : 'text'}
             width={inputItem.width ? inputItem.width : 'auto'}
           />
-        ) : (
+        ) : inputItem.type === 'select' ? (
           <S.CustomSelect
             className="custom-input"
             key={index}
@@ -55,6 +57,15 @@ function Input({ inputArray, hasButton, buttonContent }: IInputProps) {
               </option>
             ))}
           </S.CustomSelect>
+        ) : (
+          <S.CustomCheckboxContainer key={index}>
+            <S.CustomCheckbox
+              type="checkbox"
+              checked={inputItem.checked}
+              onChange={inputItem.onChange}
+            />
+            <Text>{inputItem.placeholder}</Text>
+          </S.CustomCheckboxContainer>
         )
       })}
       {hasButton &&

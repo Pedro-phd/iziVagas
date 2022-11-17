@@ -1,13 +1,12 @@
 import { IThemesProps } from '@/types/styled'
 import styled from 'styled-components'
 import { IInputItemProps } from '.'
-
 interface IInputProps extends IInputItemProps, IThemesProps {}
 interface IButtonProps extends IThemesProps {
   width: string
 }
 
-export const Form = styled.form`
+export const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,4 +55,13 @@ export const Button = styled.button<IButtonProps>`
   p {
     font-weight: ${(props) => props.theme.bold};
   }
+`
+
+export const CustomCheckbox = styled.input``
+
+export const CustomCheckboxContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 5px 0 0 0;
 `
