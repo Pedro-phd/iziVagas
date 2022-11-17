@@ -1,4 +1,5 @@
 import Breadcrumbs from '@/components/Breadcrumbs'
+import Header from '@/components/Header'
 import Input from '@/components/TextInput'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
@@ -41,6 +42,7 @@ export default function NewBlocks() {
 
   return (
     <Container>
+      <Header />
       <Card>
         <Breadcrumbs editLink={'/dashboard/edit/blocks'} />
         <Title>Novo Bloco</Title>

@@ -4,7 +4,7 @@ import { useContext } from 'react'
 export const Logout = () => {
   const { theme } = useContext(Theme)
 
-  const fillColor = theme === 'dark' ? '#F2F2F2' : '#7A00B5'
+  const fillColor = theme === 'dark' ? '#7A00B5' : '#F2F2F2'
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,8 +12,8 @@ export const Logout = () => {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke={fillColor}
-      width="20"
-      height="20"
+      width="24"
+      height="24"
     >
       <path
         strokeLinecap="round"

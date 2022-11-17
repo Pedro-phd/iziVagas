@@ -1,9 +1,9 @@
 import Breadcrumbs from '@/components/Breadcrumbs'
+import Header from '@/components/Header'
 import Input from '@/components/TextInput'
 import { Event } from '@/types/types'
 import validateTicket from '@/utils/validateTicket'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import * as S from './styles'
 
 type StateBlocks = {
@@ -24,15 +24,6 @@ export default function Payment() {
     }
   ]
 
-  const router = useRouter()
-
-  useEffect(() => {
-    ;async () => {
-      const login = await window.sessionStorage.getItem('login')
-      if (!login) router.push('/login')
-    }
-  }, [router])
-
   const handlePayment = () => {
     validateTicket({
       id: state.id,
@@ -43,10 +34,11 @@ export default function Payment() {
   }
 
   return (
-    <S.LoginContainer>
-      <S.LoginCard>
+    <S.Container>
+      <Header />
+      <S.Card>
         <Breadcrumbs />
-        <S.LoginLabel>Pagamento</S.LoginLabel>
+        <S.Title>Pagamento</S.Title>
         <Input
           inputArray={inputArray}
           hasButton
@@ -58,7 +50,7 @@ export default function Payment() {
             }
           ]}
         />
-      </S.LoginCard>
-    </S.LoginContainer>
+      </S.Card>
+    </S.Container>
   )
 }

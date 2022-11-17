@@ -1,5 +1,6 @@
 import { Blocks } from '.prisma/client'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import Header from '@/components/Header'
 import InputText from '@/components/TextInput'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
@@ -108,6 +109,7 @@ export default function ParkingSpot() {
 
   return (
     <Container>
+      <Header />
       <Card>
         <Breadcrumbs editLink={'/dashboard/edit/parkingspot'} />
         <Title>Nova vaga</Title>

@@ -28,6 +28,9 @@ export const Form = styled.div`
     &:focus {
       outline: 1px solid ${(props) => props.theme.switchBg};
     }
+    option {
+      background: ${(props) => props.theme.body};
+    }
   }
 `
 

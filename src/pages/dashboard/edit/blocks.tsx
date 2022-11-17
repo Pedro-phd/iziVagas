@@ -1,5 +1,6 @@
 import { Blocks } from '.prisma/client'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import Header from '@/components/Header'
 import Input from '@/components/TextInput'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
@@ -70,19 +71,26 @@ export default function NewBlocks() {
   }, [])
 
   return (
-    <Container>
-      <Card>
-        <Breadcrumbs />
-        <Title>Editar Bloco</Title>
-        <Input
-          inputArray={inputArray}
-          hasButton
-          buttonContent={[
-            { onClick: handleUpdate, label: 'Atualizar Bloco', width: '150px' },
-            { onClick: handleDelete, label: 'Deletar bloco', width: '150px' }
-          ]}
-        />
-      </Card>
-    </Container>
+    <>
+      <Container>
+        <Header />
+        <Card>
+          <Breadcrumbs />
+          <Title>Editar Bloco</Title>
+          <Input
+            inputArray={inputArray}
+            hasButton
+            buttonContent={[
+              {
+                onClick: handleUpdate,
+                label: 'Atualizar Bloco',
+                width: '150px'
+              },
+              { onClick: handleDelete, label: 'Deletar bloco', width: '150px' }
+            ]}
+          />
+        </Card>
+      </Container>
+    </>
   )
 }

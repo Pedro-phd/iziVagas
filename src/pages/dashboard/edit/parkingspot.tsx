@@ -1,4 +1,5 @@
 import Breadcrumbs from '@/components/Breadcrumbs'
+import Header from '@/components/Header'
 import Input from '@/components/TextInput'
 import { Event, ParkingSpot } from '@/types/types'
 import clientApi from '@/utils/axios'
@@ -127,6 +128,7 @@ export default function Newparkingspot() {
 
   return (
     <Container>
+      <Header />
       <Card>
         <Breadcrumbs />
         <Title>Gerenciar Vagas</Title>
