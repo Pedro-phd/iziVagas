@@ -81,13 +81,7 @@ export default function ParkingSpot() {
   return (
     <Container>
       <Card>
-        <Breadcrumbs
-          links={{
-            backLink: '/dashboard',
-            editLink: '/dashboard/edit/parkingspot'
-          }}
-          hasEdit
-        />
+        <Breadcrumbs editLink={'/dashboard/edit/parkingspot'} />
         <Title>Nova vaga</Title>
         <InputText
           inputArray={inputArray}

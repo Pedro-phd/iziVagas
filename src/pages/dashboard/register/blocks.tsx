@@ -42,10 +42,7 @@ export default function NewBlocks() {
   return (
     <Container>
       <Card>
-        <Breadcrumbs
-          links={{ backLink: '/dashboard', editLink: '/dashboard/edit/blocks' }}
-          hasEdit
-        />
+        <Breadcrumbs editLink={'/dashboard/edit/blocks'} />
         <Title>Novo Bloco</Title>
         <Input
           inputArray={inputArray}

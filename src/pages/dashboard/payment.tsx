@@ -45,7 +45,7 @@ export default function Payment() {
   return (
     <S.LoginContainer>
       <S.LoginCard>
-        <Breadcrumbs links={{ backLink: '/dashboard' }} />
+        <Breadcrumbs />
         <S.LoginLabel>Pagamento</S.LoginLabel>
         <Input
           inputArray={inputArray}
