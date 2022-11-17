@@ -4,7 +4,7 @@ import Input from '@/components/TextInput'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
 import { useEffect, useState } from 'react'
-import { Card, Container, Title } from '../styles'
+import { Card, Container, Text, Title } from '../styles'
 
 type StateParkingspot = {
   id: string
@@ -103,7 +103,7 @@ export default function Newparkingspot() {
           ]}
         />
 
-        {/* <S.Text>Ocupada</S.Text>
+        <Text>Ocupada</Text>
         <input
           checked={state.occupied}
           type="checkbox"
@@ -111,7 +111,7 @@ export default function Newparkingspot() {
             setState((old) => ({ ...old, occupied: !!e.target.value }))
           }
         />
-        <S.Text>Vaga especial</S.Text>
+        <Text>Vaga especial</Text>
         <input
           checked={state.special}
           type="checkbox"
@@ -119,14 +119,14 @@ export default function Newparkingspot() {
             setState((old) => ({ ...old, special: !!e.target.value }))
           }
         />
-        <S.Text>Vaga para idosos</S.Text>
+        <Text>Vaga para idosos</Text>
         <input
           checked={state.old}
           type="checkbox"
           onChange={(e) =>
             setState((old) => ({ ...old, old: !!e.target.value }))
           }
-        /> */}
+        />
       </Card>
     </Container>
   )

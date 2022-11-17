@@ -37,6 +37,7 @@ export default function Home() {
     login(email, pass)
       .then(() => {
         setState((old) => ({ ...old, error: false, errorMessage: '' }))
+        window.sessionStorage.setItem('login', 'true')
         router.push('/dashboard')
       })
       .catch((err) => {

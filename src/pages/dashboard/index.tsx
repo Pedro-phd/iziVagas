@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import * as S from './styles'
@@ -6,10 +7,10 @@ export default function Home() {
   const router = useRouter()
 
   useEffect(() => {
-    ;async () => {
+    ;(async () => {
       const login = await window.sessionStorage.getItem('login')
       if (!login) router.push('/login')
-    }
+    })()
   }, [router])
 
   const navArray = [
