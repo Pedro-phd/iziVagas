@@ -4,7 +4,7 @@ import InputText from '@/components/TextInput'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
 import { useEffect, useState } from 'react'
-import { Card, Container, SubTitle, Text, Title } from '../styles'
+import { Card, Container, Title } from '../styles'
 
 type StateBlocks = {
   blocks: Blocks[]
@@ -14,6 +14,9 @@ type StateBlocks = {
   name: string
   block: string
   blockId: string
+  occupied: boolean
+  special: boolean
+  old: boolean
 }
 
 export default function ParkingSpot() {
@@ -24,16 +27,13 @@ export default function ParkingSpot() {
     errorMessage: '',
     name: '',
     block: '',
-    blockId: ''
+    blockId: '',
+    occupied: false,
+    special: false,
+    old: false
   })
 
   const inputArray = [
-    {
-      onChange: (e: Event) =>
-        setState((old) => ({ ...old, name: e.target.value })),
-      placeholder: 'Insira o nome da vaga...',
-      width: '75%'
-    },
     {
       onChange: (e: Event) => handleChange(e),
       placeholder: 'Escolha o bloco...',
@@ -43,6 +43,31 @@ export default function ParkingSpot() {
         value: `${block.id}{split}${block.name}`,
         name: block.name
       }))
+    },
+    {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, name: e.target.value })),
+      placeholder: 'Insira o nome da vaga...',
+      width: '75%'
+    },
+    {
+      onChange: () =>
+        setState((old) => ({ ...old, occupied: !state.occupied })),
+      placeholder: 'Ocupada',
+      type: 'checkbox',
+      width: '75%'
+    },
+    {
+      onChange: () => setState((old) => ({ ...old, special: !state.special })),
+      placeholder: 'Vaga especial',
+      type: 'checkbox',
+      width: '75%'
+    },
+    {
+      onChange: () => setState((old) => ({ ...old, old: !state.old })),
+      placeholder: 'Vaga para idosos',
+      type: 'checkbox',
+      width: '75%'
     }
   ]
 
@@ -50,7 +75,10 @@ export default function ParkingSpot() {
     clientApi.post('api/parkingspot/new', {
       name: state.name,
       block: state.block,
-      blockID: state.blockId
+      blockID: state.blockId,
+      occupied: state.occupied,
+      special: state.special,
+      old: state.old
     })
   }
 
@@ -94,10 +122,6 @@ export default function ParkingSpot() {
             }
           ]}
         />
-        <SubTitle> Resultado </SubTitle>
-        <Text>Nome: {state.name}</Text>
-        <Text>Bloco: {state.block}</Text>
-        <Text>Id do bloco: {state.blockId}</Text>
       </Card>
     </Container>
   )

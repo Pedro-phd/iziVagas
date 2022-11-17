@@ -4,7 +4,7 @@ import Input from '@/components/TextInput'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
 import { useEffect, useState } from 'react'
-import { Card, Container, Text, Title } from '../styles'
+import { Card, Container, Title } from '../styles'
 
 type StateBlocks = {
   id: string
@@ -19,29 +19,33 @@ export default function NewBlocks() {
     slots: 0
   })
 
+  const [blocks, setBlocks] = useState<Blocks[]>([])
+
+  const handleFindBlock = (id: string) => {
+    const findBlock = blocks.find((block) => block.id === id)
+    findBlock && setState({ ...findBlock })
+  }
+
   const inputArray = [
     {
-      onChange: (e: Event) =>
-        setState((old) => ({ ...old, id: e.target.value })),
-      placeholder: 'Insira o ID do bloco...',
-      width: '75%'
-    },
-    {
-      onChange: (e: Event) =>
-        setState((old) => ({ ...old, name: e.target.value })),
-      placeholder: 'Insira o nome do bloco...',
-      width: '75%'
+      onChange: (e: Event) => handleFindBlock(e.target.value),
+      placeholder: 'Escolha o nome do bloco...',
+      width: '75%',
+      type: 'select',
+      options: blocks.map((block) => ({
+        value: block.id,
+        name: `Bloco - ${block.name}`
+      }))
     },
     {
       onChange: (e: Event) =>
         setState((old) => ({ ...old, slots: parseInt(e.target.value) })),
       placeholder: 'Insira a quantidade de vagas...',
       width: '75%',
-      type: 'number'
+      type: 'number',
+      value: state.slots
     }
   ]
-
-  const [blocks, setBlocks] = useState<Blocks[]>([])
 
   const handleUpdate = () => {
     clientApi.post(`api/blocks/update/${state.id}`, {
@@ -68,7 +72,7 @@ export default function NewBlocks() {
   return (
     <Container>
       <Card>
-        <Breadcrumbs links={{ backLink: '/dashboard/register/blocks' }} />
+        <Breadcrumbs />
         <Title>Editar Bloco</Title>
         <Input
           inputArray={inputArray}
@@ -78,15 +82,6 @@ export default function NewBlocks() {
             { onClick: handleDelete, label: 'Deletar bloco', width: '150px' }
           ]}
         />
-        <ul>
-          {blocks?.map((block) => {
-            return (
-              <Text key={block.id}>
-                ID: {block.id} - Nome: {block.name} - Slots: {block.slots}
-              </Text>
-            )
-          })}
-        </ul>
       </Card>
     </Container>
   )

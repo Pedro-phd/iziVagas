@@ -25,7 +25,7 @@ export const CardContainer = styled.div`
 export const Card = styled.div`
   width: 50%;
   max-width: 450px;
-  height: 450px;
+  max-height: 450px;
   background-color: white;
   border-radius: 16px;
   display: flex;

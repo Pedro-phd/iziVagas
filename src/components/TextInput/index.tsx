@@ -9,6 +9,7 @@ export interface IInputItemProps {
   width?: string
   options?: Array<IInputSelectOptionsProps>
   checked?: boolean
+  value?: number
 }
 
 export interface IInputSelectOptionsProps {
@@ -40,6 +41,7 @@ function Input({ inputArray, hasButton, buttonContent }: IInputProps) {
             onChange={inputItem.onChange}
             type={inputItem.type ? inputItem.type : 'text'}
             width={inputItem.width ? inputItem.width : 'auto'}
+            value={(inputItem.value !== 0 && inputItem.value) as number}
           />
         ) : inputItem.type === 'select' ? (
           <S.CustomSelect

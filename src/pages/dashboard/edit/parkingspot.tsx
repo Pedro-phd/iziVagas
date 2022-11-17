@@ -1,8 +1,8 @@
-import { ParkingSpot } from '.prisma/client'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Input from '@/components/TextInput'
-import { Event } from '@/types/types'
+import { Event, ParkingSpot } from '@/types/types'
 import clientApi from '@/utils/axios'
+import { Blocks } from '@prisma/client'
 import { useEffect, useState } from 'react'
 import { Card, Container, Title } from '../styles'
 
@@ -27,30 +27,68 @@ export default function Newparkingspot() {
     old: false
   })
 
+  const [parking, setParking] = useState<ParkingSpot[]>([])
+  const [blocks, setBlocks] = useState<Blocks[]>([])
+  const [filteredParking, setFilteredParking] = useState<ParkingSpot[]>([
+    {
+      id: '',
+      name: '',
+      block: '',
+      blockID: '',
+      occupied: false,
+      special: false,
+      old: false
+    }
+  ])
+
+  useEffect(() => {
+    clientApi
+      .get('api/blocks/all')
+      .then((res) => {
+        setBlocks(res.data)
+        console.log(res.data)
+      })
+      .catch((err) => console.log(err))
+    clientApi
+      .get('api/parkingspot/all')
+      .then((res) => {
+        setParking(res.data)
+        console.log(res.data)
+      })
+      .catch((err) => console.log(err))
+  }, [])
+
+  const handleParkingspotSelect = (id: string) => {
+    const filteredParkingspots = parking.filter((item) => item.blockID === id)
+    filteredParkingspots && setFilteredParking([...filteredParkingspots])
+  }
+  const handleFindParkingspot = (id: string) => {
+    const findParkingspots = parking.find((item) => item.id === id)
+    findParkingspots && setState({ ...findParkingspots })
+  }
+
   const inputArray = [
     {
-      onChange: (e: Event) =>
-        setState((old) => ({ ...old, id: e.target.value })),
-      placeholder: 'Insira o ID da vaga...',
-      width: '75%'
-    },
-    {
-      onChange: (e: Event) =>
-        setState((old) => ({ ...old, name: e.target.value })),
-      placeholder: 'Insira o nome da vaga...',
-      width: '75%'
-    },
-    {
-      onChange: (e: Event) =>
-        setState((old) => ({ ...old, block: e.target.value })),
+      onChange: (e: Event) => handleParkingspotSelect(e.target.value),
       placeholder: 'Insira o bloco da vaga...',
-      width: '75%'
+      width: '75%',
+      type: 'select',
+      options: blocks.map((block) => ({
+        value: block.id,
+        name: `Bloco - ${block.name}`
+      }))
     },
     {
-      onChange: (e: Event) =>
-        setState((old) => ({ ...old, blockID: e.target.value })),
-      placeholder: 'Insira o ID do bloco  da vaga...',
-      width: '75%'
+      onChange: (e: Event) => handleFindParkingspot(e.target.value),
+      placeholder: 'Insira o nome da vaga...',
+      width: '75%',
+      type: 'select',
+      options:
+        filteredParking &&
+        filteredParking.map((item) => ({
+          value: item.id,
+          name: `Vaga - ${item.name}`
+        }))
     },
     {
       onChange: () =>
@@ -76,8 +114,6 @@ export default function Newparkingspot() {
     }
   ]
 
-  const [parking, setParking] = useState<ParkingSpot[]>([])
-
   const handleUpdate = () => {
     clientApi.post(`api/parkingspot/update/${state.id}`, {
       ...state
@@ -88,16 +124,6 @@ export default function Newparkingspot() {
       ...state
     })
   }
-
-  useEffect(() => {
-    clientApi
-      .get('api/parkingspot/all')
-      .then((res) => {
-        setParking(res.data)
-        console.log(res.data)
-      })
-      .catch((err) => console.log(err))
-  }, [])
 
   return (
     <Container>

@@ -3,7 +3,7 @@ import Input from '@/components/TextInput'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
 import { useState } from 'react'
-import { Card, Container, SubTitle, Text, Title } from '../styles'
+import { Card, Container, Title } from '../styles'
 
 type StateBlocks = {
   name: string
@@ -55,9 +55,6 @@ export default function NewBlocks() {
             }
           ]}
         />
-        <SubTitle>Resultado</SubTitle>
-        <Text>Nome: {state.name}</Text>
-        <Text>Slots: {state.slots}</Text>
       </Card>
     </Container>
   )
