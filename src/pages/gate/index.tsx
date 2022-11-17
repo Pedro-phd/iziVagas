@@ -54,14 +54,14 @@ export default function Gate() {
       />
       <S.Wrapper validated={validated}>
         <Card>
-          <Title>Cancela</Title>
+          <Title>Liberar a cancela</Title>
           <Input
             inputArray={inputArray}
             hasButton
             buttonContent={[
               {
                 onClick: handleValidate,
-                label: 'Confirmar'
+                label: 'Liberar'
               }
             ]}
           />

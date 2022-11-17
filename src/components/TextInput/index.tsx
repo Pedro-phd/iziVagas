@@ -58,7 +58,10 @@ function Input({ inputArray, hasButton, buttonContent }: IInputProps) {
             ))}
           </S.CustomSelect>
         ) : (
-          <S.CustomCheckboxContainer key={index}>
+          <S.CustomCheckboxContainer
+            width={inputItem.width ? inputItem.width : 'auto'}
+            key={index}
+          >
             <S.CustomCheckbox
               type="checkbox"
               checked={inputItem.checked}

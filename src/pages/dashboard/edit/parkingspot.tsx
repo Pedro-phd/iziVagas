@@ -4,7 +4,7 @@ import Input from '@/components/TextInput'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
 import { useEffect, useState } from 'react'
-import { Card, Container, Text, Title } from '../styles'
+import { Card, Container, Title } from '../styles'
 
 type StateParkingspot = {
   id: string
@@ -51,6 +51,28 @@ export default function Newparkingspot() {
         setState((old) => ({ ...old, blockID: e.target.value })),
       placeholder: 'Insira o ID do bloco  da vaga...',
       width: '75%'
+    },
+    {
+      onChange: () =>
+        setState((old) => ({ ...old, occupied: !state.occupied })),
+      placeholder: 'Ocupada',
+      type: 'checkbox',
+      width: '75%',
+      checked: state.occupied
+    },
+    {
+      onChange: () => setState((old) => ({ ...old, special: !state.special })),
+      placeholder: 'Vaga especial',
+      type: 'checkbox',
+      width: '75%',
+      checked: state.special
+    },
+    {
+      onChange: () => setState((old) => ({ ...old, old: !state.old })),
+      placeholder: 'Vaga para idosos',
+      type: 'checkbox',
+      width: '75%',
+      checked: state.old
     }
   ]
 
@@ -80,11 +102,7 @@ export default function Newparkingspot() {
   return (
     <Container>
       <Card>
-        <Breadcrumbs
-          links={{
-            backLink: '/dashboard/register/parkingspot'
-          }}
-        />
+        <Breadcrumbs />
         <Title>Gerenciar Vagas</Title>
         <Input
           inputArray={inputArray}
@@ -101,31 +119,6 @@ export default function Newparkingspot() {
               width: '150px'
             }
           ]}
-        />
-
-        <Text>Ocupada</Text>
-        <input
-          checked={state.occupied}
-          type="checkbox"
-          onChange={(e) =>
-            setState((old) => ({ ...old, occupied: !!e.target.value }))
-          }
-        />
-        <Text>Vaga especial</Text>
-        <input
-          checked={state.special}
-          type="checkbox"
-          onChange={(e) =>
-            setState((old) => ({ ...old, special: !!e.target.value }))
-          }
-        />
-        <Text>Vaga para idosos</Text>
-        <input
-          checked={state.old}
-          type="checkbox"
-          onChange={(e) =>
-            setState((old) => ({ ...old, old: !!e.target.value }))
-          }
         />
       </Card>
     </Container>

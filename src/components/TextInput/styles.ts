@@ -5,6 +5,9 @@ interface IInputProps extends IInputItemProps, IThemesProps {}
 interface IButtonProps extends IThemesProps {
   width: string
 }
+interface ICustomCheckboxContainerProps {
+  width?: string
+}
 
 export const Form = styled.div`
   display: flex;
@@ -59,9 +62,11 @@ export const Button = styled.button<IButtonProps>`
 
 export const CustomCheckbox = styled.input``
 
-export const CustomCheckboxContainer = styled.div`
+export const CustomCheckboxContainer = styled.div<ICustomCheckboxContainerProps>`
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 5px;
   margin: 5px 0 0 0;
+  width: ${(props) => props.width};
 `
