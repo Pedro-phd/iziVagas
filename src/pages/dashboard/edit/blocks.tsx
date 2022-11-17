@@ -1,7 +1,10 @@
 import { Blocks } from '.prisma/client'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import Input from '@/components/TextInput'
+import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
-import { Button } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { Card, Container, Text, Title } from '../styles'
 
 type StateBlocks = {
   id: string
@@ -15,6 +18,28 @@ export default function NewBlocks() {
     name: '',
     slots: 0
   })
+
+  const inputArray = [
+    {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, id: e.target.value })),
+      placeholder: 'Insira o ID do bloco...',
+      width: '75%'
+    },
+    {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, name: e.target.value })),
+      placeholder: 'Insira o nome do bloco...',
+      width: '75%'
+    },
+    {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, slots: parseInt(e.target.value) })),
+      placeholder: 'Insira a quantidade de vagas...',
+      width: '75%',
+      type: 'number'
+    }
+  ]
 
   const [blocks, setBlocks] = useState<Blocks[]>([])
 
@@ -41,41 +66,28 @@ export default function NewBlocks() {
   }, [])
 
   return (
-    <div>
-      <div>
-        <h1>Novo Bloco</h1>
-        <input
-          placeholder="id do block"
-          onChange={(e) => setState((old) => ({ ...old, id: e.target.value }))}
-        />
-        <input
-          placeholder="Nome do bloco"
-          onChange={(e) =>
-            setState((old) => ({ ...old, name: e.target.value }))
-          }
-        />
-        <input
-          placeholder="Quantidade de vagas"
-          onChange={(e) =>
-            setState((old) => ({ ...old, slots: parseInt(e.target.value) }))
-          }
+    <Container>
+      <Card>
+        <Breadcrumbs links={{ backLink: '/dashboard/register/blocks' }} />
+        <Title>Editar Bloco</Title>
+        <Input
+          inputArray={inputArray}
+          hasButton
+          buttonContent={[
+            { onClick: handleUpdate, label: 'Atualizar Bloco', width: '150px' },
+            { onClick: handleDelete, label: 'Deletar bloco', width: '150px' }
+          ]}
         />
         <ul>
           {blocks?.map((block) => {
             return (
-              <li key={block.id}>
-                ID: {block.id} - NAME: {block.name} - SLOTS: {block.slots}
-              </li>
+              <Text key={block.id}>
+                ID: {block.id} - Nome: {block.name} - Slots: {block.slots}
+              </Text>
             )
           })}
         </ul>
-        <Button variant="contained" onClick={handleUpdate}>
-          Atualizar Bloco
-        </Button>
-        <Button variant="contained" onClick={handleDelete}>
-          Deletar Bloco
-        </Button>
-      </div>
-    </div>
+      </Card>
+    </Container>
   )
 }

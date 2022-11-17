@@ -1,8 +1,10 @@
 import { ParkingSpot } from '.prisma/client'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import Input from '@/components/TextInput'
+import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
-import { Button, Checkbox, MenuItem, Select, TextField } from '@mui/material'
 import { useEffect, useState } from 'react'
-import * as S from './style'
+import { Card, Container, Title } from '../styles'
 
 type StateParkingspot = {
   id: string
@@ -24,6 +26,33 @@ export default function Newparkingspot() {
     special: false,
     old: false
   })
+
+  const inputArray = [
+    {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, id: e.target.value })),
+      placeholder: 'Insira o ID da vaga...',
+      width: '75%'
+    },
+    {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, name: e.target.value })),
+      placeholder: 'Insira o nome da vaga...',
+      width: '75%'
+    },
+    {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, block: e.target.value })),
+      placeholder: 'Insira o bloco da vaga...',
+      width: '75%'
+    },
+    {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, blockID: e.target.value })),
+      placeholder: 'Insira o ID do bloco  da vaga...',
+      width: '75%'
+    }
+  ]
 
   const [parking, setParking] = useState<ParkingSpot[]>([])
 
@@ -49,48 +78,32 @@ export default function Newparkingspot() {
   }, [])
 
   return (
-    <S.Container>
-      <S.Card>
-        <S.Title>Gerenciar Vagas</S.Title>
-        <TextField
-          id="outlined-basic"
-          label="Id da Vaga"
-          variant="outlined"
-          placeholder="Id da Vaga"
-          onChange={(e) => setState((old) => ({ ...old, id: e.target.value }))}
+    <Container>
+      <Card>
+        <Breadcrumbs
+          links={{
+            backLink: '/dashboard/register/parkingspot'
+          }}
+        />
+        <Title>Gerenciar Vagas</Title>
+        <Input
+          inputArray={inputArray}
+          hasButton
+          buttonContent={[
+            {
+              label: 'Atualizar vaga',
+              onClick: handleUpdate,
+              width: '150px'
+            },
+            {
+              label: 'Deletar vaga',
+              onClick: handleDelete,
+              width: '150px'
+            }
+          ]}
         />
 
-        <TextField
-          id="outlined-basic"
-          label="Nome da Vaga"
-          variant="outlined"
-          placeholder="Nome da Vaga"
-          onChange={(e) =>
-            setState((old) => ({ ...old, name: e.target.value }))
-          }
-        />
-
-        <TextField
-          id="outlined-basic"
-          label="Nome do Bloco"
-          variant="outlined"
-          placeholder="Nome do Bloco"
-          onChange={(e) =>
-            setState((old) => ({ ...old, block: e.target.value }))
-          }
-        />
-
-        <TextField
-          id="outlined-basic"
-          label="Id do Bloco"
-          variant="outlined"
-          placeholder="Id do Bloco"
-          onChange={(e) =>
-            setState((old) => ({ ...old, blockID: e.target.value }))
-          }
-        />
-
-        <S.Text>Ocupada</S.Text>
+        {/* <S.Text>Ocupada</S.Text>
         <input
           checked={state.occupied}
           type="checkbox"
@@ -113,14 +126,8 @@ export default function Newparkingspot() {
           onChange={(e) =>
             setState((old) => ({ ...old, old: !!e.target.value }))
           }
-        />
-        <Button variant="contained" onClick={handleUpdate}>
-          Atualizar Vaga
-        </Button>
-        <Button variant="contained" onClick={handleDelete}>
-          Deletar Vaga
-        </Button>
-      </S.Card>
-    </S.Container>
+        /> */}
+      </Card>
+    </Container>
   )
 }

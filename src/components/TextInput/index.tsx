@@ -1,11 +1,17 @@
 import { Event } from '@/types/types'
 import * as S from './styles'
 
-export interface IInputTextItemProps {
-  placeholder: string
+export interface IInputItemProps {
+  placeholder?: string
   onChange: (e: Event) => void
   type?: string
   width?: string
+  options?: Array<IInputSelectOptionsProps>
+}
+
+export interface IInputSelectOptionsProps {
+  value: string
+  name: string
 }
 
 export interface IInputButtonProps {
@@ -14,34 +20,55 @@ export interface IInputButtonProps {
   width?: string
 }
 
-export interface IInputTextProps {
-  inputArray: Array<IInputTextItemProps>
+export interface IInputProps {
+  inputArray: Array<IInputItemProps>
   hasButton?: boolean
-  buttonContent?: IInputButtonProps
+  buttonContent?: Array<IInputButtonProps>
 }
 
-function InputText({ inputArray, hasButton, buttonContent }: IInputTextProps) {
+function Input({ inputArray, hasButton, buttonContent }: IInputProps) {
   return (
-    <>
-      {inputArray.map((inputItem: IInputTextItemProps, index: number) => (
-        <S.Input
-          key={index}
-          placeholder={inputItem.placeholder}
-          onChange={inputItem.onChange}
-          type={inputItem.type ? inputItem.type : 'text'}
-          width={inputItem.width ? inputItem.width : 'auto'}
-        />
-      ))}
-      {hasButton && (
-        <S.Button
-          onClick={buttonContent?.onClick}
-          width={buttonContent?.width ? buttonContent.width : '100'}
-        >
-          <p>{buttonContent?.label}</p>
-        </S.Button>
-      )}
-    </>
+    <S.Form>
+      {inputArray.map((inputItem: IInputItemProps, index: number) => {
+        return inputItem.type !== 'select' ? (
+          <S.CustomInput
+            className="custom-input"
+            key={index}
+            placeholder={inputItem.placeholder}
+            onChange={inputItem.onChange}
+            type={inputItem.type ? inputItem.type : 'text'}
+            width={inputItem.width ? inputItem.width : 'auto'}
+          />
+        ) : (
+          <S.CustomSelect
+            className="custom-input"
+            key={index}
+            onChange={inputItem.onChange}
+            width={inputItem.width ? inputItem.width : 'auto'}
+          >
+            <option selected disabled>
+              {inputItem.placeholder}
+            </option>
+            {inputItem.options?.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.name}
+              </option>
+            ))}
+          </S.CustomSelect>
+        )
+      })}
+      {hasButton &&
+        buttonContent?.map((buttonItem, index) => (
+          <S.Button
+            key={index}
+            onClick={buttonItem.onClick}
+            width={buttonItem.width ? buttonItem.width : '100px'}
+          >
+            <p>{buttonItem.label}</p>
+          </S.Button>
+        ))}
+    </S.Form>
   )
 }
 
-export default InputText
+export default Input

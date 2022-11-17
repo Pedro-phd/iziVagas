@@ -13,4 +13,6 @@ export type ParkingSpot = {
   old: boolean
 }
 
-export type Event = ChangeEvent<HTMLInputElement>
+export type Event =
+  | ChangeEvent<HTMLInputElement>
+  | ChangeEvent<HTMLSelectElement>

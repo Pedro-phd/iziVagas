@@ -1,5 +1,4 @@
 import { Logo } from '@/components/Icons'
-import LogoutButton from '@/components/LogoutButton'
 import InputText from '@/components/TextInput'
 import { Event } from '@/types/types'
 import login from '@/useCases/login'
@@ -21,14 +20,14 @@ export default function Home() {
       onChange: (e: Event) =>
         setState((old) => ({ ...old, email: e.target.value })),
       placeholder: 'Insira seu email...',
-      width: '75'
+      width: '75%'
     },
     {
       onChange: (e: Event) =>
         setState((old) => ({ ...old, pass: e.target.value })),
       placeholder: 'Insira sua senha...',
       type: 'password',
-      width: '75'
+      width: '75%'
     }
   ]
 
@@ -53,15 +52,16 @@ export default function Home() {
     <>
       <S.Container>
         <S.Card>
-          <LogoutButton />
           <Logo option="header" />
           <InputText
             inputArray={inputArray}
-            hasButton={true}
-            buttonContent={{
-              onClick: () => handleLogin(state.email, state.pass),
-              label: 'Login'
-            }}
+            hasButton
+            buttonContent={[
+              {
+                onClick: () => handleLogin(state.email, state.pass),
+                label: 'Login'
+              }
+            ]}
           />
           {state.error && <span>{state.errorMessage}</span>}
         </S.Card>

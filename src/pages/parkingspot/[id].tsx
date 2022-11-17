@@ -38,7 +38,7 @@ export default function BlocksPage() {
         setState((old) => ({ ...old, ticketId: e.target.value })),
 
       placeholder: 'Insira o número do ticket...',
-      width: '50'
+      width: '50%'
     }
   ]
 
@@ -183,11 +183,13 @@ export default function BlocksPage() {
                 <S.InputContainer>
                   <InputText
                     inputArray={inputArray}
-                    hasButton={true}
-                    buttonContent={{
-                      onClick: handleValidate,
-                      label: 'Validar'
-                    }}
+                    hasButton
+                    buttonContent={[
+                      {
+                        onClick: handleValidate,
+                        label: 'Validar'
+                      }
+                    ]}
                   />
                 </S.InputContainer>
               </>
