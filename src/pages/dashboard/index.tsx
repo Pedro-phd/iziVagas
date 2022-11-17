@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import Header from '@/components/Header'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import * as S from './styles'
@@ -9,7 +10,7 @@ export default function Home() {
   useEffect(() => {
     ;(async () => {
       const login = await window.sessionStorage.getItem('login')
-      if (!login) router.push('/login')
+      if (login === 'false') router.push('/login')
     })()
   }, [router])
 
@@ -39,6 +40,7 @@ export default function Home() {
   return (
     <>
       <S.Container>
+        <Header hasLogout />
         <S.Wrapper>
           {navArray.map((navArrayItem, index) => (
             <S.CustomCard

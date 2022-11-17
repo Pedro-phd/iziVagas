@@ -1,20 +1,21 @@
 import logoff from '@/useCases/signout'
+import { useRouter } from 'next/router'
 import { Logout } from '../Icons/Logout'
 import * as S from './styles'
 
 function LogoutButton() {
+  const router = useRouter()
   const handleSignout = () => {
     logoff().then(() => {
-      alert('deslogado')
+      window.sessionStorage.setItem('login', 'false')
+      router.push('/login')
     })
   }
 
   return (
-    <S.LogoutContainer>
-      <S.LogoutWrapper onClick={handleSignout}>
-        <Logout />
-      </S.LogoutWrapper>
-    </S.LogoutContainer>
+    <S.LogoutWrapper onClick={handleSignout}>
+      <Logout />
+    </S.LogoutWrapper>
   )
 }
 
