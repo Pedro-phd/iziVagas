@@ -10,6 +10,7 @@ export interface IInputItemProps {
   options?: Array<IInputSelectOptionsProps>
   checked?: boolean
   value?: number
+  disabled?: boolean
 }
 
 export interface IInputSelectOptionsProps {
@@ -43,6 +44,7 @@ function Input({ inputArray, hasButton, buttonContent }: IInputProps) {
             type={inputItem.type ? inputItem.type : 'text'}
             width={inputItem.width ? inputItem.width : 'auto'}
             value={(inputItem.value !== 0 && inputItem.value) as number}
+            disabled={inputItem.disabled}
           />
         ) : inputItem.type === 'select' ? (
           <S.CustomSelect
@@ -50,6 +52,7 @@ function Input({ inputArray, hasButton, buttonContent }: IInputProps) {
             key={index}
             onChange={inputItem.onChange}
             width={inputItem.width ? inputItem.width : 'auto'}
+            disabled={inputItem.disabled}
           >
             <option selected disabled>
               {inputItem.placeholder}

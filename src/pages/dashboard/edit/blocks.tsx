@@ -142,7 +142,7 @@ export default function NewBlocks() {
         <Header />
         <Card>
           <Breadcrumbs />
-          <Title>Editar Bloco</Title>
+          <Title>Gerenciar Bloco</Title>
           <Input
             inputArray={inputArray}
             hasButton
