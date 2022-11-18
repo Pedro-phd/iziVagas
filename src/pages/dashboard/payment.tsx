@@ -3,7 +3,10 @@ import Header from '@/components/Header'
 import Input from '@/components/TextInput'
 import { Event } from '@/types/types'
 import validateTicket from '@/utils/validateTicket'
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import * as S from './styles'
 
 type StateBlocks = {
@@ -14,6 +17,13 @@ export default function Payment() {
   const [state, setState] = useState<StateBlocks>({
     id: ''
   })
+  const [disabled, setDisabled] = useState<boolean>(true)
+
+  useEffect(() => {
+    state.id ? setDisabled(false) : setDisabled(true)
+  }, [state.id])
+
+  const router = useRouter()
 
   const inputArray = [
     {
@@ -29,12 +39,40 @@ export default function Payment() {
       id: state.id,
       paid: true
     })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))
+      .then(() => {
+        toast.success('Tíquete pago com sucesso!', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          draggable: false,
+          progress: undefined,
+          onClose: () => {
+            router.reload()
+          }
+        })
+      })
+      .catch(() => {
+        toast.error('Erro ao pagar o tíquete!', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          draggable: false,
+          progress: undefined
+        })
+      })
   }
 
   return (
     <S.Container>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        rtl={false}
+      />
       <Header />
       <S.Card>
         <Breadcrumbs />
@@ -46,7 +84,8 @@ export default function Payment() {
             {
               onClick: handlePayment,
               label: 'Registrar pagamento',
-              width: '150px'
+              width: '150px',
+              disabled: disabled
             }
           ]}
         />
