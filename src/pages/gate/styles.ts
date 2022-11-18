@@ -2,7 +2,7 @@ import { IThemesProps } from '@/types/styled'
 import styled from 'styled-components'
 
 interface WrapperProps extends IThemesProps {
-  validated: boolean | undefined
+  validated: string
 }
 
 export const Wrapper = styled.div`
@@ -12,9 +12,9 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   background: ${(props: WrapperProps) =>
-    props.validated === true
+    props.validated === 'P'
       ? props.theme.green
-      : props.validated === false
+      : props.validated === 'NP'
       ? props.theme.red
       : props.theme.body};
 `

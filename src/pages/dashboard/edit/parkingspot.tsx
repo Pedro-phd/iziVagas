@@ -4,7 +4,10 @@ import Input from '@/components/TextInput'
 import { Event, ParkingSpot } from '@/types/types'
 import clientApi from '@/utils/axios'
 import { Blocks } from '@prisma/client'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { Card, Container, Title } from '../styles'
 
 type StateParkingspot = {
@@ -41,6 +44,19 @@ export default function Newparkingspot() {
       old: false
     }
   ])
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(true)
+  const [disabled, setDisabled] = useState<boolean>(true)
+
+  const router = useRouter()
+
+  useEffect(() => {
+    state.blockID && state.name
+      ? setButtonDisabled(false)
+      : setButtonDisabled(true)
+    filteredParking.map((item) => {
+      item.blockID ? setDisabled(false) : setDisabled(true)
+    })
+  }, [filteredParking, state.blockID, state.name])
 
   useEffect(() => {
     clientApi
@@ -71,7 +87,7 @@ export default function Newparkingspot() {
   const inputArray = [
     {
       onChange: (e: Event) => handleParkingspotSelect(e.target.value),
-      placeholder: 'Insira o bloco da vaga...',
+      placeholder: 'Escolha o bloco da vaga...',
       width: '75%',
       type: 'select',
       options: blocks.map((block) => ({
@@ -81,15 +97,23 @@ export default function Newparkingspot() {
     },
     {
       onChange: (e: Event) => handleFindParkingspot(e.target.value),
-      placeholder: 'Insira o nome da vaga...',
+      placeholder: 'Escolha a vaga...',
       width: '75%',
       type: 'select',
+      disabled: disabled,
       options:
         filteredParking &&
         filteredParking.map((item) => ({
           value: item.id,
           name: `Vaga - ${item.name}`
         }))
+    },
+    {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, name: e.target.value })),
+      placeholder: 'Insira o novo nome da vaga...',
+      width: '75%',
+      type: 'text'
     },
     {
       onChange: () =>
@@ -116,18 +140,73 @@ export default function Newparkingspot() {
   ]
 
   const handleUpdate = () => {
-    clientApi.post(`api/parkingspot/update/${state.id}`, {
-      ...state
-    })
+    clientApi
+      .post(`api/parkingspot/update/${state.id}`, {
+        ...state
+      })
+      .then(() => {
+        toast.success('Vaga editada com sucesso!', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          draggable: false,
+          progress: undefined,
+          onClose: () => {
+            router.reload()
+          }
+        })
+      })
+      .catch(() => {
+        toast.error('Erro ao editar a vaga!', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          draggable: false,
+          progress: undefined
+        })
+      })
   }
   const handleDelete = () => {
-    clientApi.post(`api/parkingspot/delete/${state.id}`, {
-      ...state
-    })
+    clientApi
+      .post(`api/parkingspot/delete/${state.id}`, {
+        ...state
+      })
+      .then(() => {
+        toast.success('Vaga deletada com sucesso!', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          draggable: false,
+          progress: undefined,
+          onClose: () => {
+            router.reload()
+          }
+        })
+      })
+      .catch(() => {
+        toast.error('Erro ao deletar a vaga!', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          draggable: false,
+          progress: undefined
+        })
+      })
   }
 
   return (
     <Container>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        rtl={false}
+      />
       <Header />
       <Card>
         <Breadcrumbs />
@@ -139,12 +218,14 @@ export default function Newparkingspot() {
             {
               label: 'Atualizar vaga',
               onClick: handleUpdate,
-              width: '150px'
+              width: '150px',
+              disabled: buttonDisabled
             },
             {
               label: 'Deletar vaga',
               onClick: handleDelete,
-              width: '150px'
+              width: '150px',
+              disabled: buttonDisabled
             }
           ]}
         />

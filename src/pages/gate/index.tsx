@@ -1,7 +1,8 @@
 import Input from '@/components/TextInput'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Card, Title } from '../dashboard/styles'
@@ -9,7 +10,14 @@ import * as S from './styles'
 
 export default function Gate() {
   const [ticketId, setTicketId] = useState<string>('')
-  const [validated, setValidated] = useState<boolean | undefined>(undefined)
+  const [validated, setValidated] = useState<string>('')
+  const [disabled, setDisabled] = useState<boolean>(true)
+
+  useEffect(() => {
+    ticketId ? setDisabled(false) : setDisabled(true)
+  }, [ticketId])
+
+  const router = useRouter()
 
   const inputArray = [
     {
@@ -23,20 +31,20 @@ export default function Gate() {
     clientApi
       .get(`api/ticket/get/${ticketId}`)
       .then((res) => {
-        setValidated(res.data.paid)
+        setValidated(res.data.paid ? 'P' : 'NP')
+        setTimeout(() => {
+          router.reload()
+        }, 2000)
       })
-      .catch((err) => {
-        setValidated(false)
+      .catch(() => {
+        setValidated('NP')
         toast.error('Erro interno! Tente novamente mais tarde!', {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
           draggable: true,
           progress: undefined
         })
-        console.log(err)
       })
   }
   return (
@@ -46,11 +54,8 @@ export default function Gate() {
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
-        closeOnClick
         rtl={false}
-        pauseOnFocusLoss
         draggable
-        pauseOnHover
       />
       <S.Wrapper validated={validated}>
         <Card>
@@ -61,14 +66,15 @@ export default function Gate() {
             buttonContent={[
               {
                 onClick: handleValidate,
-                label: 'Liberar'
+                label: 'Liberar',
+                disabled: disabled
               }
             ]}
           />
           <S.FeedbackMessage>
-            {validated === true
-              ? 'Ticket pago'
-              : validated === false
+            {validated === 'P'
+              ? 'Ticket pago!'
+              : validated === 'NP'
               ? 'O ticket não foi pago!'
               : ''}
           </S.FeedbackMessage>

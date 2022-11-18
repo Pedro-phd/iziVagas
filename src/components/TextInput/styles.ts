@@ -50,16 +50,22 @@ export const Button = styled.button<IButtonProps>`
   border-radius: 5px;
   cursor: pointer;
   margin: 5px 0;
-  &:hover {
-    background: ${(props) => props.theme.primaryLight};
-    color: #fff;
-  }
-  &:active {
-    background: ${(props) => props.theme.primaryDark};
-    color: #fff;
-  }
   p {
     font-weight: ${(props) => props.theme.bold};
+  }
+  :not(:disabled) {
+    &:hover {
+      background: ${(props) => props.theme.primaryLight};
+      color: #fff;
+    }
+    &:active {
+      background: ${(props) => props.theme.primaryDark};
+      color: #fff;
+    }
+  }
+  :disabled {
+    opacity: 0.1;
+    cursor: default;
   }
 `
 

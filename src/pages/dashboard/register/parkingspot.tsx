@@ -4,7 +4,10 @@ import Header from '@/components/Header'
 import InputText from '@/components/TextInput'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { Card, Container, Title } from '../styles'
 
 type StateBlocks = {
@@ -33,6 +36,14 @@ export default function ParkingSpot() {
     special: false,
     old: false
   })
+
+  const [disabled, setDisabled] = useState<boolean>(true)
+
+  const router = useRouter()
+
+  useEffect(() => {
+    state.blockId && state.name ? setDisabled(false) : setDisabled(true)
+  }, [state.blockId, state.name])
 
   const inputArray = [
     {
@@ -73,14 +84,38 @@ export default function ParkingSpot() {
   ]
 
   const handleCreate = () => {
-    clientApi.post('api/parkingspot/new', {
-      name: state.name,
-      block: state.block,
-      blockID: state.blockId,
-      occupied: state.occupied,
-      special: state.special,
-      old: state.old
-    })
+    clientApi
+      .post('api/parkingspot/new', {
+        name: state.name,
+        block: state.block,
+        blockID: state.blockId,
+        occupied: state.occupied,
+        special: state.special,
+        old: state.old
+      })
+      .then(() => {
+        toast.success('Vaga criada com sucesso!', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          draggable: false,
+          progress: undefined,
+          onClose: () => {
+            router.reload()
+          }
+        })
+      })
+      .catch(() => {
+        toast.error('Erro ao criar a vaga!', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          draggable: false,
+          progress: undefined
+        })
+      })
   }
 
   const handleChange = (e: Event) => {
@@ -109,6 +144,13 @@ export default function ParkingSpot() {
 
   return (
     <Container>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        rtl={false}
+      />
       <Header />
       <Card>
         <Breadcrumbs editLink={'/dashboard/edit/parkingspot'} />
@@ -118,9 +160,10 @@ export default function ParkingSpot() {
           hasButton
           buttonContent={[
             {
-              label: 'Cadastrar vaga',
+              label: 'Criar vaga',
               onClick: handleCreate,
-              width: '150px'
+              width: '150px',
+              disabled: disabled
             }
           ]}
         />

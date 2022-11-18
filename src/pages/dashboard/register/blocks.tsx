@@ -3,7 +3,10 @@ import Header from '@/components/Header'
 import Input from '@/components/TextInput'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { Card, Container, Title } from '../styles'
 
 type StateBlocks = {
@@ -16,6 +19,16 @@ export default function NewBlocks() {
     name: '',
     slots: 0
   })
+
+  const [disabled, setDisabled] = useState<boolean>(true)
+
+  useEffect(() => {
+    state.name.length !== 0 && (state.slots > 0 || !isNaN(state.slots))
+      ? setDisabled(false)
+      : setDisabled(true)
+  }, [state.name, state.slots])
+
+  const router = useRouter()
 
   const inputArray = [
     {
@@ -34,14 +47,45 @@ export default function NewBlocks() {
   ]
 
   const handleCreate = () => {
-    clientApi.post('api/blocks/new', {
-      name: state.name,
-      slots: state.slots
-    })
+    clientApi
+      .post('api/blocks/new', {
+        name: state.name,
+        slots: state.slots
+      })
+      .then(() => {
+        toast.success('Bloco criado com sucesso!', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          draggable: false,
+          progress: undefined,
+          onClose: () => {
+            router.reload()
+          }
+        })
+      })
+      .catch(() => {
+        toast.error('Erro ao criar o bloco!', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          draggable: false,
+          progress: undefined
+        })
+      })
   }
 
   return (
     <Container>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        rtl={false}
+      />
       <Header />
       <Card>
         <Breadcrumbs editLink={'/dashboard/edit/blocks'} />
@@ -52,8 +96,9 @@ export default function NewBlocks() {
           buttonContent={[
             {
               onClick: handleCreate,
-              label: 'Cadastrar Bloco',
-              width: '150px'
+              label: 'Criar Bloco',
+              width: '150px',
+              disabled: disabled
             }
           ]}
         />
