@@ -109,6 +109,13 @@ export default function Newparkingspot() {
         }))
     },
     {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, name: e.target.value })),
+      placeholder: 'Insira o novo nome da vaga...',
+      width: '75%',
+      type: 'text'
+    },
+    {
       onChange: () =>
         setState((old) => ({ ...old, occupied: !state.occupied })),
       placeholder: 'Ocupada',
