@@ -1,7 +1,7 @@
-import { Blocks } from '.prisma/client'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Header from '@/components/Header'
 import InputText from '@/components/TextInput'
+import { IStateParkingspotRegister } from '@/types/Dashboard'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
 import { useRouter } from 'next/router'
@@ -10,21 +10,8 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Card, Container, Title } from '../styles'
 
-type StateBlocks = {
-  blocks: Blocks[]
-  error: boolean
-  loading: boolean
-  errorMessage: string
-  name: string
-  block: string
-  blockId: string
-  occupied: boolean
-  special: boolean
-  old: boolean
-}
-
 export default function ParkingSpot() {
-  const [state, setState] = useState<StateBlocks>({
+  const [state, setState] = useState<IStateParkingspotRegister>({
     blocks: [],
     error: false,
     loading: false,

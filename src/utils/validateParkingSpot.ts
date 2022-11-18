@@ -1,12 +1,10 @@
+import { IValidateParkingSpot } from '@/types/types'
 import { AxiosResponse } from 'axios'
 import clientApi from './axios'
 
-type Props = {
-  id: string
-  occupied?: boolean
-}
-
-const validateParkingSpot = async (props: Props): Promise<AxiosResponse> => {
+const validateParkingSpot = async (
+  props: IValidateParkingSpot
+): Promise<AxiosResponse> => {
   try {
     const res = await clientApi.put('api/parkingspot/update', {
       ...props

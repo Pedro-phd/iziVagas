@@ -1,6 +1,7 @@
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Header from '@/components/Header'
 import Input from '@/components/TextInput'
+import { IStateBlocksRegister } from '@/types/Dashboard'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
 import { useRouter } from 'next/router'
@@ -9,13 +10,8 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Card, Container, Title } from '../styles'
 
-type StateBlocks = {
-  name: string
-  slots: number
-}
-
 export default function NewBlocks() {
-  const [state, setState] = useState<StateBlocks>({
+  const [state, setState] = useState<IStateBlocksRegister>({
     name: '',
     slots: 0
   })

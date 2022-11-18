@@ -1,4 +1,5 @@
-import { IColorIndicator, IThemesProps } from '@/types/styled'
+import { IColorIndicator } from '@/types/CardBlock'
+import { IThemesProps } from '@/types/styled'
 import styled from 'styled-components'
 
 export const Wrapper = styled.main`

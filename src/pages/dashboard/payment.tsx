@@ -1,6 +1,7 @@
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Header from '@/components/Header'
 import Input from '@/components/TextInput'
+import { IStatePayment } from '@/types/Dashboard'
 import { Event } from '@/types/types'
 import validateTicket from '@/utils/validateTicket'
 import { useRouter } from 'next/router'
@@ -9,12 +10,8 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import * as S from './styles'
 
-type StateBlocks = {
-  id: string
-}
-
 export default function Payment() {
-  const [state, setState] = useState<StateBlocks>({
+  const [state, setState] = useState<IStatePayment>({
     id: ''
   })
   const [disabled, setDisabled] = useState<boolean>(true)

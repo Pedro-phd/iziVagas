@@ -1,40 +1,11 @@
 import { Text } from '@/pages/dashboard/styles'
-import { Event } from '@/types/types'
+import { IInputProps } from '@/types/Input'
 import * as S from './styles'
-
-export interface IInputItemProps {
-  placeholder?: string
-  onChange: (e: Event) => void
-  type?: string
-  width?: string
-  options?: Array<IInputSelectOptionsProps>
-  checked?: boolean
-  value?: number
-  disabled?: boolean
-}
-
-export interface IInputSelectOptionsProps {
-  value: string
-  name: string
-}
-
-export interface IInputButtonProps {
-  onClick: () => void
-  label: string
-  width?: string
-  disabled?: boolean
-}
-
-export interface IInputProps {
-  inputArray: Array<IInputItemProps>
-  hasButton?: boolean
-  buttonContent?: Array<IInputButtonProps>
-}
 
 function Input({ inputArray, hasButton, buttonContent }: IInputProps) {
   return (
     <S.Form>
-      {inputArray.map((inputItem: IInputItemProps, index: number) => {
+      {inputArray.map((inputItem, index) => {
         return inputItem.type !== 'select' && inputItem.type !== 'checkbox' ? (
           <S.CustomInput
             className="custom-input"

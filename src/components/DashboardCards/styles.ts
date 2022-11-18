@@ -1,9 +1,6 @@
+import { IDashboardCardsButtonProps } from '@/types/DashboardCards'
 import { IThemesProps } from '@/types/styled'
 import styled from 'styled-components'
-
-interface IButtonsProps extends IThemesProps {
-  buttons: number
-}
 
 export const CardContainer = styled.div`
   width: 285px;
@@ -31,7 +28,7 @@ export const ButtonContainer = styled.div`
   display: flex;
 `
 
-export const Button = styled.button<IButtonsProps>`
+export const Button = styled.button<IDashboardCardsButtonProps>`
   width: 100%;
   background: ${(props) => props.theme.switchBg};
   border: none;

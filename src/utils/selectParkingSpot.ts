@@ -1,13 +1,11 @@
+import { ISelecParkingSpot } from '@/types/types'
 import clientApi from './axios'
 import validateParkingSpot from './validateParkingSpot'
 import validateTicket from './validateTicket'
 
-type Props = {
-  parkingSpotId: string
-  id: string
-}
-
-const selectParkingSpot = async (props: Props): Promise<boolean | Error> => {
+const selectParkingSpot = async (
+  props: ISelecParkingSpot
+): Promise<boolean | Error> => {
   const verifyTicket = async (): Promise<boolean | string> => {
     try {
       const res = await clientApi.get(`api/ticket/get/${props.id}`)

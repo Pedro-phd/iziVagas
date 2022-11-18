@@ -1,12 +1,9 @@
 import { CloseButton } from '@/components/Icons'
 import Theme from '@/context/Theme'
-import { PropsWithChildren, useContext, useState } from 'react'
+import { WrapperModalProps } from '@/types/Modal'
+import { useContext, useState } from 'react'
 import Modal from 'react-modal'
 import * as S from './styles'
-
-type WrapperModalProps = PropsWithChildren<{
-  modalContent: React.ReactNode
-}>
 
 function WrapperModal(props: WrapperModalProps) {
   const { children, modalContent } = props

@@ -1,13 +1,9 @@
-import { IThemesProps } from '@/types/styled'
+import {
+  IButtonProps,
+  ICustomCheckboxContainerProps,
+  ICustomInputProps
+} from '@/types/Input'
 import styled from 'styled-components'
-import { IInputItemProps } from '.'
-interface IInputProps extends IInputItemProps, IThemesProps {}
-interface IButtonProps extends IThemesProps {
-  width: string
-}
-interface ICustomCheckboxContainerProps {
-  width?: string
-}
 
 export const Form = styled.div`
   display: flex;
@@ -34,10 +30,10 @@ export const Form = styled.div`
   }
 `
 
-export const CustomInput = styled.input<IInputProps>`
+export const CustomInput = styled.input<ICustomInputProps>`
   width: ${(props) => props.width};
 `
-export const CustomSelect = styled.select<IInputProps>`
+export const CustomSelect = styled.select<ICustomInputProps>`
   width: ${(props) => props.width};
 `
 
