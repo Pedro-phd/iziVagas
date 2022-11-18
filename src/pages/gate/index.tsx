@@ -1,13 +1,24 @@
+import Input from '@/components/TextInput'
+import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
-import { Button, TextField } from '@mui/material'
 import { useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { Card, Title } from '../dashboard/styles'
 import * as S from './styles'
 
 export default function Gate() {
   const [ticketId, setTicketId] = useState<string>('')
   const [validated, setValidated] = useState<boolean | undefined>(undefined)
+
+  const inputArray = [
+    {
+      onChange: (e: Event) => setTicketId(e.target.value),
+      placeholder: 'Insira o ID do tíquete...',
+      width: '75%'
+    }
+  ]
+
   const handleValidate = () => {
     clientApi
       .get(`api/ticket/get/${ticketId}`)
@@ -42,17 +53,18 @@ export default function Gate() {
         pauseOnHover
       />
       <S.Wrapper validated={validated}>
-        <S.Card>
-          <TextField
-            id="outlined-basic"
-            label="Id do ticket"
-            variant="outlined"
-            placeholder="Id do ticket"
-            onChange={(e) => setTicketId(e.target.value)}
+        <Card>
+          <Title>Liberar a cancela</Title>
+          <Input
+            inputArray={inputArray}
+            hasButton
+            buttonContent={[
+              {
+                onClick: handleValidate,
+                label: 'Liberar'
+              }
+            ]}
           />
-          <Button variant="contained" onClick={handleValidate}>
-            Confirmar
-          </Button>
           <S.FeedbackMessage>
             {validated === true
               ? 'Ticket pago'
@@ -60,7 +72,7 @@ export default function Gate() {
               ? 'O ticket não foi pago!'
               : ''}
           </S.FeedbackMessage>
-        </S.Card>
+        </Card>
       </S.Wrapper>
     </>
   )

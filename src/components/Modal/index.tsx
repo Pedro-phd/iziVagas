@@ -26,7 +26,7 @@ function WrapperModal(props: WrapperModalProps) {
       border: 'none',
       borderRadius: '10px',
       width: '900px',
-      height: '450px',
+      height: '500px',
       background: theme === 'dark' ? '#240036' : '#F2F2F2'
     }
   }

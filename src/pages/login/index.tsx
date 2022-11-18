@@ -1,7 +1,8 @@
 import { Logo } from '@/components/Icons'
+import InputText from '@/components/TextInput'
+import { Event } from '@/types/types'
 import login from '@/useCases/login'
-import logoff from '@/useCases/signout'
-import { Button, TextField } from '@mui/material'
+
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import * as S from './styles'
@@ -13,6 +14,22 @@ export default function Home() {
     error: false,
     errorMessage: ''
   })
+
+  const inputArray = [
+    {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, email: e.target.value })),
+      placeholder: 'Insira seu email...',
+      width: '75%'
+    },
+    {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, pass: e.target.value })),
+      placeholder: 'Insira sua senha...',
+      type: 'password',
+      width: '75%'
+    }
+  ]
 
   const router = useRouter()
 
@@ -32,47 +49,23 @@ export default function Home() {
       })
   }
 
-  const handleSingout = () => {
-    logoff().then(() => {
-      alert('deslogado')
-    })
-  }
-
   return (
     <>
       <S.Container>
-        <S.Card>
+        <S.LoginCard>
           <Logo option="header" />
-          <TextField
-            id="outlined-basic"
-            label="E-mail"
-            variant="outlined"
-            placeholder="E-mail"
-            onChange={(e) =>
-              setState((old) => ({ ...old, email: e.target.value }))
-            }
-          />
-          <TextField
-            id="outlined-basic"
-            label="Password"
-            variant="outlined"
-            type="password"
-            placeholder="Password"
-            onChange={(e) =>
-              setState((old) => ({ ...old, pass: e.target.value }))
-            }
+          <InputText
+            inputArray={inputArray}
+            hasButton
+            buttonContent={[
+              {
+                onClick: () => handleLogin(state.email, state.pass),
+                label: 'Login'
+              }
+            ]}
           />
           {state.error && <span>{state.errorMessage}</span>}
-          <Button
-            variant="contained"
-            onClick={() => handleLogin(state.email, state.pass)}
-          >
-            Login
-          </Button>
-          <Button variant="contained" onClick={handleSingout}>
-            Sair
-          </Button>
-        </S.Card>
+        </S.LoginCard>
       </S.Container>
     </>
   )

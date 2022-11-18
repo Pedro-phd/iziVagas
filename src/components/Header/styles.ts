@@ -4,19 +4,15 @@ import styled from 'styled-components'
 export const Wrapper = styled.main`
   width: 100%;
   padding: 23px 0;
-  svg {
-    margin: 0 0 50px 0;
-  }
 `
 
-export const row = styled.div`
+export const Row = styled.div`
   display: flex;
   justify-content: space-between;
 `
 
-export const toggles = styled.div`
+export const ToggleWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   gap: 10px;
 `
 
@@ -25,4 +21,5 @@ export const Title = styled.h1`
   font-weight: ${(props: IThemesProps) => props.theme.bold};
   text-transform: uppercase;
   font-size: 54px;
+  margin: 50px 0 0 0;
 `

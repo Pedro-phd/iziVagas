@@ -1,5 +1,6 @@
 import { IThemesProps } from '@/types/styled'
 import styled from 'styled-components'
+import { Card } from '../dashboard/styles'
 
 export const Container = styled.div`
   display: flex;
@@ -10,22 +11,7 @@ export const Container = styled.div`
   align-items: center;
 `
 
-export const Card = styled.div`
-  width: 50%;
-  max-width: 350px;
-  height: 350px;
-  background-color: white;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  box-shadow: ${(props: IThemesProps) => props.theme.shadow};
-  button {
-    background-color: ${(props: IThemesProps) => props.theme.primary};
-    font-weight: bold;
-  }
+export const LoginCard = styled(Card)`
   span {
     color: red;
     font-weight: bold;

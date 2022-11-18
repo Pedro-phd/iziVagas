@@ -1,27 +1,28 @@
-import { ArrowLeft } from '@/components/Icons/ArrowLeft'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import Header from '@/components/Header'
+import Input from '@/components/TextInput'
+import { Event } from '@/types/types'
 import validateTicket from '@/utils/validateTicket'
-import { Button, TextField } from '@mui/material'
-import { getAuth } from 'firebase/auth'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import * as S from './styles'
 
 type StateBlocks = {
   id: string
 }
 
-const auth = getAuth()
-
 export default function Payment() {
   const [state, setState] = useState<StateBlocks>({
     id: ''
   })
 
-  const router = useRouter()
-
-  useEffect(() => {
-    auth.currentUser ? null : router.push('/login')
-  }, [router])
+  const inputArray = [
+    {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, id: e.target.value })),
+      placeholder: 'Insira o ID do tíquete...',
+      width: '75%'
+    }
+  ]
 
   const handlePayment = () => {
     validateTicket({
@@ -33,26 +34,23 @@ export default function Payment() {
   }
 
   return (
-    <S.LoginContainer>
-      <S.LoginCard>
-        <S.BreadcrumbsContainer>
-          <S.Breadcrumbs href="/dashboard">
-            <ArrowLeft />
-            Voltar
-          </S.Breadcrumbs>
-        </S.BreadcrumbsContainer>
-        <S.LoginLabel>Pagamento</S.LoginLabel>
-        <TextField
-          id="outlined-basic"
-          label="Id do Ticket"
-          variant="outlined"
-          placeholder="Id do Ticket"
-          onChange={(e) => setState((old) => ({ ...old, id: e.target.value }))}
+    <S.Container>
+      <Header />
+      <S.Card>
+        <Breadcrumbs />
+        <S.Title>Pagamento</S.Title>
+        <Input
+          inputArray={inputArray}
+          hasButton
+          buttonContent={[
+            {
+              onClick: handlePayment,
+              label: 'Registrar pagamento',
+              width: '150px'
+            }
+          ]}
         />
-        <Button variant="contained" onClick={handlePayment}>
-          Registrar pagamento
-        </Button>
-      </S.LoginCard>
-    </S.LoginContainer>
+      </S.Card>
+    </S.Container>
   )
 }

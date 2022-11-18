@@ -22,7 +22,9 @@ export const darkTheme: IThemesProps = {
     skeletonGradient: 'linear-gradient(90deg, #7a00b5, #9a00e5, #7a00b5)',
     skeletonBg: '#7a00b5',
     buttonColor: '#FFCC3E',
-    buttonTextColor: '#7A00B5'
+    buttonTextColor: '#7A00B5',
+    dashboardCardText: '#f2f2f2',
+    dashboardCardBackground: '#550080'
   }
 }
 export const lightTheme: IThemesProps = {
@@ -47,6 +49,8 @@ export const lightTheme: IThemesProps = {
     skeletonGradient: 'linear-gradient(90deg, #dedede, #f5f5f5, #dedede)',
     skeletonBg: '#dedede',
     buttonColor: '#7A00B5',
-    buttonTextColor: '#FFCC3E'
+    buttonTextColor: '#FFCC3E',
+    dashboardCardText: '#444444',
+    dashboardCardBackground: '#fff'
   }
 }

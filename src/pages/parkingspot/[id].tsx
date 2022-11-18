@@ -1,9 +1,10 @@
-import { ParkingSpot } from '@/types/types'
 import ConfirmButton from '@/components/ConfirmButton'
 import Header from '@/components/Header'
 import WrapperModal from '@/components/Modal'
 import ParkingSpotCard from '@/components/ParkingSpotCard'
+import InputText from '@/components/TextInput'
 import { BoxSkeleton } from '@/styles/skeleton'
+import { Event, ParkingSpot } from '@/types/types'
 import clientApi from '@/utils/axios'
 import selectParkingSpot from '@/utils/selectParkingSpot'
 import { useRouter } from 'next/router'
@@ -30,6 +31,16 @@ export default function BlocksPage() {
     idSelected: '',
     ticketId: ''
   })
+
+  const inputArray = [
+    {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, ticketId: e.target.value })),
+
+      placeholder: 'Insira o número do ticket...',
+      width: '50%'
+    }
+  ]
 
   const router = useRouter()
   const { id } = router.query
@@ -170,14 +181,16 @@ export default function BlocksPage() {
                   <S.Text>2 - Aguarde a confirmação da vaga</S.Text>
                 </S.TextContainer>
                 <S.InputContainer>
-                  <S.Input
-                    onChange={(e) =>
-                      setState((old) => ({ ...old, ticketId: e.target.value }))
-                    }
-                    placeholder="Insira o número do ticket..."
-                    type="text"
+                  <InputText
+                    inputArray={inputArray}
+                    hasButton
+                    buttonContent={[
+                      {
+                        onClick: handleValidate,
+                        label: 'Validar'
+                      }
+                    ]}
                   />
-                  <S.Button onClick={handleValidate}>Validar</S.Button>
                 </S.InputContainer>
               </>
             }

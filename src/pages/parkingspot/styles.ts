@@ -41,37 +41,3 @@ export const InputContainer = styled.div`
   padding: 35px 0 0 0;
   align-items: center;
 `
-
-export const Input = styled.input`
-  height: 25px;
-  width: 50%;
-  border: 1px solid #c3c3c3;
-  border-radius: 5px;
-  padding: 0 0 0 5px;
-  margin: 0 0 10px 0;
-  background: ${(props: IThemesProps) => props.theme.body};
-  color: ${(props: IThemesProps) => props.theme.text};
-  ::placeholder {
-    color: #c3c3c3;
-  }
-  &:focus {
-    outline: 1px solid ${(props: IThemesProps) => props.theme.switchBg};
-  }
-`
-export const Button = styled.button`
-  background: ${(props: IThemesProps) => props.theme.switchBg};
-  color: ${(props: IThemesProps) => props.theme.switchDot};
-  width: 100px;
-  height: 25px;
-  border: 0;
-  border-radius: 5px;
-  cursor: pointer;
-  &:hover {
-    background: ${(props: IThemesProps) => props.theme.primaryLight};
-    color: #fff;
-  }
-  &:active {
-    background: ${(props: IThemesProps) => props.theme.primaryDark};
-    color: #fff;
-  }
-`

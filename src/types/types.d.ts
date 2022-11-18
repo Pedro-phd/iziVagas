@@ -1,3 +1,5 @@
+import { ChangeEvent } from 'react'
+
 export type IClassName = {
   ClassName?: string
 }
@@ -10,3 +12,7 @@ export type ParkingSpot = {
   special: boolean
   old: boolean
 }
+
+export type Event =
+  | ChangeEvent<HTMLInputElement>
+  | ChangeEvent<HTMLSelectElement>
