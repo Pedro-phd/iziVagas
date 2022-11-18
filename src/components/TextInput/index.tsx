@@ -21,6 +21,7 @@ export interface IInputButtonProps {
   onClick: () => void
   label: string
   width?: string
+  disabled?: boolean
 }
 
 export interface IInputProps {
@@ -79,6 +80,7 @@ function Input({ inputArray, hasButton, buttonContent }: IInputProps) {
             key={index}
             onClick={buttonItem.onClick}
             width={buttonItem.width ? buttonItem.width : '100px'}
+            disabled={buttonItem.disabled}
           >
             <p>{buttonItem.label}</p>
           </S.Button>
