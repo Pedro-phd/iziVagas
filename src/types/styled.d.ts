@@ -21,6 +21,8 @@ export interface IThemesProps {
     skeletonBg: string
     buttonColor: string
     buttonTextColor: string
+    dashboardCardText: string
+    dashboardCardBackground: string
   }
 }
 

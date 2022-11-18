@@ -26,7 +26,7 @@ export const Card = styled.div`
   width: 50%;
   max-width: 450px;
   max-height: 450px;
-  background: ${(props: IThemesProps) => props.theme.body};
+  background: ${(props: IThemesProps) => props.theme.dashboardCardBackground};
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -39,6 +39,7 @@ export const Card = styled.div`
 
 export const Wrapper = styled.div`
   display: flex;
+  gap: 30px;
 `
 
 export const Container = styled.div`

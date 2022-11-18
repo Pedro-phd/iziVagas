@@ -1,5 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import DashboardCards from '@/components/DashboardCards'
 import Header from '@/components/Header'
+import {
+  Blocks,
+  Gate,
+  ParkingSpot,
+  Payment
+} from '@/components/Icons/DashboardIcons'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import * as S from './styles'
@@ -14,26 +21,62 @@ export default function Home() {
     })()
   }, [router])
 
-  const navArray = [
+  const handlePush = (link: string) => {
+    router.push(link)
+  }
+
+  const dashboardCardsArray = [
     {
-      label: 'Cadastrar vaga',
-      url: '/dashboard/register/parkingspot'
+      icon: <ParkingSpot />,
+      title: 'Vagas',
+      text: 'Crie e gerencie suas vagas',
+      buttons: [
+        {
+          label: 'Criar',
+          onClick: () => handlePush('/dashboard/register/parkingspot')
+        },
+        {
+          label: 'Editar',
+          onClick: () => handlePush('/dashboard/edit/parkingspot')
+        }
+      ]
     },
     {
-      label: 'Cadastrar bloco',
-      url: '/dashboard/register/blocks'
+      icon: <Blocks />,
+      title: 'Blocos',
+      text: 'Crie e gerencie seus blocos',
+      buttons: [
+        {
+          label: 'Criar',
+          onClick: () => handlePush('/dashboard/register/blocks')
+        },
+        {
+          label: 'Editar',
+          onClick: () => handlePush('/dashboard/edit/blocks')
+        }
+      ]
     },
     {
-      label: 'Editar vaga',
-      url: '/dashboard/edit/parkingspot'
+      icon: <Payment />,
+      title: 'Pagamento',
+      text: 'Confirme o pagameto do tíquete',
+      buttons: [
+        {
+          label: 'Entrar',
+          onClick: () => handlePush('/dashboard/payment')
+        }
+      ]
     },
     {
-      label: 'Editar bloco',
-      url: '/dashboard/edit/blocks'
-    },
-    {
-      label: 'Pagamento',
-      url: '/dashboard/payment'
+      icon: <Gate />,
+      title: 'Cancela',
+      text: 'Libera a cancela',
+      buttons: [
+        {
+          label: 'Entrar',
+          onClick: () => handlePush('/gate')
+        }
+      ]
     }
   ]
 
@@ -42,14 +85,14 @@ export default function Home() {
       <S.Container>
         <Header hasLogout />
         <S.Wrapper>
-          {navArray.map((navArrayItem, index) => (
-            <S.CustomCard
+          {dashboardCardsArray.map((item, index) => (
+            <DashboardCards
               key={index}
-              onClick={() => router.push(navArrayItem.url)}
-            >
-              <S.Label>{navArrayItem.label}</S.Label>
-              <S.Box />
-            </S.CustomCard>
+              buttons={item.buttons}
+              icon={item.icon}
+              title={item.title}
+              text={item.text}
+            />
           ))}
         </S.Wrapper>
       </S.Container>
