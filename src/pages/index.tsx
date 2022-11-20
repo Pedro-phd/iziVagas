@@ -2,7 +2,6 @@
 import { HandEmoji, Logo } from '@/components/Icons'
 import Loader from '@/components/Loader'
 import PDF from '@/components/PDF'
-import * as S from '@/styles/home'
 import clientApi from '@/utils/axios'
 import { format } from 'date-fns'
 import { useRouter } from 'next/router'
@@ -10,6 +9,7 @@ import { useRef, useState } from 'react'
 import Pdf from 'react-to-pdf'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import * as S from './styles'
 
 export default function Home() {
   const router = useRouter()
@@ -19,7 +19,7 @@ export default function Home() {
   const [loading, setLoading] = useState<boolean>(false)
 
   return (
-    <div>
+    <S.Wrapper>
       <Pdf
         targetRef={ref}
         filename={`${date}.pdf`}
@@ -96,6 +96,6 @@ export default function Home() {
           <PDF id={id} />
         </div>
       </div>
-    </div>
+    </S.Wrapper>
   )
 }

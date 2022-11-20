@@ -1,6 +1,10 @@
 import { ICircleProps, IThemesProps } from '@/types/styled'
 import styled from 'styled-components'
 
+export const Wrapper = styled.div`
+  overflow: hidden;
+`
+
 export const Title = styled.h1`
   color: ${(props: IThemesProps) => props.theme.initialTitle};
   font-weight: 400;
