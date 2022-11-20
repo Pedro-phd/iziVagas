@@ -1,17 +1,18 @@
 import { Logo } from '@/components/Icons'
-import InputText from '@/components/TextInput'
+import Input from '@/components/TextInput'
 import { Event } from '@/types/types'
-import login from '@/useCases/login'
+import signup from '@/useCases/signup'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import * as S from './styles'
+import { Container, LoginCard, LoginTitle } from '../login/styles'
 
-export default function Home() {
+function Signup() {
   const [state, setState] = useState({
     email: '',
     pass: '',
+    confirmPass: '',
     error: false,
     errorMessage: ''
   })
@@ -19,8 +20,10 @@ export default function Home() {
   const [disabled, setDisabled] = useState<boolean>(true)
 
   useEffect(() => {
-    state.email && state.pass ? setDisabled(false) : setDisabled(true)
-  }, [state.email, state.pass])
+    state.email && state.pass && state.pass === state.confirmPass
+      ? setDisabled(false)
+      : setDisabled(true)
+  }, [state.email, state.pass, state.confirmPass])
 
   const inputArray = [
     {
@@ -31,8 +34,15 @@ export default function Home() {
     },
     {
       onChange: (e: Event) =>
-        setState((old) => ({ ...old, pass: e.target.value })),
+        setState((old) => ({ ...old, confirmPass: e.target.value })),
       placeholder: 'Insira sua senha...',
+      type: 'password',
+      width: '75%'
+    },
+    {
+      onChange: (e: Event) =>
+        setState((old) => ({ ...old, pass: e.target.value })),
+      placeholder: 'Confirme sua senha...',
       type: 'password',
       width: '75%'
     }
@@ -40,12 +50,11 @@ export default function Home() {
 
   const router = useRouter()
 
-  const handleLogin = (email: string, pass: string) => {
-    login(email, pass)
+  const handleSignup = (email: string, pass: string) => {
+    signup(email, pass)
       .then(() => {
         setState((old) => ({ ...old, error: false, errorMessage: '' }))
-        window.sessionStorage.setItem('login', 'true')
-        toast.success('Login efetuado com sucesso!', {
+        toast.success('Cadastro efetuado com sucesso!', {
           position: 'top-right',
           autoClose: 1000,
           hideProgressBar: false,
@@ -53,7 +62,7 @@ export default function Home() {
           draggable: false,
           progress: undefined,
           onClose: () => {
-            router.push('/dashboard')
+            router.push('/login')
           }
         })
       })
@@ -63,7 +72,7 @@ export default function Home() {
           error: true,
           errorMessage: err.toString().split('Firebase:')[1]
         }))
-        toast.error('Erro ao efetuar o login!', {
+        toast.error('Erro ao efetuar o cadastro!', {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -76,7 +85,7 @@ export default function Home() {
 
   return (
     <>
-      <S.Container>
+      <Container>
         <ToastContainer
           position="top-right"
           autoClose={5000}
@@ -84,23 +93,25 @@ export default function Home() {
           newestOnTop={false}
           rtl={false}
         />
-        <S.LoginCard>
+        <LoginCard>
           <Logo option="header" />
-          <S.LoginTitle>Login</S.LoginTitle>
-          <InputText
+          <LoginTitle>Cadastro</LoginTitle>
+          <Input
             inputArray={inputArray}
             hasButton
             buttonContent={[
               {
-                onClick: () => handleLogin(state.email, state.pass),
-                label: 'Logar',
+                onClick: () => handleSignup(state.email, state.pass),
+                label: 'Cadastrar',
                 disabled: disabled
               }
             ]}
           />
           {state.error && <span>{state.errorMessage}</span>}
-        </S.LoginCard>
-      </S.Container>
+        </LoginCard>
+      </Container>
     </>
   )
 }
+
+export default Signup

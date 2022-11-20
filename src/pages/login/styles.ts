@@ -1,6 +1,6 @@
 import { IThemesProps } from '@/types/styled'
 import styled from 'styled-components'
-import { Card } from '../dashboard/styles'
+import { Card, Title } from '../dashboard/styles'
 
 export const Container = styled.div`
   display: flex;
@@ -16,4 +16,8 @@ export const LoginCard = styled(Card)`
     color: red;
     font-weight: bold;
   }
+`
+
+export const LoginTitle = styled(Title)`
+  font-weight: 400;
 `
