@@ -1,4 +1,5 @@
-import { IParkingSpotCard, IThemesProps } from '@/types/styled'
+import { IParkingSpotCard } from '@/types/ParkingSpotCard'
+import { IThemesProps } from '@/types/styled'
 import styled from 'styled-components'
 
 export const Wrapper = styled.main``

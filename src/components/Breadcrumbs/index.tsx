@@ -1,12 +1,8 @@
+import { IBreadcrumbsProps } from '@/types/Breadcrumbs'
 import { useRouter } from 'next/router'
 import { ArrowLeft } from '../Icons/ArrowLeft'
 import { ArrowRight } from '../Icons/ArrowRight'
 import * as S from './styles'
-
-export interface IBreadcrumbsProps {
-  editLink?: string
-}
-
 function Breadcrumbs({ editLink }: IBreadcrumbsProps) {
   const router = useRouter()
   return (

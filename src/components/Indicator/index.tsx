@@ -1,8 +1,8 @@
+import { IIndicator } from '@/types/Indicator'
 import { useTranslation } from 'react-i18next'
 import * as S from './styles'
-import { IClassName } from '@/types/types'
 
-const Indicator = ({ ClassName }: IClassName) => {
+const Indicator = ({ ClassName }: IIndicator) => {
   const { t } = useTranslation()
   return (
     <S.Wrapper className={ClassName}>

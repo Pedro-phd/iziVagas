@@ -1,9 +1,6 @@
 import { IThemesProps } from '@/types/styled'
+import { IDot } from '@/types/ToggleLanguage'
 import styled, { keyframes } from 'styled-components'
-
-interface IDot {
-  option: string
-}
 
 export const Wrapper = styled.div`
   width: 70px;

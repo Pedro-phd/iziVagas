@@ -1,8 +1,5 @@
+import { IBreadcrumbsProps } from '@/types/Breadcrumbs'
 import styled from 'styled-components'
-
-interface IBreadcrumbsContainerProps {
-  editLink?: string
-}
 
 export const CustomBreadcrumbs = styled.div`
   display: flex;
@@ -13,7 +10,7 @@ export const CustomBreadcrumbs = styled.div`
   cursor: pointer;
 `
 
-export const BreadcrumbsContainer = styled.div<IBreadcrumbsContainerProps>`
+export const BreadcrumbsContainer = styled.div<IBreadcrumbsProps>`
   width: 100%;
   display: flex;
   align-items: center;

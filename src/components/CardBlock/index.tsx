@@ -1,11 +1,6 @@
+import { ICardBlock } from '@/types/CardBlock'
 import { useTranslation } from 'react-i18next'
 import * as S from './styles'
-
-interface ICardBlock {
-  letter: string
-  number: number | string
-  color: 'green' | 'yellow' | 'red'
-}
 
 const CardBlock = ({ letter, number, color }: ICardBlock) => {
   const { t } = useTranslation()

@@ -1,3 +1,4 @@
+import { IHeader } from '@/types/Header'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { Logo } from '../Icons/Logo'
@@ -5,11 +6,6 @@ import LogoutButton from '../LogoutButton'
 import ToggleLanguage from '../ToggleLanguage'
 import ToggleTheme from '../ToggleTheme'
 import * as S from './styles'
-
-interface IHeader {
-  title?: string
-  hasLogout?: boolean
-}
 
 const Header = ({ title, hasLogout }: IHeader) => {
   const router = useRouter()

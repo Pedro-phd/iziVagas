@@ -1,8 +1,8 @@
-import { Blocks } from '.prisma/client'
 import CardBlock from '@/components/CardBlock'
 import Header from '@/components/Header'
 import Indicator from '@/components/Indicator'
 import { BoxSkeleton } from '@/styles/skeleton'
+import { StateBlocks } from '@/types/Blocks'
 import clientApi from '@/utils/axios'
 import getColor from '@/utils/getColor'
 import { useRouter, withRouter } from 'next/router'
@@ -10,17 +10,6 @@ import { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import * as S from './styles'
-
-interface IBlocksOccupied extends Blocks {
-  occupied: number
-}
-
-type StateBlocks = {
-  blocks: IBlocksOccupied[]
-  error: boolean
-  loading: boolean
-  errorMessage: string
-}
 
 function BlocksPage() {
   const router = useRouter()

@@ -1,7 +1,8 @@
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Header from '@/components/Header'
 import Input from '@/components/TextInput'
-import { Event, ParkingSpot } from '@/types/types'
+import { IParkingSpot, IStateParkingspotEdit } from '@/types/Dashboard'
+import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
 import { Blocks } from '@prisma/client'
 import { useRouter } from 'next/router'
@@ -10,18 +11,8 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Card, Container, Title } from '../styles'
 
-type StateParkingspot = {
-  id: string
-  name: string
-  block: string
-  blockID: string
-  occupied: boolean
-  special: boolean
-  old: boolean
-}
-
 export default function Newparkingspot() {
-  const [state, setState] = useState<StateParkingspot>({
+  const [state, setState] = useState<IStateParkingspotEdit>({
     id: '',
     name: '',
     block: '',
@@ -31,9 +22,9 @@ export default function Newparkingspot() {
     old: false
   })
 
-  const [parking, setParking] = useState<ParkingSpot[]>([])
+  const [parking, setParking] = useState<IParkingSpot[]>([])
   const [blocks, setBlocks] = useState<Blocks[]>([])
-  const [filteredParking, setFilteredParking] = useState<ParkingSpot[]>([
+  const [filteredParking, setFilteredParking] = useState<IParkingSpot[]>([
     {
       id: '',
       name: '',

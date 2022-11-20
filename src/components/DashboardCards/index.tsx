@@ -1,16 +1,5 @@
+import { IDashboardCardsProps } from '@/types/DashboardCards'
 import * as S from './styles'
-
-interface IIDashboardCardsButtonsProps {
-  onClick: () => void
-  label: string
-}
-
-interface IDashboardCardsProps {
-  icon: JSX.Element
-  title: string
-  text: string
-  buttons: IIDashboardCardsButtonsProps[]
-}
 
 function DashboardCards({ icon, title, text, buttons }: IDashboardCardsProps) {
   return (

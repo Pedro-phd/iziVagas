@@ -1,16 +1,8 @@
+import { IParkingSpotCardProps } from '@/types/ParkingSpotCard'
 import { Disable } from '../Icons/Disable'
 import { Old } from '../Icons/Old'
 import { WheelChair } from '../Icons/WheelChair'
 import * as S from './styles'
-
-interface IParkingSpotCardProps {
-  disabled: boolean
-  label: string
-  onClick: () => void
-  selected: boolean
-  special: boolean
-  old: boolean
-}
 
 const ParkingSpotCard = ({
   disabled,

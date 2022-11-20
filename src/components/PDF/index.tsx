@@ -1,12 +1,9 @@
+import { IPDFProps } from '@/types/PDF'
 import { format } from 'date-fns'
 import Barcode from 'react-barcode'
 import QRCode from 'react-qr-code'
 import { Logo } from '../Icons'
 import * as S from './styles'
-
-interface IPDFProps {
-  id: string
-}
 
 function PDF({ id }: IPDFProps) {
   const date = format(new Date(), "dd/MM/yyyy '-' HH'h'mm ")
