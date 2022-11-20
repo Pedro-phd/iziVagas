@@ -1,3 +1,4 @@
+import { ILogoWrapper } from '@/types/Header'
 import { IThemesProps } from '@/types/styled'
 import styled from 'styled-components'
 
@@ -22,4 +23,8 @@ export const Title = styled.h1`
   text-transform: uppercase;
   font-size: 54px;
   margin: 50px 0 0 0;
+`
+
+export const LogoWrapper = styled.div`
+  cursor: ${(props: ILogoWrapper) => (props.homeLink ? `pointer` : `default`)};
 `

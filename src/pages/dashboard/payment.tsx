@@ -70,7 +70,7 @@ export default function Payment() {
         newestOnTop={false}
         rtl={false}
       />
-      <Header />
+      <Header homeLink="/dashboard" />
       <S.Card>
         <Breadcrumbs />
         <S.Title>Pagamento</S.Title>
