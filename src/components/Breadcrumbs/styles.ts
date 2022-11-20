@@ -1,4 +1,3 @@
-import { IBreadcrumbsProps } from '@/types/Breadcrumbs'
 import styled from 'styled-components'
 
 export const CustomBreadcrumbs = styled.div`
@@ -10,10 +9,9 @@ export const CustomBreadcrumbs = styled.div`
   cursor: pointer;
 `
 
-export const BreadcrumbsContainer = styled.div<IBreadcrumbsProps>`
+export const BreadcrumbsContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: ${(props) =>
-    props.editLink ? `space-between` : `space-around`};
+  justify-content: space-between;
 `

@@ -82,7 +82,7 @@ export default function NewBlocks() {
         newestOnTop={false}
         rtl={false}
       />
-      <Header />
+      <Header homeLink="/dashboard" />
       <Card>
         <Breadcrumbs editLink={'/dashboard/edit/blocks'} />
         <Title>Novo Bloco</Title>

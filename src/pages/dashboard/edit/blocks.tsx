@@ -134,7 +134,7 @@ export default function NewBlocks() {
           newestOnTop={false}
           rtl={false}
         />
-        <Header />
+        <Header homeLink="/dashboard" />
         <Card>
           <Breadcrumbs />
           <Title>Gerenciar Bloco</Title>

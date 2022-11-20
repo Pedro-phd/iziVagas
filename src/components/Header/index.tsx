@@ -7,8 +7,12 @@ import ToggleLanguage from '../ToggleLanguage'
 import ToggleTheme from '../ToggleTheme'
 import * as S from './styles'
 
-const Header = ({ title, hasLogout }: IHeader) => {
+const Header = ({ title, hasLogout, homeLink }: IHeader) => {
   const router = useRouter()
+
+  const handlePush = (link: string) => {
+    router.push(link)
+  }
 
   useEffect(() => {
     ;(async () => {
@@ -20,7 +24,12 @@ const Header = ({ title, hasLogout }: IHeader) => {
   return (
     <S.Wrapper>
       <S.Row>
-        <Logo option="header" />
+        <S.LogoWrapper
+          onClick={() => handlePush(homeLink ? homeLink : '')}
+          homeLink={homeLink}
+        >
+          <Logo option="header" />
+        </S.LogoWrapper>
         <S.ToggleWrapper>
           {hasLogout && <LogoutButton />}
           <ToggleLanguage />

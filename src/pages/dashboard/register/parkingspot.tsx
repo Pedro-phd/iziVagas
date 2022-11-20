@@ -138,7 +138,7 @@ export default function ParkingSpot() {
         newestOnTop={false}
         rtl={false}
       />
-      <Header />
+      <Header homeLink="/dashboard" />
       <Card>
         <Breadcrumbs editLink={'/dashboard/edit/parkingspot'} />
         <Title>Nova vaga</Title>

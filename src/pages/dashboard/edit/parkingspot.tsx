@@ -198,7 +198,7 @@ export default function Newparkingspot() {
         newestOnTop={false}
         rtl={false}
       />
-      <Header />
+      <Header homeLink="/dashboard" />
       <Card>
         <Breadcrumbs />
         <Title>Gerenciar Vagas</Title>
