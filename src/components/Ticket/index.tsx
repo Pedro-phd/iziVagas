@@ -1,11 +1,11 @@
-import { IPDFProps } from '@/types/PDF'
+import { ITicket } from '@/types/Ticket'
 import { format } from 'date-fns'
 import Barcode from 'react-barcode'
 import QRCode from 'react-qr-code'
 import { Logo } from '../Icons'
 import * as S from './styles'
 
-function PDF({ id }: IPDFProps) {
+function Ticket({ id }: ITicket) {
   const date = format(new Date(), "dd/MM/yyyy '-' HH'h'mm ")
   return (
     <S.Container>
@@ -27,4 +27,4 @@ function PDF({ id }: IPDFProps) {
   )
 }
 
-export default PDF
+export default Ticket

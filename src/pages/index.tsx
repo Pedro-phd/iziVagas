@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { HandEmoji, Logo } from '@/components/Icons'
 import Loader from '@/components/Loader'
-import PDF from '@/components/PDF'
+import Ticket from '@/components/Ticket'
 import clientApi from '@/utils/axios'
 import { format } from 'date-fns'
 import { useRouter } from 'next/router'
@@ -93,7 +93,7 @@ export default function Home() {
       />
       <div className="pdf-wrapper">
         <div ref={ref}>
-          <PDF id={id} />
+          <Ticket id={id} />
         </div>
       </div>
     </S.Wrapper>
