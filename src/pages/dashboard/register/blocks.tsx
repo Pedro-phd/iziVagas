@@ -1,6 +1,6 @@
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Header from '@/components/Header'
-import Input from '@/components/TextInput'
+import Input from '@/components/Input'
 import { IStateBlocksRegister } from '@/types/Dashboard'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'

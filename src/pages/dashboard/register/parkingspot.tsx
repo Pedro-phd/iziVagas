@@ -1,6 +1,6 @@
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Header from '@/components/Header'
-import InputText from '@/components/TextInput'
+import Input from '@/components/Input'
 import { IStateParkingspotRegister } from '@/types/Dashboard'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
@@ -142,7 +142,7 @@ export default function ParkingSpot() {
       <Card>
         <Breadcrumbs editLink={'/dashboard/edit/parkingspot'} />
         <Title>Nova vaga</Title>
-        <InputText
+        <Input
           inputArray={inputArray}
           hasButton
           buttonContent={[
