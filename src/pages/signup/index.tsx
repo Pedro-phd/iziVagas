@@ -1,5 +1,5 @@
 import { Logo } from '@/components/Icons'
-import Input from '@/components/TextInput'
+import Input from '@/components/Input'
 import { Event } from '@/types/types'
 import signup from '@/useCases/signup'
 import { useRouter } from 'next/router'
