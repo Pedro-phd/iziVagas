@@ -1,10 +1,10 @@
 import ConfirmButton from '@/components/ConfirmButton'
 import Header from '@/components/Header'
+import Input from '@/components/Input'
 import WrapperModal from '@/components/Modal'
 import ParkingSpotCard from '@/components/ParkingSpotCard'
-import InputText from '@/components/TextInput'
 import { BoxSkeleton } from '@/styles/skeleton'
-import { Event, ParkingSpot } from '@/types/types'
+import { Event, IStateBlocks } from '@/types/types'
 import clientApi from '@/utils/axios'
 import selectParkingSpot from '@/utils/selectParkingSpot'
 import { useRouter } from 'next/router'
@@ -13,17 +13,8 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import * as S from './styles'
 
-type StateBlocks = {
-  ParkingSpot: ParkingSpot[]
-  error: boolean
-  loading: boolean
-  errorMessage: string
-  idSelected: string
-  ticketId: string
-}
-
 export default function BlocksPage() {
-  const [state, setState] = useState<StateBlocks>({
+  const [state, setState] = useState<IStateBlocks>({
     ParkingSpot: [],
     error: false,
     loading: false,
@@ -181,7 +172,7 @@ export default function BlocksPage() {
                   <S.Text>2 - Aguarde a confirmação da vaga</S.Text>
                 </S.TextContainer>
                 <S.InputContainer>
-                  <InputText
+                  <Input
                     inputArray={inputArray}
                     hasButton
                     buttonContent={[

@@ -21,3 +21,22 @@ export interface IValidateTicket {
   entryDate?: string
   exitDate?: string
 }
+
+export interface IParkingSpot {
+  id: string
+  name: string
+  block: string
+  blockID: string
+  occupied: boolean
+  special: boolean
+  old: boolean
+}
+
+export interface IStateBlocks {
+  ParkingSpot: IParkingSpot[]
+  error: boolean
+  loading: boolean
+  errorMessage: string
+  idSelected: string
+  ticketId: string
+}

@@ -1,4 +1,4 @@
-import Input from '@/components/TextInput'
+import Input from '@/components/Input'
 import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
 import { useRouter } from 'next/router'

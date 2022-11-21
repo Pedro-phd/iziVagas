@@ -1,5 +1,5 @@
 import { Logo } from '@/components/Icons'
-import InputText from '@/components/TextInput'
+import Input from '@/components/Input'
 import { Event } from '@/types/types'
 import login from '@/useCases/login'
 import { useRouter } from 'next/router'
@@ -87,7 +87,7 @@ export default function Home() {
         <S.LoginCard>
           <Logo option="header" />
           <S.LoginTitle>Login</S.LoginTitle>
-          <InputText
+          <Input
             inputArray={inputArray}
             hasButton
             buttonContent={[

@@ -1,6 +1,6 @@
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Header from '@/components/Header'
-import Input from '@/components/TextInput'
+import Input from '@/components/Input'
 import { IStatePayment } from '@/types/Dashboard'
 import { Event } from '@/types/types'
 import validateTicket from '@/utils/validateTicket'
