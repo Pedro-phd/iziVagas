@@ -40,6 +40,8 @@ export const Card = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   gap: 30px;
+  max-width: 100vw;
+  flex-wrap: wrap;
 `
 
 export const Container = styled.div`

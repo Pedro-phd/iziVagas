@@ -25,7 +25,9 @@ const Header = ({ title, hasLogout, homeLink }: IHeader) => {
     <S.Wrapper>
       <S.Row>
         <S.LogoWrapper
-          onClick={() => handlePush(homeLink ? homeLink : '')}
+          onClick={() => {
+            homeLink ? handlePush(homeLink) : {}
+          }}
           homeLink={homeLink}
         >
           <Logo option="header" />

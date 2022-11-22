@@ -121,6 +121,10 @@
         "button": {
           "title": "Liberar"
         }
+      },
+      "signup": {
+        "title": "Cadastro",
+        "desc": "Cadastrar novos usuários"
       }
     },
     "indicator": {
