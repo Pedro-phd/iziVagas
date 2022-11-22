@@ -7,6 +7,7 @@ import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Card, Container, Title } from '../styles'
@@ -19,6 +20,8 @@ export default function NewBlocks() {
   })
 
   const router = useRouter()
+
+  const { t } = useTranslation()
 
   const [blocks, setBlocks] = useState<Blocks[]>([])
   const [disabled, setDisabled] = useState<boolean>(true)
@@ -37,7 +40,7 @@ export default function NewBlocks() {
   const inputArray = [
     {
       onChange: (e: Event) => handleFindBlock(e.target.value),
-      placeholder: 'Escolha o nome do bloco...',
+      placeholder: t('dashboard.blocks.inputs.block'),
       width: '75%',
       type: 'select',
       options: blocks.map((block) => ({
@@ -48,7 +51,7 @@ export default function NewBlocks() {
     {
       onChange: (e: Event) =>
         setState((old) => ({ ...old, slots: parseInt(e.target.value) })),
-      placeholder: 'Insira a quantidade de vagas...',
+      placeholder: t('dashboard.blocks.inputs.amount'),
       width: '75%',
       type: 'number',
       value: state.slots
@@ -61,7 +64,7 @@ export default function NewBlocks() {
         ...state
       })
       .then(() => {
-        toast.success('Bloco editado com sucesso!', {
+        toast.success(t('dashboard.blocks.editSuccess'), {
           position: 'top-right',
           autoClose: 2000,
           hideProgressBar: false,
@@ -74,7 +77,7 @@ export default function NewBlocks() {
         })
       })
       .catch(() => {
-        toast.error('Erro ao editar o bloco!', {
+        toast.error(t('dashboard.blocks.editError'), {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -90,7 +93,7 @@ export default function NewBlocks() {
         ...state
       })
       .then(() => {
-        toast.success('Bloco deletado com sucesso!', {
+        toast.success(t('dashboard.blocks.deleteSuccess'), {
           position: 'top-right',
           autoClose: 2000,
           hideProgressBar: false,
@@ -103,7 +106,7 @@ export default function NewBlocks() {
         })
       })
       .catch(() => {
-        toast.error('Erro ao deletar o bloco!', {
+        toast.error(t('dashboard.blocks.deleteError'), {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -137,20 +140,20 @@ export default function NewBlocks() {
         <Header homeLink="/dashboard" />
         <Card>
           <Breadcrumbs />
-          <Title>Gerenciar Bloco</Title>
+          <Title>{t('dashboard.blocks.inputs.editTitle')}</Title>
           <Input
             inputArray={inputArray}
             hasButton
             buttonContent={[
               {
                 onClick: handleUpdate,
-                label: 'Editar Bloco',
+                label: t('dashboard.blocks.button.editTitle'),
                 width: '150px',
                 disabled: disabled
               },
               {
                 onClick: handleDelete,
-                label: 'Deletar bloco',
+                label: t('dashboard.blocks.button.deleteTitle'),
                 width: '150px',
                 disabled: disabled
               }

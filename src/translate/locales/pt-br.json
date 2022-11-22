@@ -2,6 +2,127 @@
   "translation": {
     "button": "ptbr",
     "block": "Bloco",
+    "confirmButton": "Confirmar vaga", 
+    "login": {
+      "success": "Login efetuado com sucesso!",
+      "error": "Erro ao efetuar o login!",
+      "inputs": {
+        "name": "Insira seu email...",
+        "password": "Insira sua senha..."
+      }
+    },
+    "signup": {
+      "title": "Cadastro",
+      "success": "Cadastro efetuado com sucesso", 
+      "error": "Erro ao efetuar o cadastro!",
+      "button": "Cadastrar",
+      "inputs": {
+        "name": "Insira seu email...",
+        "password": "Insira sua senha...",
+        "confirmPassword": "Confirme sua senha..."
+      }
+    },
+    "home": {
+      "error": "Erro ao gerar o tíquete!"
+    },
+    "blocks": {
+      "title": "Blocos",
+      "warn": "A tela voltará ao início em 7 segundos!",
+      "success": "Tíquete gerado com sucesso!"
+    },
+    "parkingspot": {
+      "title": "Vagas",
+      "success": "Tíquete validado com sucesso!",
+      "error": "Erro ao validar o tíquete!",
+      "empty": "Não temos vagas cadastradas para esse bloco",
+      "modal": {
+        "title": "Valide sua vaga!",
+        "subtitle1": "1 - Realize a leitura do código ou insira-o abaixo",
+        "subtitle2": "2 - Aguarde a confirmação da vaga"
+      },
+      "inputs": {
+        "placeholder": "Insira o número do tíquete..."
+      },
+      "button": {
+        "title": "Validar"
+      }
+    },
+    "create": "Criar",
+    "edit": "Editar",
+    "go": "Entrar",
+    "goBack": "Voltar",
+    "dashboard": {
+      "parkingspot": {
+        "title": "Vagas",
+        "desc": "Crie e gerencie suas vagas",
+        "success": "Vaga criada com sucesso!",
+        "editSuccess": "Vaga editada com sucesso!",
+        "deleteSuccess": "Vaga deletada com sucesso!",
+        "error": "Erro ao criar a vaga!",
+        "editError": "Erro ao editar a vaga!",
+        "deleteError": "Erro ao deletar a vaga!", 
+        "inputs": {
+          "title": "Nova vaga",
+          "editTitle": "Gerenciar vagas",
+          "block": "Escolha o bloco...",
+          "parkingspot": "Escolha a vaga...",
+          "name": "Insira o nome da vaga...",
+          "newName": "Insira o novo nome da vaga...",
+          "occupied": "Ocupada",
+          "special": "Vaga especial",
+          "old": "Vaga para idosos"
+        },
+        "button": {
+          "title": "Criar vaga",
+          "editTitle": "Atualizar vaga",
+          "deleteTitle": "Deletar vaga"
+        }
+      },
+      "blocks": {
+        "title": "Blocos",
+        "desc": "Crie e gerencie seus blocos",
+        "success": "Bloco criado com sucesso!",
+        "editSuccess": "Bloco editado com sucesso!",
+        "deleteSuccess": "Bloco deletado com sucesso!",
+        "error": "Erro ao criar o bloco!",
+        "editError": "Erro ao editar o bloco!",
+        "deleteError": "Erro ao deletar o bloco!",
+        "inputs": {
+          "title": "Novo bloco",
+          "editTitle": "Gerenciar blocos",
+          "name": "Inserir o nome do bloco...",
+          "amount": "Inserir a quantidade de vagas...",
+          "block": "Escolha o nome do bloco..."
+        },
+        "button": {
+          "title": "Criar bloco",
+          "editTitle": "Atualizar bloco",
+          "deleteTitle": "Deletar bloco"
+        }
+      },
+      "payment": {
+        "title": "Pagamento",
+        "desc": "Confirme o pagameto do tíquete",
+        "success": "Tíquete pago com sucesso!",
+        "error": "Erro ao pagar o tíquete!",
+        "inputs": {
+          "id": "Insira o ID do tíquete..."
+        },
+        "button": {
+          "title": "Registrar pagamento"
+        }
+      },
+      "gate": {
+        "title": "Cancela",
+        "desc": "Libere a cancela",
+        "paidSuccess": "Tíquete pago!",
+        "paidError": "Tíquete não foi pago!",
+        "error": "Erro interno! Tente novamente mais tarde!",
+        "button": {
+          "title": "Liberar"
+        }
+      }
+    },
     "indicator": {
       "many": "Muitas",
       "regular": "Regular",
