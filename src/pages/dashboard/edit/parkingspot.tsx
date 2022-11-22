@@ -7,6 +7,7 @@ import clientApi from '@/utils/axios'
 import { Blocks } from '@prisma/client'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Card, Container, Title } from '../styles'
@@ -39,6 +40,8 @@ export default function Newparkingspot() {
   const [disabled, setDisabled] = useState<boolean>(true)
 
   const router = useRouter()
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     state.blockID && state.name
@@ -78,7 +81,7 @@ export default function Newparkingspot() {
   const inputArray = [
     {
       onChange: (e: Event) => handleParkingspotSelect(e.target.value),
-      placeholder: 'Escolha o bloco da vaga...',
+      placeholder: t('dashboard.parkingspot.inputs.block'),
       width: '75%',
       type: 'select',
       options: blocks.map((block) => ({
@@ -88,7 +91,7 @@ export default function Newparkingspot() {
     },
     {
       onChange: (e: Event) => handleFindParkingspot(e.target.value),
-      placeholder: 'Escolha a vaga...',
+      placeholder: t('dashboard.parkingspot.inputs.parkingspot'),
       width: '75%',
       type: 'select',
       disabled: disabled,
@@ -102,28 +105,28 @@ export default function Newparkingspot() {
     {
       onChange: (e: Event) =>
         setState((old) => ({ ...old, name: e.target.value })),
-      placeholder: 'Insira o novo nome da vaga...',
+      placeholder: t('dashboard.parkingspot.inputs.newName'),
       width: '75%',
       type: 'text'
     },
     {
       onChange: () =>
         setState((old) => ({ ...old, occupied: !state.occupied })),
-      placeholder: 'Ocupada',
+      placeholder: t('dashboard.parkingspot.inputs.occupied'),
       type: 'checkbox',
       width: '75%',
       checked: state.occupied
     },
     {
       onChange: () => setState((old) => ({ ...old, special: !state.special })),
-      placeholder: 'Vaga especial',
+      placeholder: t('dashboard.parkingspot.inputs.special'),
       type: 'checkbox',
       width: '75%',
       checked: state.special
     },
     {
       onChange: () => setState((old) => ({ ...old, old: !state.old })),
-      placeholder: 'Vaga para idosos',
+      placeholder: t('dashboard.parkingspot.inputs.old'),
       type: 'checkbox',
       width: '75%',
       checked: state.old
@@ -136,7 +139,7 @@ export default function Newparkingspot() {
         ...state
       })
       .then(() => {
-        toast.success('Vaga editada com sucesso!', {
+        toast.success(t('dashboard.parkingspot.editSuccess'), {
           position: 'top-right',
           autoClose: 2000,
           hideProgressBar: false,
@@ -149,7 +152,7 @@ export default function Newparkingspot() {
         })
       })
       .catch(() => {
-        toast.error('Erro ao editar a vaga!', {
+        toast.error(t('dashboard.parkingspot.editError'), {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -165,7 +168,7 @@ export default function Newparkingspot() {
         ...state
       })
       .then(() => {
-        toast.success('Vaga deletada com sucesso!', {
+        toast.success(t('dashboard.parkingspot.deleteSuccess'), {
           position: 'top-right',
           autoClose: 2000,
           hideProgressBar: false,
@@ -178,7 +181,7 @@ export default function Newparkingspot() {
         })
       })
       .catch(() => {
-        toast.error('Erro ao deletar a vaga!', {
+        toast.error(t('dashboard.parkingspot.deleteError'), {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -201,19 +204,19 @@ export default function Newparkingspot() {
       <Header homeLink="/dashboard" />
       <Card>
         <Breadcrumbs />
-        <Title>Gerenciar Vagas</Title>
+        <Title>{t('dashboard.parkingspot.inputs.editTitle')}</Title>
         <Input
           inputArray={inputArray}
           hasButton
           buttonContent={[
             {
-              label: 'Atualizar vaga',
+              label: t('dashboard.parkingspot.button.editTitle'),
               onClick: handleUpdate,
               width: '150px',
               disabled: buttonDisabled
             },
             {
-              label: 'Deletar vaga',
+              label: t('dashboard.parkingspot.button.deleteTitle'),
               onClick: handleDelete,
               width: '150px',
               disabled: buttonDisabled

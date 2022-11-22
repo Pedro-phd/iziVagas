@@ -9,6 +9,7 @@ import clientApi from '@/utils/axios'
 import selectParkingSpot from '@/utils/selectParkingSpot'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import * as S from './styles'
@@ -23,12 +24,14 @@ export default function BlocksPage() {
     ticketId: ''
   })
 
+  const { t } = useTranslation()
+
   const inputArray = [
     {
       onChange: (e: Event) =>
         setState((old) => ({ ...old, ticketId: e.target.value })),
 
-      placeholder: 'Insira o número do ticket...',
+      placeholder: t('parkingspot.inputs.placeholder'),
       width: '50%'
     }
   ]
@@ -64,7 +67,7 @@ export default function BlocksPage() {
   }, [id])
   useEffect(() => {
     if (router.query?.validated) {
-      toast.success('Ticket validado com sucesso', {
+      toast.success(t('parkingspot.success'), {
         position: 'top-right',
         autoClose: 5000,
         hideProgressBar: false,
@@ -90,7 +93,7 @@ export default function BlocksPage() {
     })
       .then(() => {
         console.log('deu certo')
-        toast.success('Ticket validado com sucesso!', {
+        toast.success(t('parkingspot.success'), {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -109,8 +112,8 @@ export default function BlocksPage() {
           }
         })
       })
-      .catch((err) => {
-        toast.error(err, {
+      .catch(() => {
+        toast.error(t('parkingspot.error'), {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -135,7 +138,7 @@ export default function BlocksPage() {
         pauseOnHover
       />
       <S.Container>
-        <Header title="Vagas" />
+        <Header title={t('parkingspot.title')} />
         {state.error && <p>{state.errorMessage}</p>}
         {!state.loading && state.ParkingSpot.length ? (
           <S.SlotsContainer>
@@ -158,18 +161,16 @@ export default function BlocksPage() {
             })}
           </S.SlotsContainer>
         ) : (
-          <h1>Não temos vagas cadastradas para esse bloco</h1>
+          <h1>{t('parkingspot.empty')}</h1>
         )}
         {state.idSelected && (
           <WrapperModal
             modalContent={
               <>
-                <S.Title>Valide sua vaga!</S.Title>
+                <S.Title>{t('parkingspot.modal.title')}</S.Title>
                 <S.TextContainer>
-                  <S.Text>
-                    1 - Realize a leitura do código ou insira-o abaixo
-                  </S.Text>
-                  <S.Text>2 - Aguarde a confirmação da vaga</S.Text>
+                  <S.Text>{t('parkingspot.modal.subtitle1')}</S.Text>
+                  <S.Text>{t('parkingspot.modal.subtitle2')}</S.Text>
                 </S.TextContainer>
                 <S.InputContainer>
                   <Input
@@ -178,7 +179,7 @@ export default function BlocksPage() {
                     buttonContent={[
                       {
                         onClick: handleValidate,
-                        label: 'Validar'
+                        label: t('parkingspot.button.title')
                       }
                     ]}
                   />

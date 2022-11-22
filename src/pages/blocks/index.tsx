@@ -7,6 +7,7 @@ import clientApi from '@/utils/axios'
 import getColor from '@/utils/getColor'
 import { useRouter, withRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import * as S from './styles'
@@ -26,7 +27,7 @@ function BlocksPage() {
       .get('api/blocks/all')
       .then((res) => {
         setState((old) => ({ ...old, blocks: res.data, loading: false }))
-        toast.warn('A tela voltara ao inicio em 7 segundos!', {
+        toast.warn(t('blocks.warn'), {
           position: 'top-right',
           autoClose: 7000,
           hideProgressBar: false,
@@ -51,7 +52,7 @@ function BlocksPage() {
 
   useEffect(() => {
     if (router.query.previousPage === 'index') {
-      toast.success('Ticket gerado com sucesso!', {
+      toast.success(t('blocks.success'), {
         position: 'top-right',
         autoClose: 5000,
         hideProgressBar: false,
@@ -62,6 +63,8 @@ function BlocksPage() {
       })
     }
   }, [])
+
+  const { t } = useTranslation()
 
   return (
     <S.Container>
@@ -76,7 +79,7 @@ function BlocksPage() {
         draggable
         pauseOnHover
       />
-      <Header title="Blocos" />
+      <Header title={t('blocks.title')} />
       <Indicator ClassName="indicator" />
       {state.error && <p>{state.errorMessage}</p>}
       <S.BlocksContainer>

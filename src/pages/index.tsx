@@ -6,6 +6,7 @@ import clientApi from '@/utils/axios'
 import { format } from 'date-fns'
 import { useRouter } from 'next/router'
 import { useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import Pdf from 'react-to-pdf'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -17,6 +18,8 @@ export default function Home() {
   const ref = useRef<HTMLDivElement>(null)
   const [id, setId] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
+
+  const { t } = useTranslation()
 
   return (
     <S.Wrapper>
@@ -45,7 +48,7 @@ export default function Home() {
                   setLoading(false)
                 })
                 .catch((err) => {
-                  toast.error('Erro ao gerar o ticket!', {
+                  toast.error(t('home.error'), {
                     position: 'top-right',
                     autoClose: 5000,
                     hideProgressBar: false,

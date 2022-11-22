@@ -3,6 +3,7 @@ import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Card, Title } from '../dashboard/styles'
@@ -19,10 +20,12 @@ export default function Gate() {
 
   const router = useRouter()
 
+  const { t } = useTranslation()
+
   const inputArray = [
     {
       onChange: (e: Event) => setTicketId(e.target.value),
-      placeholder: 'Insira o ID do tíquete...',
+      placeholder: t('dashboard.payment.inputs.id'),
       width: '75%'
     }
   ]
@@ -38,7 +41,7 @@ export default function Gate() {
       })
       .catch(() => {
         setValidated('NP')
-        toast.error('Erro interno! Tente novamente mais tarde!', {
+        toast.error(t('dashboard.gate.error'), {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -59,23 +62,23 @@ export default function Gate() {
       />
       <S.Wrapper validated={validated}>
         <Card>
-          <Title>Liberar a cancela</Title>
+          <Title>{t('dashboard.gate.title')}</Title>
           <Input
             inputArray={inputArray}
             hasButton
             buttonContent={[
               {
                 onClick: handleValidate,
-                label: 'Liberar',
+                label: t('dashboard.gate.button.title'),
                 disabled: disabled
               }
             ]}
           />
           <S.FeedbackMessage>
             {validated === 'P'
-              ? 'Ticket pago!'
+              ? t('dashboard.gate.paidSuccess')
               : validated === 'NP'
-              ? 'O ticket não foi pago!'
+              ? t('dashboard.gate.paidError')
               : ''}
           </S.FeedbackMessage>
         </Card>

@@ -6,6 +6,7 @@ import { Event } from '@/types/types'
 import validateTicket from '@/utils/validateTicket'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import * as S from './styles'
@@ -22,11 +23,13 @@ export default function Payment() {
 
   const router = useRouter()
 
+  const { t } = useTranslation()
+
   const inputArray = [
     {
       onChange: (e: Event) =>
         setState((old) => ({ ...old, id: e.target.value })),
-      placeholder: 'Insira o ID do tíquete...',
+      placeholder: t('dashboard.payment.inputs.id'),
       width: '75%'
     }
   ]
@@ -37,7 +40,7 @@ export default function Payment() {
       paid: true
     })
       .then(() => {
-        toast.success('Tíquete pago com sucesso!', {
+        toast.success(t('dashboard.payment.success'), {
           position: 'top-right',
           autoClose: 2000,
           hideProgressBar: false,
@@ -50,7 +53,7 @@ export default function Payment() {
         })
       })
       .catch(() => {
-        toast.error('Erro ao pagar o tíquete!', {
+        toast.error(t('dashboard.payment.error'), {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -73,14 +76,14 @@ export default function Payment() {
       <Header homeLink="/dashboard" />
       <S.Card>
         <Breadcrumbs />
-        <S.Title>Pagamento</S.Title>
+        <S.Title>{t('dashboard.payment.title')}</S.Title>
         <Input
           inputArray={inputArray}
           hasButton
           buttonContent={[
             {
               onClick: handlePayment,
-              label: 'Registrar pagamento',
+              label: t('dashboard.payment.button.title'),
               width: '150px',
               disabled: disabled
             }

@@ -4,6 +4,7 @@ import { Event } from '@/types/types'
 import signup from '@/useCases/signup'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Container, LoginCard, LoginTitle } from '../login/styles'
@@ -17,6 +18,8 @@ function Signup() {
     errorMessage: ''
   })
 
+  const { t } = useTranslation()
+
   const [disabled, setDisabled] = useState<boolean>(true)
 
   useEffect(() => {
@@ -29,20 +32,20 @@ function Signup() {
     {
       onChange: (e: Event) =>
         setState((old) => ({ ...old, email: e.target.value })),
-      placeholder: 'Insira seu email...',
+      placeholder: t('signup.inputs.name'),
       width: '75%'
     },
     {
       onChange: (e: Event) =>
         setState((old) => ({ ...old, confirmPass: e.target.value })),
-      placeholder: 'Insira sua senha...',
+      placeholder: t('signup.inputs.password'),
       type: 'password',
       width: '75%'
     },
     {
       onChange: (e: Event) =>
         setState((old) => ({ ...old, pass: e.target.value })),
-      placeholder: 'Confirme sua senha...',
+      placeholder: t('signup.inputs.confirmPassword'),
       type: 'password',
       width: '75%'
     }
@@ -54,7 +57,7 @@ function Signup() {
     signup(email, pass)
       .then(() => {
         setState((old) => ({ ...old, error: false, errorMessage: '' }))
-        toast.success('Cadastro efetuado com sucesso!', {
+        toast.success(t('signup.success'), {
           position: 'top-right',
           autoClose: 1000,
           hideProgressBar: false,
@@ -72,7 +75,7 @@ function Signup() {
           error: true,
           errorMessage: err.toString().split('Firebase:')[1]
         }))
-        toast.error('Erro ao efetuar o cadastro!', {
+        toast.error(t('signup.error'), {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -95,14 +98,14 @@ function Signup() {
         />
         <LoginCard>
           <Logo option="header" />
-          <LoginTitle>Cadastro</LoginTitle>
+          <LoginTitle>{t('signup.title')}</LoginTitle>
           <Input
             inputArray={inputArray}
             hasButton
             buttonContent={[
               {
                 onClick: () => handleSignup(state.email, state.pass),
-                label: 'Cadastrar',
+                label: t('signup.button'),
                 disabled: disabled
               }
             ]}

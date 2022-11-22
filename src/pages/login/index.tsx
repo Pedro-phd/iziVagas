@@ -4,6 +4,7 @@ import { Event } from '@/types/types'
 import login from '@/useCases/login'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import * as S from './styles'
@@ -16,6 +17,8 @@ export default function Home() {
     errorMessage: ''
   })
 
+  const { t } = useTranslation()
+
   const [disabled, setDisabled] = useState<boolean>(true)
 
   useEffect(() => {
@@ -26,13 +29,13 @@ export default function Home() {
     {
       onChange: (e: Event) =>
         setState((old) => ({ ...old, email: e.target.value })),
-      placeholder: 'Insira seu email...',
+      placeholder: t('login.inputs.name'),
       width: '75%'
     },
     {
       onChange: (e: Event) =>
         setState((old) => ({ ...old, pass: e.target.value })),
-      placeholder: 'Insira sua senha...',
+      placeholder: t('login.inputs.password'),
       type: 'password',
       width: '75%'
     }
@@ -45,7 +48,7 @@ export default function Home() {
       .then(() => {
         setState((old) => ({ ...old, error: false, errorMessage: '' }))
         window.sessionStorage.setItem('login', 'true')
-        toast.success('Login efetuado com sucesso!', {
+        toast.success(t('login.success'), {
           position: 'top-right',
           autoClose: 1000,
           hideProgressBar: false,
@@ -63,7 +66,7 @@ export default function Home() {
           error: true,
           errorMessage: err.toString().split('Firebase:')[1]
         }))
-        toast.error('Erro ao efetuar o login!', {
+        toast.error(t('login.error'), {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -93,7 +96,7 @@ export default function Home() {
             buttonContent={[
               {
                 onClick: () => handleLogin(state.email, state.pass),
-                label: 'Logar',
+                label: 'Login',
                 disabled: disabled
               }
             ]}

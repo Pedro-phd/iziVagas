@@ -6,6 +6,7 @@ import { Event } from '@/types/types'
 import clientApi from '@/utils/axios'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Card, Container, Title } from '../styles'
@@ -28,6 +29,8 @@ export default function ParkingSpot() {
 
   const router = useRouter()
 
+  const { t } = useTranslation()
+
   useEffect(() => {
     state.blockId && state.name ? setDisabled(false) : setDisabled(true)
   }, [state.blockId, state.name])
@@ -35,7 +38,7 @@ export default function ParkingSpot() {
   const inputArray = [
     {
       onChange: (e: Event) => handleChange(e),
-      placeholder: 'Escolha o bloco...',
+      placeholder: t('dashboard.parkingspot.inputs.block'),
       type: 'select',
       width: '75%',
       options: state.blocks.map((block) => ({
@@ -46,25 +49,25 @@ export default function ParkingSpot() {
     {
       onChange: (e: Event) =>
         setState((old) => ({ ...old, name: e.target.value })),
-      placeholder: 'Insira o nome da vaga...',
+      placeholder: t('dashboard.parkingspot.inputs.name'),
       width: '75%'
     },
     {
       onChange: () =>
         setState((old) => ({ ...old, occupied: !state.occupied })),
-      placeholder: 'Ocupada',
+      placeholder: t('dashboard.parkingspot.inputs.occupied'),
       type: 'checkbox',
       width: '75%'
     },
     {
       onChange: () => setState((old) => ({ ...old, special: !state.special })),
-      placeholder: 'Vaga especial',
+      placeholder: t('dashboard.parkingspot.inputs.special'),
       type: 'checkbox',
       width: '75%'
     },
     {
       onChange: () => setState((old) => ({ ...old, old: !state.old })),
-      placeholder: 'Vaga para idosos',
+      placeholder: t('dashboard.parkingspot.inputs.old'),
       type: 'checkbox',
       width: '75%'
     }
@@ -81,7 +84,7 @@ export default function ParkingSpot() {
         old: state.old
       })
       .then(() => {
-        toast.success('Vaga criada com sucesso!', {
+        toast.success(t('dashboard.parkingspot.success'), {
           position: 'top-right',
           autoClose: 2000,
           hideProgressBar: false,
@@ -94,7 +97,7 @@ export default function ParkingSpot() {
         })
       })
       .catch(() => {
-        toast.error('Erro ao criar a vaga!', {
+        toast.error(t('dashboard.parkingspot.error'), {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -141,13 +144,13 @@ export default function ParkingSpot() {
       <Header homeLink="/dashboard" />
       <Card>
         <Breadcrumbs editLink={'/dashboard/edit/parkingspot'} />
-        <Title>Nova vaga</Title>
+        <Title>{t('dashboard.parkingspot.inputs.title')}</Title>
         <Input
           inputArray={inputArray}
           hasButton
           buttonContent={[
             {
-              label: 'Criar vaga',
+              label: t('dashboard.parkingspot.button.title'),
               onClick: handleCreate,
               width: '150px',
               disabled: disabled

@@ -9,10 +9,13 @@ import {
 } from '@/components/Icons/DashboardIcons'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import * as S from './styles'
 
 export default function Home() {
   const router = useRouter()
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     ;(async () => {
@@ -28,52 +31,52 @@ export default function Home() {
   const dashboardCardsArray = [
     {
       icon: <ParkingSpot />,
-      title: 'Vagas',
-      text: 'Crie e gerencie suas vagas',
+      title: t('dashboard.parkingspot.title'),
+      text: t('dashboard.parkingspot.desc'),
       buttons: [
         {
-          label: 'Criar',
+          label: t('create'),
           onClick: () => handlePush('/dashboard/register/parkingspot')
         },
         {
-          label: 'Editar',
+          label: t('edit'),
           onClick: () => handlePush('/dashboard/edit/parkingspot')
         }
       ]
     },
     {
       icon: <Blocks />,
-      title: 'Blocos',
-      text: 'Crie e gerencie seus blocos',
+      title: t('dashboard.blocks.title'),
+      text: t('dashboard.blocks.desc'),
       buttons: [
         {
-          label: 'Criar',
+          label: t('create'),
           onClick: () => handlePush('/dashboard/register/blocks')
         },
         {
-          label: 'Editar',
+          label: t('edit'),
           onClick: () => handlePush('/dashboard/edit/blocks')
         }
       ]
     },
     {
       icon: <Payment />,
-      title: 'Pagamento',
-      text: 'Confirme o pagameto do tíquete',
+      title: t('dashboard.payment.title'),
+      text: t('dashboard.payment.desc'),
       buttons: [
         {
-          label: 'Entrar',
+          label: t('go'),
           onClick: () => handlePush('/dashboard/payment')
         }
       ]
     },
     {
       icon: <Gate />,
-      title: 'Cancela',
-      text: 'Libera a cancela',
+      title: t('dashboard.gate.title'),
+      text: t('dashboard.gate.desc'),
       buttons: [
         {
-          label: 'Entrar',
+          label: t('go'),
           onClick: () => handlePush('/gate')
         }
       ]
