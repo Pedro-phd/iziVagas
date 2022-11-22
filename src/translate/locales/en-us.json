@@ -112,7 +112,6 @@
           "title": "Register payment"
         }
       },
-      
       "gate": {
         "title": "Gate",
         "desc": "Release the gate",
@@ -122,6 +121,10 @@
         "button": {
           "title": "Release"
         }
+      },
+      "signup": {
+        "title": "Sign up",
+        "desc": "Sign up new users"
       }
     },
     "indicator": {

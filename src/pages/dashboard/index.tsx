@@ -4,6 +4,7 @@ import Header from '@/components/Header'
 import {
   Blocks,
   Gate,
+  NewUser,
   ParkingSpot,
   Payment
 } from '@/components/Icons/DashboardIcons'
@@ -78,6 +79,17 @@ export default function Home() {
         {
           label: t('go'),
           onClick: () => handlePush('/gate')
+        }
+      ]
+    },
+    {
+      icon: <NewUser />,
+      title: t('dashboard.signup.title'),
+      text: t('dashboard.signup.desc'),
+      buttons: [
+        {
+          label: t('go'),
+          onClick: () => handlePush('/dashboard/signup')
         }
       ]
     }

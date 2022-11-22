@@ -1,3 +1,4 @@
+import Header from '@/components/Header'
 import { Logo } from '@/components/Icons'
 import Input from '@/components/Input'
 import { Event } from '@/types/types'
@@ -7,7 +8,8 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { Container, LoginCard, LoginTitle } from '../login/styles'
+import { LoginCard, LoginTitle } from '../../login/styles'
+import { Container } from '../styles'
 
 function Signup() {
   const [state, setState] = useState({
@@ -18,7 +20,16 @@ function Signup() {
     errorMessage: ''
   })
 
+  const router = useRouter()
+
   const { t } = useTranslation()
+
+  useEffect(() => {
+    ;(async () => {
+      const login = await window.sessionStorage.getItem('login')
+      if (login === 'false') router.push('/login')
+    })()
+  }, [router])
 
   const [disabled, setDisabled] = useState<boolean>(true)
 
@@ -50,8 +61,6 @@ function Signup() {
       width: '75%'
     }
   ]
-
-  const router = useRouter()
 
   const handleSignup = (email: string, pass: string) => {
     signup(email, pass)
@@ -87,33 +96,32 @@ function Signup() {
   }
 
   return (
-    <>
-      <Container>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          rtl={false}
+    <Container>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        rtl={false}
+      />
+      <Header homeLink="/dashboard" />
+      <LoginCard>
+        <Logo option="header" />
+        <LoginTitle>{t('signup.title')}</LoginTitle>
+        <Input
+          inputArray={inputArray}
+          hasButton
+          buttonContent={[
+            {
+              onClick: () => handleSignup(state.email, state.pass),
+              label: t('signup.button'),
+              disabled: disabled
+            }
+          ]}
         />
-        <LoginCard>
-          <Logo option="header" />
-          <LoginTitle>{t('signup.title')}</LoginTitle>
-          <Input
-            inputArray={inputArray}
-            hasButton
-            buttonContent={[
-              {
-                onClick: () => handleSignup(state.email, state.pass),
-                label: t('signup.button'),
-                disabled: disabled
-              }
-            ]}
-          />
-          {state.error && <span>{state.errorMessage}</span>}
-        </LoginCard>
-      </Container>
-    </>
+        {state.error && <span>{state.errorMessage}</span>}
+      </LoginCard>
+    </Container>
   )
 }
 
