@@ -1,6 +1,7 @@
 import ConfirmButton from '@/components/ConfirmButton'
 import Header from '@/components/Header'
 import Input from '@/components/Input'
+import Loader from '@/components/Loader'
 import WrapperModal from '@/components/Modal'
 import ParkingSpotCard from '@/components/ParkingSpotCard'
 import { BoxSkeleton } from '@/styles/skeleton'
@@ -19,6 +20,7 @@ export default function BlocksPage() {
     ParkingSpot: [],
     error: false,
     loading: false,
+    validateLoading: false,
     errorMessage: '',
     idSelected: '',
     ticketId: ''
@@ -95,15 +97,17 @@ export default function BlocksPage() {
     return state.idSelected == id && !occupied ? true : false
   }
   const handleValidate = (id: string) => {
+    setState((old) => ({ ...old, validateLoading: true }))
     selectParkingSpot({
       id: id,
       parkingSpotId: state.idSelected
     })
       .then(() => {
+        setState((old) => ({ ...old, validateLoading: false }))
         console.log('deu certo')
         toast.success(t('parkingspot.success'), {
           position: 'top-right',
-          autoClose: 5000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -121,6 +125,7 @@ export default function BlocksPage() {
         })
       })
       .catch(() => {
+        setState((old) => ({ ...old, validateLoading: false }))
         toast.error(t('parkingspot.error'), {
           position: 'top-right',
           autoClose: 5000,
@@ -191,6 +196,7 @@ export default function BlocksPage() {
                       }
                     ]}
                   />
+                  {state.validateLoading && <Loader />}
                 </S.InputContainer>
               </>
             }
