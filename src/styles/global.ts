@@ -45,7 +45,6 @@ const GlobalStyles = createGlobalStyle`
     right: 0;
     bottom: 0;
     background-color: rgb(0,0,0,0.5);
-    backdrop-filter: blur(25px);
   }
 
   .pdf-wrapper {

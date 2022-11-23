@@ -1,10 +1,11 @@
+import { IConfirmButtonProps } from '@/types/ConfirmButton'
+import { useTranslation } from 'react-i18next'
 import * as S from './styles'
 
-interface IConfirmButtonProps {
-  id: string
-}
-
 const ConfirmButton = ({ id }: IConfirmButtonProps) => {
-  return <S.Button onClick={() => console.log(id)}>Confirmar vaga</S.Button>
+  const { t } = useTranslation()
+  return (
+    <S.Button onClick={() => console.log(id)}>{t('confirmButton')}</S.Button>
+  )
 }
 export default ConfirmButton

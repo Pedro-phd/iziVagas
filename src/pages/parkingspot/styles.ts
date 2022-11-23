@@ -23,13 +23,21 @@ export const SlotsContainer = styled.div`
 export const Title = styled.h1`
   font-weight: ${(props: IThemesProps) => props.theme.bold};
   font-size: 55px;
+  color: ${(props: IThemesProps) => props.theme.text};
 `
 
 export const TextContainer = styled.div`
-  padding: 37px 0 0 0;
+  padding: 35px 0 0 0;
 `
 
 export const Text = styled.p`
-  font-size: 32px;
+  font-size: 20px;
   color: #878787;
+`
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 35px 0 0 0;
+  align-items: center;
 `

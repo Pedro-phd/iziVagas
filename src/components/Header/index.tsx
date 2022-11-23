@@ -1,23 +1,46 @@
+import { IHeader } from '@/types/Header'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { Logo } from '../Icons/Logo'
+import LogoutButton from '../LogoutButton'
 import ToggleLanguage from '../ToggleLanguage'
 import ToggleTheme from '../ToggleTheme'
 import * as S from './styles'
 
-interface IHeader {
-  title: string
-}
+const Header = ({ title, hasLogout, homeLink }: IHeader) => {
+  const router = useRouter()
 
-const Header = ({ title }: IHeader) => (
-  <S.Wrapper>
-    <S.row>
-      <Logo option="header" />
-      <S.toggles>
-        <ToggleLanguage />
-        <ToggleTheme />
-      </S.toggles>
-    </S.row>
-    <S.Title>{title}</S.Title>
-  </S.Wrapper>
-)
+  const handlePush = (link: string) => {
+    router.push(link)
+  }
+
+  useEffect(() => {
+    ;(async () => {
+      const login = await window.sessionStorage.getItem('login')
+      if (login === 'false') router.push('/login')
+    })()
+  }, [router])
+
+  return (
+    <S.Wrapper>
+      <S.Row>
+        <S.LogoWrapper
+          onClick={() => {
+            homeLink ? handlePush(homeLink) : {}
+          }}
+          homeLink={homeLink}
+        >
+          <Logo option="header" />
+        </S.LogoWrapper>
+        <S.ToggleWrapper>
+          {hasLogout && <LogoutButton />}
+          <ToggleLanguage />
+          <ToggleTheme />
+        </S.ToggleWrapper>
+      </S.Row>
+      <S.Title>{title}</S.Title>
+    </S.Wrapper>
+  )
+}
 
 export default Header

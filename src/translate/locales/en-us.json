@@ -2,6 +2,131 @@
   "translation": {
     "button": "ingles",
     "block": "Block",
+    "confirmButton": "Confirm selection",
+    "login": {
+      "success": "Login successfully!",
+      "error": "Error while loggin in!",
+      "inputs": {
+        "name": "Insert your email...",
+        "password": "Insert your password..."
+      }
+    }, 
+    "signup": {
+      "title": "Sign up",
+      "success": "Sign up successfully!", 
+      "error": "Error while signing up!",
+      "inputs": {
+        "name": "Insert your email...",
+        "password": "Insert your password...",
+        "confirmPassword": "Confirm your password..."
+      },
+      "button": "Sign up"
+    },
+    "home": {
+      "error": "Error creating the ticket!"
+    },
+    "blocks": {
+      "title": "Blocks",
+      "warn": "The app will return to the start screen in 7 seconds!",
+      "success": "Ticket created successfully!"
+    },
+    "parkingspot": {
+      "title": "Parking Spot",
+      "success": "Ticket validated successfully!",
+      "error": "Error validating the ticket!",
+      "empty": "We don't have available parking spots for this block!",
+      "modal": {
+        "title": "Validate your parking spot!",
+        "subtitle1": "1 - Scan the code or enter it down below",
+        "subtitle2": "2 - Wait for the confirmation"
+      },
+      "inputs": {
+        "placeholder": "Insert ticket number..."
+      },
+      "button": {
+        "title": "Validate"
+      }
+    },
+    "create": "Create",
+    "edit": "Edit",
+    "go": "Go",
+    "goBack": "Back",
+    "dashboard": {
+      "parkingspot": {
+        "title": "Parking Spots",
+        "desc": "Create and manage your parking spots",
+        "success": "Parking spot successfully created!",
+        "editSuccess": "Parking spot successfully updated!",
+        "deleteSuccess": "Parking spot successfully deleted!",
+        "error": "Error while creating the parking spot!",
+        "editError": "Error while updating the parking spot!",
+        "deleteError": "Error while deleting the parking spot!", 
+        "inputs": {
+          "title": "New parking spot",
+          "editTitle": "Manage parking spots",
+          "block": "Choose the block...",
+          "parkingspot": "Choose the parking spot...",
+          "name": "Insert the parking spot name...",
+          "newName": "Insert the parking spot new name...",
+          "occupied": "Occupied",
+          "special": "Special parking spot",
+          "old": "Senior parking spot"
+        },
+        "button": {
+          "title": "Create parking spot",
+          "editTitle": "Update parking spot",
+          "deleteTitle": "Delete parking spot"
+        }
+      },
+      "blocks": {
+        "title": "Blocks",
+        "desc": "Create and manage your blocks",
+        "success": "Block created successfully!",
+        "editSuccess": "Block updated successfully!",
+        "deleteSuccess": "Block deleted successfully!",
+        "error": "Error while creating the block!",
+        "editError": "Error while updating the block!",
+        "deleteError": "Error while deleting the block!",
+        "inputs": {
+          "title": "New block",
+          "editTitle": "Manage blocks",
+          "name": "Insert the block name...",
+          "amount": "Insert the amount of parking spots...",
+          "block": "Choose the block name..."
+        },
+        "button": {
+          "title": "Create block",
+          "editTitle": "Update block",
+          "deleteTitle": "Delete block"
+        }
+      },
+      "payment": {
+        "title": "Payment",
+        "desc": "Confirm the payment of your ticket",
+        "success": "Ticket paid successfully!",
+        "error": "Error while paying the ticket!",
+        "inputs": {
+          "id": "Insert the ticket ID..."
+        },
+        "button": {
+          "title": "Register payment"
+        }
+      },
+      "gate": {
+        "title": "Gate",
+        "desc": "Release the gate",
+        "paidSuccess": "Paid ticket!",
+        "paidError": "Ticket is not paid!",
+        "error": "Internal error! Try again later!",
+        "button": {
+          "title": "Release"
+        }
+      },
+      "signup": {
+        "title": "Sign up",
+        "desc": "Sign up new users"
+      }
+    },
     "indicator": {
       "many": "Many",
       "regular": "Regular",

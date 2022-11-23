@@ -1,9 +1,11 @@
-import { IParkingSpotCard, IThemesProps } from '@/types/styled'
+import { IParkingSpotCard } from '@/types/ParkingSpotCard'
+import { IThemesProps } from '@/types/styled'
 import styled from 'styled-components'
 
 export const Wrapper = styled.main``
 
 export const Content = styled.div`
+  position: relative;
   width: 150px;
   height: 150px;
   background: ${(props: IParkingSpotCard) =>
@@ -25,4 +27,19 @@ export const Content = styled.div`
 
 export const Number = styled.p`
   font-size: 75px;
+`
+
+export const SpecialContent = styled.div`
+  width: 50px;
+  height: 50px;
+  display: block;
+  border-radius: 50%;
+  font-size: 0;
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  background: #0f4cff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `

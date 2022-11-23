@@ -5,6 +5,12 @@ import i18n from 'i18next'
 import detector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
 
+let defaultLanguage: string | null = 'pt-BR'
+
+if (typeof window !== 'undefined') {
+  defaultLanguage = window.localStorage.getItem('i18nextLng')
+}
+
 const resources = {
   'pt-BR': PTBR,
   'en-US': ENUS,
@@ -16,7 +22,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'pt-BR',
+    fallbackLng: defaultLanguage as string,
     interpolation: {
       escapeValue: false
     }

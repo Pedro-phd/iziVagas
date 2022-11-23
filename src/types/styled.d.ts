@@ -21,22 +21,15 @@ export interface IThemesProps {
     skeletonBg: string
     buttonColor: string
     buttonTextColor: string
+    dashboardCardText: string
+    dashboardCardBackground: string
   }
-}
-
-export interface IColorIndicator extends IThemesProps {
-  color: 'green' | 'yellow' | 'red'
 }
 
 export interface ICircleProps extends IThemesProps {
   opacity: number
   size: string
   duration: string
-}
-
-export interface IParkingSpotCard extends IThemesProps {
-  selected: boolean
-  disabled: boolean
 }
 
 export interface ISkeleton extends IThemesProps {
