@@ -2,7 +2,7 @@ import { Text } from '@/pages/dashboard/styles'
 import { IInputProps } from '@/types/Input'
 import * as S from './styles'
 
-function Input({ inputArray, hasButton, buttonContent }: IInputProps) {
+function Input({ inputArray, hasButton, buttonContent, ...rest }: IInputProps) {
   return (
     <S.Form>
       {inputArray.map((inputItem, index) => {
@@ -16,6 +16,8 @@ function Input({ inputArray, hasButton, buttonContent }: IInputProps) {
             width={inputItem.width ? inputItem.width : 'auto'}
             value={(inputItem.value !== 0 && inputItem.value) as number}
             disabled={inputItem.disabled}
+            autoFocus
+            {...rest}
           />
         ) : inputItem.type === 'select' ? (
           <S.CustomSelect
@@ -24,6 +26,7 @@ function Input({ inputArray, hasButton, buttonContent }: IInputProps) {
             onChange={inputItem.onChange}
             width={inputItem.width ? inputItem.width : 'auto'}
             disabled={inputItem.disabled}
+            {...rest}
           >
             <option selected disabled>
               {inputItem.placeholder}
@@ -38,6 +41,7 @@ function Input({ inputArray, hasButton, buttonContent }: IInputProps) {
           <S.CustomCheckboxContainer
             width={inputItem.width ? inputItem.width : 'auto'}
             key={index}
+            {...rest}
           >
             <S.CustomCheckbox
               type="checkbox"

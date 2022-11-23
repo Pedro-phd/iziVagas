@@ -3,6 +3,7 @@ import Header from '@/components/Header'
 import Input from '@/components/Input'
 import { IStatePayment } from '@/types/Dashboard'
 import { Event } from '@/types/types'
+import validateParkingSpot from '@/utils/validateParkingSpot'
 import validateTicket from '@/utils/validateTicket'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -34,23 +35,42 @@ export default function Payment() {
     }
   ]
 
+  // const updateParkingSpot = () => {}
+
   const handlePayment = () => {
     validateTicket({
       id: state.id,
       paid: true
     })
-      .then(() => {
-        toast.success(t('dashboard.payment.success'), {
-          position: 'top-right',
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          draggable: false,
-          progress: undefined,
-          onClose: () => {
-            router.reload()
-          }
+      .then((res) => {
+        console.log(res.data.parkingSpotId)
+        validateParkingSpot({
+          id: res.data.parkingSpotId,
+          occupied: false
         })
+          .then(() => {
+            toast.success(t('dashboard.payment.success'), {
+              position: 'top-right',
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              draggable: false,
+              progress: undefined,
+              onClose: () => {
+                router.reload()
+              }
+            })
+          })
+          .catch(() => {
+            toast.error(t('dashboard.payment.error'), {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              draggable: false,
+              progress: undefined
+            })
+          })
       })
       .catch(() => {
         toast.error(t('dashboard.payment.error'), {

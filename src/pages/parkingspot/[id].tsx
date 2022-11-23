@@ -26,13 +26,21 @@ export default function BlocksPage() {
 
   const { t } = useTranslation()
 
+  const handleChange = (e: Event) => {
+    setState((old) => ({ ...old, ticketId: e.target.value }))
+    console.log('errado', e.target.value.length)
+    if (e.target.value.length === 24) {
+      console.log('certo', e.target.value.length)
+      handleValidate(e.target.value)
+    }
+  }
+
   const inputArray = [
     {
-      onChange: (e: Event) =>
-        setState((old) => ({ ...old, ticketId: e.target.value })),
-
+      onChange: (e: Event) => handleChange(e),
       placeholder: t('parkingspot.inputs.placeholder'),
-      width: '50%'
+      width: '50%',
+      autoFocus: true
     }
   ]
 
@@ -86,9 +94,9 @@ export default function BlocksPage() {
   const handleSelected = (id: string, occupied: boolean) => {
     return state.idSelected == id && !occupied ? true : false
   }
-  const handleValidate = () => {
+  const handleValidate = (id: string) => {
     selectParkingSpot({
-      id: state.ticketId,
+      id: id,
       parkingSpotId: state.idSelected
     })
       .then(() => {
@@ -178,7 +186,7 @@ export default function BlocksPage() {
                     hasButton
                     buttonContent={[
                       {
-                        onClick: handleValidate,
+                        onClick: () => handleValidate(state.ticketId),
                         label: t('parkingspot.button.title')
                       }
                     ]}
