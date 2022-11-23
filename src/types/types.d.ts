@@ -36,6 +36,7 @@ export interface IStateBlocks {
   ParkingSpot: IParkingSpot[]
   error: boolean
   loading: boolean
+  validateLoading: boolean
   errorMessage: string
   idSelected: string
   ticketId: string
